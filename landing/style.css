@@ -47,6 +47,11 @@ a:hover {
     border-right: none;
 }
 
+img.img-200px {
+    max-width: 200px;
+    height: auto;
+}
+
 img.img-100px {
     max-width: 100px;
     height: auto;
