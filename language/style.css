@@ -1,0 +1,42 @@
+html, body {
+    background: #fcfcf9;
+    font-family: 'Inter', Arial, sans-serif;
+    color: #3A405F;
+    font-size: 16px;
+}
+
+h1.js-quickedit-page-title.text-left.page-title {
+    display: none !important;
+}
+
+a.btn {
+    border-radius: 4px;
+    border: none;
+}
+
+a.btn-primary {
+    background: #5C6AC1;
+    font-weight: 700;
+    color: #FFF !important;
+}
+
+a.btn-primary:hover {
+    background: #4e5aa4;
+    color: #FFF !important;
+}
+
+a {
+    font-weight: 700;
+    color: #5C6AC1 !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: #4e5aa4 !important;
+}
+
+
+
+.list-countries ul { margin:0 !important; padding-left: 0 !important; }
+.list-countries ul li { margin:18px 0 !important; list-style:none !important; }
+.list-countries ul li a { color: #5C6AC1; font-weight: 700; text-decoration: none; }
