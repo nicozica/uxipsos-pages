@@ -4,6 +4,10 @@ html, body {
     color: #3A405F;
 }
 
+body main {
+    padding-bottom: 0 !important;
+}
+
 h1.js-quickedit-page-title.text-left.page-title {
     display: none !important;
 }
