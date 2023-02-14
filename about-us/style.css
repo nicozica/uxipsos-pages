@@ -44,6 +44,14 @@ a:hover {
     color: #3A405F;
 }
 
+.text-secondary {
+    color: #1D7F76 !important;
+}
+
+h1.text-left.page-title {
+    display: none;
+}
+
 .panel {
     padding: 40px 0 40px 0;
 }
