@@ -44,6 +44,15 @@ a:hover {
     color: #3A405F;
 }
 
+.lead {
+    font-weight: 400 !important;
+}
+
+.fs-7 {
+    font-size: 12px;
+    color: #666;
+}
+
 .text-secondary {
     color: #1D7F76 !important;
 }
