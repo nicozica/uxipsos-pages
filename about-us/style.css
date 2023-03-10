@@ -1,7 +1,7 @@
 html, body {
     background: #fcfcf9;
     font-family: 'Inter', Arial, sans-serif;
-    color: #3A405F;
+    color: #3A405F !important;
 }
 
 body main {
@@ -41,7 +41,7 @@ a:hover {
 .h1, h1, .h2, h2, .h3, h3, .h4, .h5, .h6, h4, h5, h6, strong { 
     font-family: 'Inter', Arial, sans-serif;
     font-weight: 700 !important;
-    color: #3A405F;
+    color: #3A405F !important;
 }
 
 .lead {
@@ -84,4 +84,9 @@ h1.text-left.page-title {
 img.img-200px {
     max-width: 200px;
     height: auto;
+}
+
+.join-button > a {
+    color: #FFFFFF !important;
+    border-radius: 4px !important;
 }
