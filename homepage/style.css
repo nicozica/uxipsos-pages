@@ -81,3 +81,32 @@ img.img-100px {
     max-width: 100px;
     height: auto;
 }
+
+
+
+/****************** FOOTER STYLES ******************/
+
+ul.social-icons li:first-child {
+    list-style: none;
+    margin-left: 0;
+}
+
+ul.social-icons li {
+    list-style: none;
+    margin: 8px 4px;
+}
+
+.app-badge.googleplay {
+    max-width: 143px;
+
+}
+
+.app-badge.ios {
+    max-width: 125px;
+}
+
+footer ul.nav.navbar-nav {
+  display: block;
+  column-count: 3;
+  column-gap: 2em;
+}
