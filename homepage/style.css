@@ -67,9 +67,18 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
 
 .panel.panel-primary {
     background: #FFF;
-    border: 1px solid #DEE2E6;
+    border: 1px solid #DEE2E6 !important;
     border-left: none;
     border-right: none;
+}
+
+@media (min-width: 992px) {
+    .panel.panel-primary {
+        background: #FFF;
+        border: none !important;
+        border-radius: 0.5rem !important;
+        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    }
 }
 
 img.img-200px {
@@ -82,7 +91,9 @@ img.img-100px {
     height: auto;
 }
 
-
+.pramien-region .carousel .carousel_wrapper .swiper-slide article.node-incentive a.exchange_link {
+    border: 1px solid #dbdbdb;
+}
 
 /****************** FOOTER STYLES ******************/
 
@@ -103,6 +114,10 @@ footer ul.social-icons li {
     list-style: none;
     margin: 8px 4px;
 }
+
+footer .social-icons a {
+    padding: 0;
+} 
 
 footer .app-badge.googleplay {
     max-width: 143px;
