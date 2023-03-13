@@ -86,22 +86,29 @@ img.img-100px {
 
 /****************** FOOTER STYLES ******************/
 
-ul.social-icons li:first-child {
+footer h2 {
+    display: none;
+}
+
+footer .nav-item a {
+    font-size: 12px !important;
+}
+
+footer ul.social-icons li:first-child {
     list-style: none;
     margin-left: 0;
 }
 
-ul.social-icons li {
+footer ul.social-icons li {
     list-style: none;
     margin: 8px 4px;
 }
 
-.app-badge.googleplay {
+footer .app-badge.googleplay {
     max-width: 143px;
-
 }
 
-.app-badge.ios {
+footer .app-badge.ios {
     max-width: 125px;
 }
 
@@ -109,4 +116,12 @@ footer ul.nav.navbar-nav {
   display: block;
   column-count: 3;
   column-gap: 2em;
+}
+
+
+
+/****************** COMMON CSS ******************/
+
+.fs-7 {
+    font-size: 12px !important;
 }
