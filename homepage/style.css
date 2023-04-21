@@ -97,10 +97,6 @@ img.img-100px {
 
 /****************** FOOTER STYLES ******************/
 
-footer h2 {
-    display: none;
-}
-
 footer .nav-item a {
     font-size: 12px !important;
 }
@@ -129,14 +125,34 @@ footer .app-badge.ios {
 
 footer ul.nav.navbar-nav {
   display: block;
-  column-count: 2;
+  column-count: 2 !important;
   column-gap: 2em;
 }
 
+@media (min-width: 768px) {
+    footer ul.nav.navbar-nav {
+        column-count: 3 !important;
+    }
+}
 
+#block-footeripsos h2 {
+    display: none;
+}
 
 /****************** COMMON CSS ******************/
 
 .fs-7 {
     font-size: 12px !important;
+}
+
+
+/****************** INJECTED CSS ******************/
+
+.front .region-content, .front .region-content p {
+    text-align: left !important;
+}
+
+.front .region-content p {
+    display: block !important;
+    text-align: -webkit-match-parent !important;
 }
