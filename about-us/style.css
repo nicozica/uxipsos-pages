@@ -67,18 +67,9 @@ h1.text-left.page-title {
 
 .panel.panel-primary {
     background: #FFF;
-    border: 1px solid #DEE2E6 !important;
-    border-left: none;
-    border-right: none;
-}
-
-@media (min-width: 992px) {
-    .panel.panel-primary {
-        background: #FFF;
-        border: none !important;
-        border-radius: 0.5rem !important;
-        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-    }
+    border: none !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
 
 img.img-200px {
