@@ -1,0 +1,83 @@
+html, body {
+    background: #fcfcf9;
+    font-family: 'Inter', Arial, sans-serif;
+    color: #3A405F !important;
+}
+
+body main {
+    padding-bottom: 0 !important;
+}
+
+h1.js-quickedit-page-title.text-left.page-title {
+    display: none !important;
+}
+
+a.btn {
+    border-radius: 4px;
+    border: none;
+}
+
+a.btn-primary {
+    background: #5C6AC1;
+    font-weight: 700;
+    color: #FFF !important;
+}
+
+a.btn-primary:hover {
+    background: #4e5aa4;
+    color: #FFF !important;
+}
+
+a {
+    font-weight: 700;
+    color: #5C6AC1 !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: #4e5aa4 !important;
+}
+
+.h1, h1, .h2, h2, .h3, h3, .h4, .h5, .h6, h4, h5, h6, strong { 
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 700 !important;
+    color: #3A405F !important;
+}
+
+.lead {
+    font-weight: 400 !important;
+}
+
+.fs-7 {
+    font-size: 12px;
+    color: #666;
+}
+
+.text-secondary {
+    color: #1D7F76 !important;
+}
+
+h1.text-left.page-title {
+    display: none;
+}
+
+.panel {
+    padding: 40px 0 40px 0;
+}
+
+.panel.panel-primary {
+    background: #FFF;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+img.img-200px {
+    max-width: 200px;
+    height: auto;
+}
+
+.join-button > a {
+    color: #FFFFFF !important;
+    border-radius: 4px !important;
+}
