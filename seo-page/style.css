@@ -119,3 +119,11 @@ h1.text-left.page-title {
         display: none !important;
     }
 }
+
+h2.title.d-flex.justify-content-start {
+    display: none !important;
+}
+
+.pramien-region .carousel .carousel_wrapper .swiper-slide article.node-incentive a.exchange_link {
+    border-color: #dadada !important;
+}
