@@ -1,7 +1,11 @@
 html, body {
-    background: #fcfcf9;
-    font-family: 'Inter', Arial, sans-serif;
+    background: #fcfcf9 !important;
+    font-family: 'Inter', Arial, sans-serif !important;
     color: #3A405F !important;
+}
+
+img:not(what_is_talk) {
+    display: initial !important;
 }
 
 body main {
@@ -15,6 +19,7 @@ h1.js-quickedit-page-title.text-left.page-title {
 a.btn {
     border-radius: 4px;
     border: none;
+    margin-left: 0 !important;
 }
 
 a.btn-primary {
@@ -79,8 +84,8 @@ h1.text-left.page-title {
 
 
 .panel.panel-primary.page-intro {
-    background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/seo/hero-section.jpg') no-repeat;
-    background-size: cover;
+    background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/seo/hero-section.jpg') no-repeat !important;
+    background-size: cover !important;
 }
 
 .panel.panel-primary {
@@ -92,12 +97,8 @@ h1.text-left.page-title {
     border-radius: 12px;
 }
 
-.panel.panel-grey {
-    background-color: #fafafa;
-}
-
 .panel.panel-primary.panel-rounded {
-    padding: 30px 40px;
+    padding: 30px 40px !important;
     border-radius: 6px !important;
 }
 
