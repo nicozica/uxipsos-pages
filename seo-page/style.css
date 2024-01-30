@@ -72,12 +72,49 @@ h1.text-left.page-title {
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
 
-img.img-200px {
-    max-width: 200px;
-    height: auto;
-}
-
 .join-button > a {
     color: #FFFFFF !important;
     border-radius: 4px !important;
+}
+
+
+.panel.panel-primary.page-intro {
+    background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/seo/hero-section.jpg') no-repeat;
+    background-size: cover;
+}
+
+.panel.panel-primary {
+    border-radius: 0 !important;
+}
+
+.panel.panel-transparent {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+}
+
+.panel.panel-grey {
+    background-color: #fafafa;
+}
+
+.panel.panel-primary.panel-rounded {
+    padding: 30px 40px;
+    border-radius: 6px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animation-preferred {
+        display: none !important;
+    }
+    .animation-notpreferred {
+        display: flex !important;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .animation-preferred {
+        display: flex !important;
+    }
+    .animation-notpreferred {
+        display: none !important;
+    }
 }
