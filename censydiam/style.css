@@ -83,6 +83,34 @@ h2 {
     }
 }
 
+
+/****************** CHOICE PAGE STYLES ******************/
+
+.panel-default {
+    background-color: #FFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+}
+
+a.choice {
+    margin: 20px 10px;
+    padding: 8px;
+    border: 1px solid #E0E0E0;
+    display: inline-block;
+    border-radius: 12px;
+}
+
+a.choice:hover {
+    background-color: #DBE2FF;
+    border: 1px solid #2600ff;
+}
+
+a.choice img {
+    max-width: 200px;
+    height: auto;
+}
+
 /****************** FOOTER STYLES ******************/
 
 footer .nav-item a {
