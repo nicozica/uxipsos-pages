@@ -170,3 +170,44 @@ footer ul.nav.navbar-nav {
 .btn.btn-light.btn-start {
     color: #009CFF !important;
 }
+
+/****************** RESULTS PAGE ******************/
+
+.panel.panel-results h1, .panel.panel-results strong {
+    color: #FFF !important;
+}
+
+.panel.panel-results-orange {
+    background: linear-gradient(to bottom right, #FF8A00, #D68D00);
+}
+
+
+/****************** FORM ******************/
+
+.form-label {
+    margin-bottom: 4px;
+    color: #2F469C;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+
+    
+}
+
+input.form-control {
+    font-size: 16px;
+    padding: 8px 12px;
+}
+
+.validation-warn {
+    display: none;
+}
+
+.form-check {
+    padding-left: 0;
+}
+
+.form-check-label {
+    margin-left: 5px;
+}
