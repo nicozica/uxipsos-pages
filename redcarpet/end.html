@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ipsos iSay</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
     <link href="style.css" rel="stylesheet">
   </head>
   <body>
@@ -27,24 +28,21 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
     
-                <div class="panel panel-default text-center mb-4">
+                <div class="panel panel-default text-center mb-4 pt-3">
     
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-10 offset-sm-1">
-                                    <h1 class="h2 mt-1 mb-1">What is your choice?</h1>
-                                    <p class="mt-1">Choose the picture that best reflects what you value in life.</p>
-                        
-                                </div><!-- col-xs-12 col-sm-10 offset-sm-1 -->
-                            </div><!-- row -->
-                            
-                            <div class="mt-1">
-                                <a href="results.html" class="choice"><img class="rounded" src="images/choice_01.jpg" alt="Image description"></a>
-                                <a href="results.html" class="choice"><img class="rounded" src="images/choice_02.jpg" alt="Image description"></a>
-                            </div>	
 
-                        </div><!-- row -->
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-10 offset-sm-1">
+                            <lottie-player class="mt-3" src="js/you_won.json" background="transparent" speed="1" style="width: 200px; height: 200px; margin: 0 auto;" aria-hidden="true" autoplay></lottie-player>
+                            <h1 class="h2 mt-3 mb-2">Congrats, you completed <br>your first survey!</h1>
+                            <p class="margin-top-xs">That was easy, wasn’t it?</p>
+                            <p>You earned <br><span>
+                                <span class="h4"><i class="fa fa-star text-warning"></i> 20 points</span>
+                            </p>
+                            
+                            <a href="end.html" class="btn btn-primary py-2 px-5 fs-5 mt-4">Take another study</a>
+                        </div><!-- col-xs-12 col-sm-10 offset-sm-1 -->
+
                     </div><!-- row -->
     
                 </div><!-- panel -->
@@ -66,9 +64,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
-    <!-- TrustBox script -->
-    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
-    <!-- End TrustBox script -->
   </body>
 </html>
