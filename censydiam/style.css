@@ -251,4 +251,5 @@ input.form-control {
     position: fixed;
     bottom: 5px;
     right: 5px;
+    border: 1px solid #FAFAFA;
 }
