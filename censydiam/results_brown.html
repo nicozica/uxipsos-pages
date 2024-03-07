@@ -205,61 +205,93 @@
         </div>
     </footer>
 
+    <button type="button" class="btn btn-sm btn-primary btn-results" data-bs-toggle="modal" data-bs-target="#resultsModal">
+        + Results
+    </button>
+
+    <!-- JUST FOR THE PROTOTYPE: Not used in production -->
+    <!-- Modal -->
+    <div class="modal fade" id="resultsModal" tabindex="-1" aria-labelledby="resultsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="resultsModalLabel">More results</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li><a class="dropdown-item" href="results_orange.html">Creative (orange)</a></li>
+                        <li><a class="dropdown-item" href="results_black.html">Pragmatist (black)</a></li>
+                        <li><a class="dropdown-item" href="results_yellow.html">Connector (yellow)</a></li>
+                        <li><a class="dropdown-item" href="results_brown.html">Empathizer (brown)</a></li>
+                        <li><a class="dropdown-item" href="results_purple.html">Leader (purple)</a></li>
+                        <li><a class="dropdown-item" href="results_blue.html">Protector (blue)</a></li>
+                        <li><a class="dropdown-item" href="results_green.html">Expert (green)</a></li>
+                        <li><a class="dropdown-item" href="results_red.html">Explorer (red)</a></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.3/icheck.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-    // Initialize iCheck plugin
-    $('input.icheck').iCheck({
-        checkboxClass: 'icheckbox_flat-blue',
-        radioClass: 'iradio_flat-blue',
-        disabledCheckboxClass: 'icheckbox_flat-aero',
-        disabledRadioClass: 'iradio_flat-aero'
+    $(document).ready(function() {
+        // Initialize iCheck plugin
+        $('input.icheck').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue',
+            disabledCheckboxClass: 'icheckbox_flat-aero',
+            disabledRadioClass: 'iradio_flat-aero'
+        });
+
+        // Wrap radio input and label in a container
+        $('input.icheck[type="radio"]').each(function() {
+            $(this).next('label').andSelf().wrapAll('<div class="radio-container"></div>');
+        });
+
+        // Add pointer cursor to radio container
+        $('.radio-container').css('cursor', 'pointer');
+
+        // Activating tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Collapse/Expand collapsible reasons
+        $('#collapsibleWhyExpand').click(function() {
+            $(this).find('[data-fa-i2svg]').toggleClass('fa-caret-down fa-caret-right');
+            $('#collapsibleWhy').fadeToggle();
+        });
+
+        // Password strength indicator
+        $('#passwordInput').pwstrength();
+
+        // Toggle message
+        $('.toggle_message').click(function() {
+            $('.message').toggleClass("hide show");
+        });
+
+        // Custom gender dropdown
+        $('#radio3').on('ifChecked', function() {
+            $('#customGender').fadeIn('fast');
+        });
+
+        $('#radio3').on('ifUnchecked', function() {
+            $('#customGender').fadeOut('fast');
+        });
+
+        // Toggle errors
+        $('.toggle_errors').click(function() {
+            $('.alert, .validation-warn').toggleClass("hide show");
+            $('.form-group').toggleClass("has-error");
+            $('.panel-validation').toggleClass("has-error");
+        });
     });
-
-    // Wrap radio input and label in a container
-    $('input.icheck[type="radio"]').each(function() {
-        $(this).next('label').andSelf().wrapAll('<div class="radio-container"></div>');
-    });
-
-    // Add pointer cursor to radio container
-    $('.radio-container').css('cursor', 'pointer');
-
-    // Activating tooltips
-    $('[data-toggle="tooltip"]').tooltip();
-
-    // Collapse/Expand collapsible reasons
-    $('#collapsibleWhyExpand').click(function() {
-        $(this).find('[data-fa-i2svg]').toggleClass('fa-caret-down fa-caret-right');
-        $('#collapsibleWhy').fadeToggle();
-    });
-
-    // Password strength indicator
-    $('#passwordInput').pwstrength();
-
-    // Toggle message
-    $('.toggle_message').click(function() {
-        $('.message').toggleClass("hide show");
-    });
-
-    // Custom gender dropdown
-    $('#radio3').on('ifChecked', function() {
-        $('#customGender').fadeIn('fast');
-    });
-
-    $('#radio3').on('ifUnchecked', function() {
-        $('#customGender').fadeOut('fast');
-    });
-
-    // Toggle errors
-    $('.toggle_errors').click(function() {
-        $('.alert, .validation-warn').toggleClass("hide show");
-        $('.form-group').toggleClass("has-error");
-        $('.panel-validation').toggleClass("has-error");
-    });
-});
 
 
 

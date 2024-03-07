@@ -245,3 +245,10 @@ input.form-control {
 .form-check-label {
     margin-left: 5px;
 }
+
+/****************** JUST FOR THE PROTOTYPE: Not used in production ******************/
+.btn-results {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+}
