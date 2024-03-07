@@ -183,6 +183,38 @@ footer ul.nav.navbar-nav {
     background: linear-gradient(to bottom right, #FF8A00, #D68D00);
 }
 
+.panel.panel-results-black {
+    background: linear-gradient(to bottom right, #292929, #313131);
+}
+
+.panel.panel-results.panel.panel-results-yellow h1, .panel.panel-results.panel.panel-results-yellow strong {
+    color: #02103F !important;
+}
+
+.panel.panel-results-yellow {
+    background: linear-gradient(to bottom right, #FFCE00, #E2B90C);
+}
+
+.panel.panel-results-brown {
+    background: linear-gradient(to bottom right, #974C0F, #663300);
+}
+
+.panel.panel-results-purple {
+    background: linear-gradient(to bottom right, #6701A5, #540785);
+}
+
+.panel.panel-results-blue {
+    background: linear-gradient(to bottom right, #009CFF, #0063AA);
+}
+
+.panel.panel-results-green {
+    background: linear-gradient(to bottom right, #007057, #169075);
+}
+
+.panel.panel-results-red {
+    background: linear-gradient(to bottom right, #C31421, #FE2F3E);
+}
+
 
 /****************** FORM ******************/
 
