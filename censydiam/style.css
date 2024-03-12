@@ -180,14 +180,14 @@ footer ul.nav.navbar-nav {
 }
 
 .panel.panel-results-orange {
-    background: linear-gradient(to bottom right, #FF8A00, #D68D00);
+    background: linear-gradient(to bottom right, #FFA238, #CB8600);
 }
 
 .panel.panel-results-black {
     background: linear-gradient(to bottom right, #292929, #313131);
 }
 
-.panel.panel-results.panel.panel-results-yellow h1, .panel.panel-results.panel.panel-results-yellow strong {
+.panel.panel-results.panel.panel-results-yellow h1, .panel.panel-results.panel.panel-results-yellow strong, .panel.panel-results.panel.panel-results-orange h1, .panel.panel-results.panel.panel-results-orange strong {
     color: #02103F !important;
 }
 
