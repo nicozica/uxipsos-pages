@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Protest+Riot&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css');
 
 html, body {
     background: #fff;
     font-family: 'Inter', Arial, sans-serif;
     color: #767279;
+}
+
+@media (min-width: 992px) {
+  .region.region-nav-main {
+    display: none;
+  }
 }
 
 a.btn {
@@ -239,9 +246,15 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
     animation: 35s slide infinite linear;
   }
   
-  .logos-slide img {
-    margin: 0 40px;
-    opacity: .4;
+  .logos-slide img.logo-brand {
+    height: initial !important;
+    border: initial !important;
+    display: initial !important;
+    margin: initial !important;
+    max-width: initial !important;
+
+    margin: 0 40px !important;
+    opacity: .4 !important;
   }
 
   
@@ -253,15 +266,15 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
 }
 
 .carousel-control-prev, .carousel-control-next {
-  bottom: 25px;
+  bottom: 135px;
 }
 
 .carousel-control-prev {
-  left: -50px !important;
+  left: -10px !important;
 }
 
 .carousel-control-next {
-  right: -45px !important;
+  right: -10px !important;
 }
 
 .carousel-indicators  {
@@ -278,17 +291,27 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
   border-radius: 50%;
 }
 
+img.carousel-icon {
+  height: initial !important;
+  border: initial !important;
+  display: initial;
+  margin: initial !important;
+  max-width: initial !important;
+
+  margin-bottom: 16px !important;
+}
+
 @media (min-width: 576px) and (max-width: 768px) {
   .carousel {
     height: 320px;
     margin-bottom: 110px !important;
   }
   .carousel-control-prev {
-    left: -60px !important;
+    left: -20px !important;
     bottom: 55px !important;
   }
   .carousel-control-next {
-    right: -45px !important;
+    right: -20px !important;
     bottom: 55px !important;
   }
   .carousel-indicators  {
@@ -306,9 +329,11 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
   }
   .carousel-control-prev {
     left: -80px !important;
+    bottom: 55px !important;
   }
   .carousel-control-next {
-    right: -52px !important;
+    right: -80px !important;
+    bottom: 55px !important;
   }
 }
 
@@ -318,10 +343,14 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
     margin-bottom: 80px !important;
   }
   .carousel-control-prev {
-    left: -60px !important;
+    left: -30px !important;
+    bottom: 15px !important;
+    
   }
   .carousel-control-next {
-    right: -45px !important;
+    right: -30px !important;
+    bottom: 15px !important;
+    
   }
   .carousel-indicators  {
     margin-bottom: -40px !important;
@@ -351,5 +380,3 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
 .carousel-control-next-icon {
   background-image: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/icons/carousel-arrow-right.svg');
 }
-
-
