@@ -94,12 +94,12 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
 }
 
 @media (min-width: 992px) {
-    .panel.panel-primary {
-        background: #FFF;
-        border: none !important;
-        border-radius: 0.5rem !important;
-        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-    }
+  .panel.panel-primary {
+    background: #FFF;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+  }
 }
 
 

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Protest+Riot&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css');
+
+html, body {
+    background: #fff;
+    font-family: 'Inter', Arial, sans-serif;
+    color: #767279;
+}
+
+@media (min-width: 992px) {
+  .region.region-nav-main {
+    display: none;
+  }
+}
+
+a.btn {
+    border-radius: 6px;
+    border: none;
+    font-weight: 700;
+}
+
+a.btn-primary {
+    background: #2f469c;
+    font-weight: 700;
+    color: #FFF !important;
+}
+
+a.btn-primary:hover {
+    background: #1d3590;
+    color: #FFF !important;
+}
+
+a {
+    font-weight: 700;
+    color: #2f469c !important;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: #1d3590 !important;
+}
+
+.h1, h1, .h2, h2, .h3, h3, .h4, .h5, .h6, h4, h5, h6, strong { 
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 700 !important;
+  color: #02103f !important;
+}
+
+h2, .h2 {
+  font-size: 40px !important;
+}
+
+
+p {
+  color: #767279 !important;
+}
+
+.fs-5 {
+  line-height: 1.4;
+}
+
+.text-warning {
+    color: #d3681b !important;
+}
+
+span.field.field--name-title.field--type-string.field--label-hidden.quickedit-field {
+  display: none !important;
+}
+
+/*CUSTOM STYLES*/
+a.btn-gray {
+  background-color: #f6f6f6 !important;
+  color: #59545c !important;
+  border: 2px solid transparent !important;
+  font-weight: 700;
+}
+
+a.btn-gray:hover, a.btn-white:hover {
+  background-color: #e0e0e0 !important;
+}
+
+a.btn-gray:focus, a.btn-white:focus {
+  background-color: #f6f6f6 !important;
+  border: 2px solid #e0e0e0 !important;
+}
+
+a.btn-gray:active, a.btn-white:active {
+  background-color: #e0e0e0 !important;
+  border: none;
+}
