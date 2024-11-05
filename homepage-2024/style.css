@@ -270,11 +270,11 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
 }
 
 .carousel-control-prev {
-  left: -10px !important;
+  left: 30px !important;
 }
 
 .carousel-control-next {
-  right: -10px !important;
+  right: 30px !important;
 }
 
 .carousel-indicators  {
@@ -364,11 +364,11 @@ img.carousel-icon {
   }
 
   .carousel-control-prev, .carousel-control-next {
-    bottom: 25px;
+    bottom: -15px;
   }
 
   .carousel-indicators  {
-    margin-bottom: -50px !important;
+    margin-bottom: -80px !important;
   }
 }
 
