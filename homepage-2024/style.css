@@ -270,17 +270,17 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
 }
 
 .carousel-control-prev {
-  left: 30px !important;
+  left: -10px !important;
 }
 
 .carousel-control-next {
-  right: 30px !important;
+  right: -10px !important;
 }
 
 .carousel-indicators  {
   padding-bottom: 0 !important;
   margin-top: 0 !important;
-  margin-bottom: -20px !important;
+  margin-bottom: -60px !important;
   display: block;
 }
 
@@ -325,15 +325,15 @@ img.carousel-icon {
     margin-bottom: 80px !important;
   }
   .carousel-indicators  {
-    margin-bottom: -40px !important;
+    margin-bottom: -50px !important;
   }
   .carousel-control-prev {
     left: -80px !important;
-    bottom: 55px !important;
+    bottom: 15px !important;
   }
   .carousel-control-next {
-    right: -80px !important;
-    bottom: 55px !important;
+    right: -60px !important;
+    bottom: 15px !important;
   }
 }
 
