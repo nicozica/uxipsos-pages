@@ -103,6 +103,10 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
   }
 }
 
+.bullet-step {
+  display: inline-block; margin-top: -5px;
+}
+
 
 /*CUSTOM STYLES*/
 .panel.panel-default.padding-md img {
@@ -117,9 +121,6 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
 .panel .panel-bg-primary-success-2 {
   background: #f4fffb !important;
 }
-
-
-
 
   /*Logos carousel*/
 
@@ -184,139 +185,16 @@ span.field.field--name-title.field--type-string.field--label-hidden.quickedit-fi
     opacity: .4 !important;
   }
 
-  
-/*PROMO CAROUSEL*/
-
-.carousel {
-  height: 380px;
-  margin-bottom: 40px !important;
-}
-
-.carousel-control-prev, .carousel-control-next {
-  bottom: 135px;
-}
-
-.carousel-control-prev {
-  left: -10px !important;
-}
-
-.carousel-control-next {
-  right: -10px !important;
-}
-
-.carousel-indicators  {
-  padding-bottom: 0 !important;
-  margin-top: 0 !important;
-  margin-bottom: -60px !important;
-  display: block;
-}
-
-.carousel-indicators [data-bs-target] {
-  width: 10px;
-  height: 10px;
-  background-color: #84329b;
-  border-radius: 50%;
-}
-
-img.carousel-icon {
-  height: initial !important;
-  border: initial !important;
-  display: initial;
-  margin: initial !important;
-  max-width: initial !important;
-
-  margin-bottom: 16px !important;
-}
-
-@media (min-width: 576px) and (max-width: 768px) {
-  .carousel {
-    height: 320px;
-    margin-bottom: 110px !important;
-  }
-  .carousel-control-prev {
-    left: -20px !important;
-    bottom: 55px !important;
-  }
-  .carousel-control-next {
-    right: -20px !important;
-    bottom: 55px !important;
-  }
-  .carousel-indicators  {
-    margin-bottom: -70px !important;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 992px) {
-  .carousel {
-    height: 200px;
-    margin-bottom: 80px !important;
-  }
-  .carousel-indicators  {
-    margin-bottom: -50px !important;
-  }
-  .carousel-control-prev {
-    left: -80px !important;
-    bottom: 15px !important;
-  }
-  .carousel-control-next {
-    right: -60px !important;
-    bottom: 15px !important;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1200px) {
-  .carousel {
-    height: 200px;
-    margin-bottom: 80px !important;
-  }
-  .carousel-control-prev {
-    left: -30px !important;
-    bottom: 15px !important;
-    
-  }
-  .carousel-control-next {
-    right: -30px !important;
-    bottom: 15px !important;
-    
-  }
-  .carousel-indicators  {
-    margin-bottom: -40px !important;
-  }
-}
-
-@media (min-width: 1200px) {
-  .carousel {
-    height: 220px;
-    margin-bottom: 90px !important;
-  }
-
-  .carousel-control-prev, .carousel-control-next {
-    bottom: -15px;
-  }
-
-  .carousel-indicators  {
-    margin-bottom: -80px !important;
-  }
-}
-
-
-.carousel-control-prev-icon {
-  background-image: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/icons/carousel-arrow-left.svg');
-}
-
-.carousel-control-next-icon {
-  background-image: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/icons/carousel-arrow-right.svg');
-}
-
 /*Additional styles*/
+.panel-primary-minus-2      { background-color: #f8f9ff; border-radius: 12px !important; }
 
-.panel-primary              { background-color: #2f469c; }
-.panel-primary-minus-2      { background-color: #f8f9ff; }
-
+.panel-gradient-primary {
+  background: radial-gradient(41.83% 41.83% at 47.85% 58.17%, #DBE2FF 0%, #FFF 100%);
+}
 
 .video-container {
-  margin-top: -30px !important;
-  padding-top: 80px !important;
+  margin-top: -30px;
+  padding-top: 80px;
   background: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/product-test/bg-video.webp")
     no-repeat 60px;
 }
@@ -340,18 +218,19 @@ img.carousel-icon {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
+  .video-container {
+    margin-top: -110px !important;
+    padding-top: 140px !important;
+    background: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/product-test/bg-video.webp")
+      no-repeat 60px center !important;
+    background-size: 90% !important;
+  }
+
   .video-container iframe {
     width: 802px;
     height: 451px;
   }
-}
-
-.video-container {
-  margin-top: -30px !important;
-  padding-top: 80px !important;
-  background: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/product-test/bg-video.webp")
-    no-repeat 60px;
 }
 
 .video-container iframe {
@@ -392,4 +271,26 @@ img.carousel-icon {
 /*Rewards fix on component module*/
 article.node-incentive a.exchange_link {
   min-height: 290px !important;
+}
+
+/*Banner*/
+div#block-joinusipsosisayproducttesting h2 {
+  display: none;
+}
+
+div#block-calltoactionblock-3 h2 {
+  display: none !important;
+}
+
+.panel.panel-primary.banner-studies {
+  background-color: #F8F9FF !important;
+  box-shadow: none !important;
+}
+
+.panel.panel-primary.banner-studies a.btn {
+  margin-left: 0 !important;
+}
+
+.active_surveys_page_description .column_button a {
+  margin: 0 auto !important;
 }
