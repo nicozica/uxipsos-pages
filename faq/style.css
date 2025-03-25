@@ -75,10 +75,12 @@ h1.text-left.page-title {
 .panel.panel-bubbles {
     padding: 32px 0 !important;
     background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/faq/bg-masthead.svg') repeat;
+    border-radius: 6px !important;
 }
 
 @media (min-width: 576px) {
     .panel.panel-bubbles {
+        margin-top: 40px !important;
         padding: 80px 0 !important;
     }
 }
@@ -107,7 +109,7 @@ li.panel-shadow a span {
         transparent 2px,
         transparent 6px
     );
-    background-size: 6px 1px;  /* Ajusta el tamaño de los puntos y la separación */
+    background-size: 6px 1px;
 }
 
 
@@ -122,15 +124,9 @@ li.panel-shadow a span {
     background: #F8F9FF;
 }
 
-.btn.btn-outline-primary:hover {
+.btn.btn-outline-primary:hover, .btn.btn-outline-primary:focus {
     border: 2px solid #2F469C;
     background: #FFF;
-}
-
-.btn.btn-outline-primary:hover {
-    color: #FFF !important;
-    border: 2px solid #2F469C;
-    background: #2F469C;
 }
 
 .btn.btn-outline-primary:active {
