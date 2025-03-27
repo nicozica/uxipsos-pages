@@ -74,7 +74,7 @@ h1.text-left.page-title {
 
 .panel.panel-bubbles {
     padding: 32px 0 !important;
-    background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/faq/bg-masthead.svg') repeat;
+    background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/faq/bg-masthead.svg') repeat center center;
     border-radius: 6px !important;
 }
 
@@ -98,6 +98,12 @@ li.panel-shadow a {
 li.panel-shadow a span {
     color: #02103F;
 }
+
+ul.list-unstyled .panel-shadow a img {
+    display: inline-block !important;
+    margin: 0 !important;
+}
+  
 
 .dotted-line {
     margin: 44px 0;
