@@ -74,14 +74,6 @@ h1.text-left.page-title {
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
 }
 
-.panel-bg-primary-minus-2 {
-    background: #f8f9ff;
-}
-
-.panel-bg-success-minus-2 {
-    background: #FEFBFF;
-}
-
 img.img-200px {
     max-width: 200px;
     height: auto;
