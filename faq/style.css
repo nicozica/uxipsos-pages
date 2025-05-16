@@ -21,7 +21,7 @@ a.btn {
 }
 
 a.btn-primary {
-    background: #5C6AC1;
+    background: #5C6AC1;4
     font-weight: 700;
     color: #FFF !important;
 }
@@ -74,7 +74,7 @@ h1.text-left.page-title {
 
 .panel.panel-bubbles {
     padding: 32px 0 !important;
-    background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/faq/bg-masthead.svg') repeat center center;
+    background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/faq/bg-masthead.svg') repeat center left;
     border-radius: 6px !important;
 }
 
@@ -95,6 +95,43 @@ li.panel-shadow a {
     height: auto;
 }
 
+@media (max-width: 767.98px) {
+    li.panel-shadow a span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      display: block;
+    }
+  }
+  
+
+@media (min-width: 768px) {
+
+    .panel-shadow {
+        border-radius: 10px !important;
+    }
+
+    li.panel-shadow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 100%;
+    }
+
+    li.panel-shadow a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        min-height: 163px;
+    }
+}
+
 li.panel-shadow a span {
     color: #02103F;
 }
@@ -102,8 +139,13 @@ li.panel-shadow a span {
 ul.list-unstyled .panel-shadow a img {
     display: inline-block !important;
     margin: 0 !important;
+    height: 50px !important; 
+    width: auto !important;
 }
-  
+
+span.arrow {
+    margin-top: 4px;
+}
 
 .dotted-line {
     margin: 44px 0;
@@ -139,3 +181,4 @@ ul.list-unstyled .panel-shadow a img {
     color: #FFF !important;
     border: 2px solid #112572;
 }
+

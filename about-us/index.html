@@ -121,6 +121,58 @@
     </div><!-- END: Our Mission -->
 
 
+
+
+
+
+
+
+
+
+
+    <!-- START: Choose the perfect reward -->
+    <div class="panel py-0 m-0 mt-4 mt-lg-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 offset-md-1">
+                    <div class="row align-items-center">
+                        <div class="col-12 col-lg-6">
+                            <div class="my-5 py-0 py-lg-2">
+                                <h1 class="mb-3">Choose the perfect reward</h1>
+                                <p><strong>Participate in Ipsos iSay surveys to earn points and redeem them for a variety of exciting rewards!</strong></p>
+                                <p>Choose from popular gift cards or convenient prepaid cards. You’re sure to find an Ipsos iSay reward that’s just right for you.</p>
+                                
+                                <div class="logos d-xxl-none mt-5">
+                                    <div class="logos-slide">
+                                        <img class="logo-brand img-fluid" src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/logo_paypal.svg" alt="PayPal">
+                                        <img class="logo-brand img-fluid" src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/logo_visa.svg" alt="Visa">
+                                        <img class="logo-brand img-fluid" src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/logo_amazon.svg" alt="Amazon">
+                                        <img class="logo-brand img-fluid" src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/logo_starbucks.svg" alt="Starbuck">
+                                    </div>
+                                </div>
+
+                                <div class="d-none d-xxl-block mt-5">
+                                    <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/logo_paypal.svg" class="img-fluid mx-3 ms-0" alt="PayPal">
+                                    <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/logo_visa.svg" class="img-fluid mx-3" alt="Visa">
+                                    <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/logo_amazon.svg" class="img-fluid mx-3" alt="Amazon">
+                                    <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/logo_starbucks.svg" class="img-fluid mx-3 me-0" alt="Starbucks">
+                                </div>
+                                
+                            </div>				
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="d-none d-lg-block">
+                                <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/img_rewards.webp" class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div><!-- col -->
+            </div><!-- row -->
+            <div class="my-5"><div>
+        </div><!-- container -->
+    </div><!-- END: Choose the perfect reward -->
+
     <!-- START: Why Join Ipsos iSay? -->
     <div class="panel pt-5">
         <div class="container">
@@ -356,6 +408,42 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Swiper Init -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 16,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                992: { slidesPerView: 3 },
+            },
+            });
+        });
+
+        var copy = document.querySelector(".logos-slide")?.cloneNode(true);
+        document.querySelector(".logos")?.appendChild(copy);
+
+        var copy = document.querySelector(".rewards-slide")?.cloneNode(true);
+        document.querySelector(".rewards")?.appendChild(copy);
+    </script>
+
+    <style>
+        .swiper-slide {
+            width: auto;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #000;
+        }
+    </style>
 
   </body>
 </html>
