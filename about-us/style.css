@@ -91,6 +91,22 @@ img.img-200px {
     border-radius: 4px !important;
 }
 
+/*Stats*/
+@media (min-width: 992px) {
+  .stats-middle {
+    border-left: 1px solid #E0E0E0;
+    border-right: 1px solid #E0E0E0;
+  }
+}
+
+@media (max-width: 576px) {
+  .stats-middle {
+    padding: 24px 0 16px 0 !important;
+    border-top: 1px solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
+  }
+}
+
 /*Logos carousel*/
 
   @keyframes slide {
@@ -155,8 +171,20 @@ img.img-200px {
   }
 
 /*Card Slider*/
+.glider-contain {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+
+.container .glider-contain {
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+
 .card {
-  width: 348px !important;
+  width: auto;
   box-shadow: 0px 12px 25px 0px rgba(0, 0, 0, 0.03) !important;
 }
 
@@ -173,9 +201,14 @@ img.img-200px {
   margin-top: -2px;
 }
 
+.glider-next, .glider-prev {
+  top: 38% !important;
+}
+
+
 /*Accordion*/
 .accordion-button::after {
-  display: none !important; /* Hides the default chevrons */
+  display: none !important;
 }
 .accordion-button:not(.collapsed) {
   background-color: #fff !important;
