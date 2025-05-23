@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Protest+Riot&display=swap');
+@import url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/scripts/glider.min.css');
 
 html, body {
     font-family: 'Inter', Arial, sans-serif;
@@ -60,6 +61,10 @@ a:hover {
 
 h1.text-left.page-title {
     display: none;
+}
+
+.panel-bg-about-us {
+    background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/bg-hero.png') no-repeat center right fixed;
 }
 
 .panel {
