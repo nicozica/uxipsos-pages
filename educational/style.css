@@ -63,27 +63,17 @@ h1.text-left.page-title {
     display: none;
 }
 
-.panel-bg-about-us {
-    background: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/about-us/bg-hero.png') no-repeat center right fixed;
-}
-
 .panel {
     padding: 40px 0 40px 0;
 }
 
-.panel.panel-primary {
-    background: #FFF;
-    border: none !important;
-    border-radius: 0.5rem !important;
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
-}
-
-.panel-bg-primary-minus-2 {
-    background: #f8f9ff;
-}
-
-.panel-bg-success-minus-2 {
-    background: #FEFBFF;
+@media (max-width: 767.98px) {
+    .divider-line {
+        height: 124px;
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+    }
 }
 
 img.img-200px {
@@ -94,127 +84,4 @@ img.img-200px {
 .join-button > a {
     color: #FFFFFF !important;
     border-radius: 4px !important;
-}
-
-/*Stats*/
-@media (min-width: 992px) {
-  .stats-middle {
-    border-left: 1px solid #E0E0E0;
-    border-right: 1px solid #E0E0E0;
-  }
-}
-
-@media (max-width: 576px) {
-  .stats-middle {
-    padding: 24px 0 16px 0 !important;
-    border-top: 1px solid #E0E0E0;
-    border-bottom: 1px solid #E0E0E0;
-  }
-}
-
-/*Logos carousel*/
-
-  @keyframes slide {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-100%);
-    }
-  }
-  
-  .logos {
-    overflow: hidden;
-    padding: 30px 0 60px 0;
-    margin-bottom: 30px;
-    background: white;
-    white-space: nowrap;
-    position: relative;
-  }
-  
-  .logos:before,
-  .logos:after {
-    position: absolute;
-    top: 0;
-    width: 80px;
-    height: 100%;
-    content: "";
-    z-index: 2;
-  }
-  
-  @media (min-width: 768px) {
-    .logos:before,
-    .logos:after {
-      width: 250px;
-    }
-  }
-  
-  .logos:before {
-    left: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-  }
-  
-  .logos:after {
-    right: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-  }
-  
-  .logos-slide {
-    display: inline-block;
-    animation: 35s slide infinite linear;
-  }
-  
-  .logos-slide img.logo-brand {
-    height: initial !important;
-    border: initial !important;
-    display: initial !important;
-    margin: initial !important;
-    max-width: initial !important;
-
-    margin: 0 40px !important;
-    opacity: .4 !important;
-  }
-
-/*Card Slider*/
-.glider-contain {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-
-.container .glider-contain {
-  margin-left: -12px;
-  margin-right: -12px;
-}
-
-
-.card {
-  width: auto;
-  box-shadow: 0px 12px 25px 0px rgba(0, 0, 0, 0.03) !important;
-}
-
-.card-body {
-  padding: 30px !important;
-}
-
-.glider.draggable {
-  padding-bottom: 24px;
-}
-.card-title-icon {  
-  width: 30px;
-  height: 30px;
-  margin-top: -2px;
-}
-
-.glider-next, .glider-prev {
-  top: 38% !important;
-}
-
-
-/*Accordion*/
-.accordion-button::after {
-  display: none !important;
-}
-.accordion-button:not(.collapsed) {
-  background-color: #fff !important;
 }
