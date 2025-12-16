@@ -3,212 +3,130 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ipsos iSay</title>
+    <title>Royal Protection - Ipsos iSay</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
-    <link href="icheck/skins/all.css" rel="stylesheet" media="screen">
   </head>
   <body>
 
     <!-- Header -->
-    <nav class="navbar navbar-expand-md">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-                <div class="navbar-brand">
-                    <img src="images/logo.svg" alt="Ipsos iSay" />
+    <header>
+        <nav class="navbar navbar-expand-md">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="navbar-brand">
+                            <img src="images/logo.svg" class="img-fluid" alt="Ipsos iSay" />
+                        </div>
+                    </div>
                 </div>
             </div>
-          </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <!-- START: Intro -->
-    <div class="panel panel-results panel-results-blue">
-        <div class="container">
+    <!-- START: Results -->
+    <div class="container">
+        <div class="panel panel-results panel-results-blue">
             <div class="row">
-                <div class="col-12 col-lg-6 text-white">                    
-                    <p class="mb-1">Your superpower is...</p>
-                    <h1>Loyal Protection</h1>
-                    <p class="lead">Finding peace and calm in the midst of chaos is your super ability! You're all about creating cozy and safe spaces, where you and your loved ones can relax and unwind. Your presence brings harmony and joy everywhere you go.</p>
-                    <div class="mt-2 mb-4 pb-1 text-center"><img class="img-fluid" src="images/dog.png" alt="Dog"></div>
-                    <hr class="mb-4">
-                    <p class="lead">Your adventure has only just begun! Uncover more traits of your <strong>Loyal Protection</strong> superpower and use them to influence the world around you.</p>
-                    <p class="lead">Join the Ipsos iSay community, where every opinion holds the power to shape the future.</p>
-                    <p class="lead">Sign up to unlock more insights and make an impact!</p>
+                <div class="col-10 offset-2 col-lg-5 offset-lg-0 text-center text-lg-end">
+                    <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/dog.webp" class="img-fluid" alt="" aria-hidden="true" />
                 </div><!-- col -->
-                <div class="col-12 col-lg-6">
-                    <h2 class="fs-3 text-white">Sign up for Ipsos iSay</h2>              
-                    <div class="panel panel-default mt-3 p-4">
-                       <!-- START: Form -->
-                        <form id="registrationForm" role="form">
 
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email address</label>
-                                <input type="email" autocapitalize="off" class="form-control" id="email" placeholder="Your email address.." name="email" autocomplete="home email">
-                                <p class="validation-warn font-size-xs text-danger mt-2 d-none">The email is either empty or invalid.</p>
-                            </div><!-- /.form-group -->
+                <div class="col-12 col-lg-7 pe-lg-5">
+                    <p class="mb-1">Your superpower is...</p>
+                    <h1>Royal Protection</h1>
+                    <p>Finding peace and calm in the midst of chaos is your super ability! You're all about creating cozy and safe spaces, where you and your loved ones can relax and unwind. Your presence brings harmony and joy everywhere you go.</p>
 
-                            <div class="mb-3">
-                                <label for="passwordInput" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="passwordInput" data-indicator="pwindicator" onkeypress="capLock(event)" placeholder="Choose password" rel="popover" data-trigger="focus" data-placement="top">
-                                <div class="row mt-2">
-                                    <div class="col">
-                                        <div id="divMayus" class="caps-on font-size-xs" style="display:none"><i class="fa fa-exclamation-circle"></i> Caps Lock is on</div>
-                                        <div id="passRequirements" class="inputhelper" style="display:none">
-                                            <p class="font-size-xs text-secondary">Passwords are case sensitive and need to be at least 7 characters long.</p>
-                                        </div>
-                                    </div>
-                                </div><!-- row -->
-                                <p class="validation-warn font-size-xs text-danger mt-2 d-none">The password you entered is not valid, please try again.</p>
-                            </div><!-- /.form-group -->
+                    <!-- 3-Items list -->
+                    <ul class="list-unstyled pt-2 mt-4">
+                        <li class="d-flex align-items-start pb-2 mb-4">
+                            <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-smile-wink.svg" class="me-3" aria-hidden="true" />
+                            <div>
+                                <strong class="h5">Charisma</strong>
+                                <p class="mb-0">You have a magnetic presence that draws people in.</p>
+                            </div>
+                        </li>
 
-                            <div class="row mb-3">
-                                <div class="col-md-6 mb-2">
-                                    <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Your name.." name="name" autocomplete="name">
-                                    <p class="validation-warn font-size-xs text-danger mt-2 d-none">Empty or invalid.</p>
-                                </div><!-- /.col -->
-                                <div class="col-md-6 mb-2">
-                                    <label for="family-name" class="form-label">Surname</label>
-                                    <input type="text" class="form-control" id="family-name" placeholder="Your surname.." name="family-name" autocomplete="family-name">
-                                    <p class="validation-warn font-size-xs text-danger mt-2 d-none">Empty or invalid.</p>
-                                </div><!-- /.col -->
-                            </div><!-- row -->
+                        <li class="d-flex align-items-start pb-2 mb-4">
+                            <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-heart-circle-plus.svg" class="me-3" aria-hidden="true" />
+                            <div>
+                                <strong class="h5">Confidence</strong>
+                                <p class="mb-0">Your words and actions inspire confidence in those around you.</p>
+                            </div>
+                        </li>
 
-                            <div class="mt-2 pt-2 mb-4">
-                                <p class="control-label control-label-radio">What gender identifies you?</p>
-                                <div class="mt-2">
-                                    <div class="form-check">
-                                        <input class="form-check-input icheck" type="radio" name="group1" id="radio1" value="option1">
-                                        <label class="form-check-label icheck-label" for="radio1">Female</label>
-                                    </div>
-                                    <div class="form-check mt-2">
-                                        <input class="form-check-input icheck" type="radio" name="group1" id="radio2" value="option2">
-                                        <label class="form-check-label icheck-label" for="radio2">Male</label>
-                                    </div>
-                                    <div class="form-check mt-2">
-                                        <input class="form-check-input icheck" type="radio" name="group1" id="radio3" value="option3">
-                                        <label class="form-check-label icheck-label" for="radio3">Non-Binary</label>
-                                    </div>
-                                    <div class="form-check mt-2">
-                                        <input class="form-check-input icheck" type="radio" name="group1" id="radio4" value="option4">
-                                        <label class="form-check-label icheck-label" for="radio4">Prefer not to answer</label>
-                                        <p class="validation-warn font-size-xs text-danger mt-2 d-none">You need to specify your gender.</p>
-                                    </div>
-                                </div><!-- /.col -->
-                            </div><!-- /.form-group -->
+                        <li class="d-flex align-items-start pb-2 mb-4">
+                            <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-comment-dots.svg" class="me-3" aria-hidden="true" />
+                            <div>
+                                <strong class="h5">Communicative</strong>
+                                <p class="mb-0">You excel at conveying your ideas and vision with passion.</p>
+                            </div>
+                        </li>
+                    </ul>
 
-                            <div class="mb-3">
-                                <label for="bday" class="form-label">Month/Year of birth</label>
-                                <div class="row">
-                                    <div class="col-sm-6 mb-3">
-                                        <select class="form-select" id="bday-month" name="bday-month" autocomplete="bday-month">
-                                            <option disabled selected>Month</option>
-                                            <option>January</option>
-                                            <option>February</option>
-                                            <option>March</option>
-                                            <option>April</option>
-                                        </select>
-                                    </div><!-- col -->
-                                    <div class="col-sm-6 mb-3">
-                                        <select class="form-select" id="bday-year" name="bday-year" autocomplete="bday-year">
-                                            <option disabled selected>Year</option>
-                                            <option>1976</option>
-                                            <option>1977</option>
-                                            <option>1978</option>
-                                            <option>1979</option>
-                                        </select>
-                                    </div><!-- col -->
-                                </div><!-- row -->
-                                <p class="validation-warn font-size-xs text-danger mt-2 d-none">Your birth date has missing fields.</p>
-                            </div><!-- /.form-group -->
-
-                            <!-- Terms & Conditions -->
-                            <div class="row form-group margin-top-sm margin-bottom-md">
-                                <div class="col">
-
-                                    <div class="checkbox">
-                                        <label class="icheck-label">
-                                            <span><input class="icheck" type="checkbox"></span><span> I accept the <a target="_blank" href="https://www.ipsosisay.com/en-us/terms-and-conditions">terms and
-                                                    conditions</a>, including the use of cookies and the use of my personal
-                                                information, as further described in the <a target="_blank" href="https://www.ipsosisay.com/en-us/privacy-policy">privacy
-                                                    policy</a>.</span>
-                                        </label>
-                                    </div><!-- checkbox -->
-
-                                </div><!-- col -->
-                            </div><!-- /.form-group -->
-
-                            <div class="row form-group mt-4">
-                                <div class="col-12">
-                                    <a href="javascript:void();" class="btn btn-primary d-block py-2 fs-5">Sign up</a>
+                    <!-- Banner Playlist -->
+                    <div class="banner-playlist card mt-5 mb-4">
+                        <div class="card-body">
+                            <div class="row g-0 align-items-center text-center text-xl-start">
+                                <div class="col-12 col-xl-2 text-xl-center">
+                                    <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/speaker.webp"
+                                        class="img-fluid mb-3 mb-xl-0 me-xl-2" 
+                                        style="width: 64px; height: auto;" 
+                                        aria-hidden="true" />
+                                </div>
+                                <div class="col-12 col-xl-7">
+                                    <h5 class="card-title fw-bold mb-1">The playlist for the Protectors</h5>
+                                    <p class="card-text mb-0">Listen to the songs that match your personality.</p>
+                                </div>
+                                <div class="col-12 col-xl-3 text-center text-xl-end">
+                                    <a href="#" class="btn btn-outline-secondary px-4 mt-4 mt-xl-0">Play now!</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                        </form>
-        
-                    </div><!-- panel -->
-                </div><!-- col  -->
-            </div><!-- row -->
-        </div><!-- container -->
-    </div><!-- END: Intro -->
+                    <!-- Share Section -->
+                    <div class="pt-2 mt-4 text-center">
+                        <p class="mb-2 fw-bold text-main">Share the fun with your friends!</p>
+                        <div class="d-flex justify-content-center gap-3 pt-1 mt-2">
+                            <a href="javascript:void(0);" class="btn share-btn facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span class="visually-hidden">Share on Facebook</span>
+                            </a>
+                            <a href="javascript:void(0);" class="btn share-btn messenger">
+                                <i class="fab fa-facebook-messenger"></i>
+                                <span class="visually-hidden">Share on Messenger</span>
+                            </a>
+                            <a href="javascript:void(0);" class="btn share-btn whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                                <span class="visually-hidden">Share on WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
 
-   <!-- START: Panel Grey -->
-   <div class="panel panel-grey">
-        <div class="container">
-            <div class="row mt-3 mb-5">
-                <div class="col-12 text-center">
-                    <p>Check out what others say</p>                     
-                    <!-- TrustBox widget - Micro Combo -->
-                    <div class="trustpilot-widget" data-locale="en-US" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="618c353f8da731d4b18a79ae" data-style-height="20px" data-style-width="100%" data-theme="light">
-                        <a href="https://www.trustpilot.com/review/www.ipsosisay.com" target="_blank" rel="noopener">Trustpilot</a>
-                    </div>
-                    <!-- End TrustBox widget -->
-                </div><!-- col -->
-            </div><!-- row -->
-            <div class="row mt-4">
-                <div class="col-12 col-md-4 text-center"> 
-                    <div class="panel mt-3 panel-default pt-4 pb-3 px-4">
-                        <img class="img-fluid" src="images/thumbs-up.svg" aria-hidden="true">
-                        <h3 class="mt-4">Sign Up</h3>
-                        <p>Complete the registration form and create your account.</p>
-                    </div>
-                </div><!-- col -->
-                <div class="col-12 col-md-4 text-center">
-                    <div class="panel mt-3 panel-default pt-4 pb-3 px-4">
-                        <img class="img-fluid" src="images/bullhorn.svg" aria-hidden="true">
-                        <h3 class="mt-4">Influence the future</h3>
-                        <p>Share your opinion and influence brands, governments and societies.</p>
-                    </div>                
-                </div><!-- col -->
-                <div class="col-12 col-md-4 text-center">
-                    <div class="panel mt-3 panel-default pt-4 pb-3 px-4">
-                        <img class="img-fluid" src="images/gift.svg" aria-hidden="true">
-                        <h3 class="mt-4">Choose your rewards</h3>
-                        <p>Choose from a variety of gift cards, vouchers, donations and more!</p>
-                    </div>
                 </div><!-- col -->
             </div><!-- row -->
-        </div><!-- container -->
-    </div><!-- END: Intro -->
-
+        </div><!-- panel -->
+        <div class="text-center">
+            <a href="javascript:void(0);" class="btn btn-primary btn-start mt-5">Back to Dashboard</a>
+        </div>
+    </div><!-- END: Results -->
 
     <!-- START: Footer -->
-    <footer class="mt-2 mb-4 text-dark pt-3 container-xxl pb-0">
+    <footer class="container mt-2 mb-4 text-dark pt-3 container-xxl pb-0">
         <div class="d-flex flex-column flex-lg-row justify-content-between gap-3">
             <div class="copyright block order-lg-0 order-4 text-center text-lg-start">
                 <div class="ipsos_logo"><img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/logos/ipsos_logo.svg" alt="Ipsos" /></div>
-                <p class="mt-2 fs-7">©2024</p>
+                <p class="mt-2 fs-7">©2025</p>
             </div>
         </div>
     </footer>
 
+    <!-- JUST FOR THE PROTOTYPE: Not used in production -->
     <button type="button" class="btn btn-sm btn-primary btn-results" data-bs-toggle="modal" data-bs-target="#resultsModal">
         + Results
     </button>
 
-    <!-- JUST FOR THE PROTOTYPE: Not used in production -->
     <!-- Modal -->
     <div class="modal fade" id="resultsModal" tabindex="-1" aria-labelledby="resultsModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -236,70 +154,10 @@
         </div>
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.3/icheck.min.js"></script>
-
-    <script>
-    $(document).ready(function() {
-        // Initialize iCheck plugin
-        $('input.icheck').iCheck({
-            checkboxClass: 'icheckbox_flat-blue',
-            radioClass: 'iradio_flat-blue',
-            disabledCheckboxClass: 'icheckbox_flat-aero',
-            disabledRadioClass: 'iradio_flat-aero'
-        });
-
-        // Wrap radio input and label in a container
-        $('input.icheck[type="radio"]').each(function() {
-            $(this).next('label').andSelf().wrapAll('<div class="radio-container"></div>');
-        });
-
-        // Add pointer cursor to radio container
-        $('.radio-container').css('cursor', 'pointer');
-
-        // Activating tooltips
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Collapse/Expand collapsible reasons
-        $('#collapsibleWhyExpand').click(function() {
-            $(this).find('[data-fa-i2svg]').toggleClass('fa-caret-down fa-caret-right');
-            $('#collapsibleWhy').fadeToggle();
-        });
-
-        // Password strength indicator
-        $('#passwordInput').pwstrength();
-
-        // Toggle message
-        $('.toggle_message').click(function() {
-            $('.message').toggleClass("hide show");
-        });
-
-        // Custom gender dropdown
-        $('#radio3').on('ifChecked', function() {
-            $('#customGender').fadeIn('fast');
-        });
-
-        $('#radio3').on('ifUnchecked', function() {
-            $('#customGender').fadeOut('fast');
-        });
-
-        // Toggle errors
-        $('.toggle_errors').click(function() {
-            $('.alert, .validation-warn').toggleClass("hide show");
-            $('.form-group').toggleClass("has-error");
-            $('.panel-validation').toggleClass("has-error");
-        });
-    });
-
-
-
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" integrity="sha512-u3fPA7V8qQmhBPNT5quvaXVa1mnnLSXUep5PS1qo5NRzHwG19aHmNJnj1Q8hpA/nBWZtZD4r4AX6YOt5ynLN2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- TrustBox script -->
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- End TrustBox script -->
