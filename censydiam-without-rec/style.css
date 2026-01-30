@@ -47,7 +47,7 @@ a.btn-outline-secondary {
 }
 
 a.btn-outline-secondary:hover {
-    color: #4a0b5a;
+    color: #4a0b5a !important;
     border: 2px solid #bd66d6 !important;
     background: #ffffff;
 }
@@ -55,13 +55,37 @@ a.btn-outline-secondary:hover {
 a.btn-outline-secondary:focus {
     color: #FFF !important;
     border: 2px solid #84329b !important;
-    background: #84329b;
+    background: #84329b !important;
 }
 
 a.btn-outline-secondary:active {
     color: #FFF !important;
     border: 2px solid #4a0b5a !important;
-    background: #84329b;
+    background: #84329b !important;
+}
+
+a.btn-gray {
+    color: #59545C !important;
+    border: 2px solid #F6F6F6 !important;
+    background: #F6F6F6;
+}
+
+a.btn-gray:hover {
+    color: #59545C !important;
+    border: 2px solid #E0E0E0 !important;
+    background: #E0E0E0;
+}
+
+a.btn-gray:focus {
+    color: #59545C !important;
+    border: 2px solid #E0E0E0 !important;
+    background: #F6F6F6 !important;
+}
+
+a.btn-gray:active {
+    color: #59545C !important;
+    border: 2px solid #E0E0E0 !important;
+    background: #F6F6F6 !important;
 }
 
 a {
@@ -99,6 +123,14 @@ h2 {
 
 .text-secondary {
     color: #1D7F76 !important;
+}
+
+.text-warning {
+    color: #D3681B !important;
+}
+
+.text-link {
+    color: #2F469C !important;
 }
 
 .panel {
