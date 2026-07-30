@@ -1,0 +1,262 @@
+@import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css');
+
+.fs-7 {
+    font-size: 12px !important;
+}
+
+.h1, h1, .h2, h2, .h3, h3, .h4, .h5, .h6, h4, h5, h6, strong { 
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 700 !important;
+    color: #3A405F !important;
+}
+
+ul.exchange_product_list .exchange_link h2, ul.exchange_product_list .exchange_link h2 {
+    font-size: 1em !important;
+}
+
+.lead {
+    font-weight: 400 !important;
+}
+
+.text-secondary {
+    color: #1D7F76 !important;
+}
+
+a.btn {
+    border-radius: 6px !important;
+    border: none;
+}
+
+a.btn-primary {
+    background: #5C6AC1;
+    font-weight: 700;
+    color: #FFF !important;
+}
+
+a.btn-primary:hover {
+    background: #4e5aa4;
+    color: #FFF !important;
+}
+
+a.site-logo img {
+    margin-top: 3px !important;
+}
+
+@media (max-width: 992px) {
+    a.site-logo img {
+        margin-top: 3px !important;
+    }
+    header .country #default-drop a {
+        color: #FFF !important;
+    }
+}
+
+@media (min-width: 992px) {
+    a.site-logo img {
+        margin-top: 0px !important;
+    }
+}
+
+#edit-logout {
+	border-radius: 6px !important;
+}
+
+#edit-logout:hover {
+	color: #FFF !important;
+	background: #5C6AC1 !important;
+}
+
+#mobile-loggin a {
+	top: 0.35em;
+    right: 3.5em;
+	padding: 8px 12px;
+    color: #5C6AC1;
+	border: 1px solid #5C6AC1;
+	border-radius: 6px;
+    font-weight: 700;
+ }
+
+#mobile-loggin a:hover {
+    color: #FFF;
+	background-color: #5C6AC1;
+	font-weight: 700;
+}
+
+.user-balance a, .user-balance a:hover {
+    color:#5C6AC1;
+    font-weight: 700;
+}
+
+ul.navbar-nav li.nav-item a.nav-link {
+    color: #59545C !important;
+}
+
+
+/**** GDPR message ****/
+#sliding-popup {
+    padding: 0;
+}
+
+.eu-cookie-compliance-message h2 {
+    font-size: 20px !important;
+    color: #fff !important;
+}
+
+.eu-cookie-compliance-message p {
+    font-family: 'Inter', Arial, sans-serif !important;
+}
+
+.eu-cookie-compliance-message p a, .eu-cookie-compliance-message p a:hover {
+    color: #fff !important;
+    text-decoration: underline !important;
+}
+
+/* Base style for all three buttons */
+.eu-cookie-compliance-popup-open #sliding-popup .popup-content #popup-buttons button {
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+
+  height: 42px !important;
+  line-height: normal !important;
+  padding: 0.5rem 1rem !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+
+  display: inline-flex !important; 
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.eu-cookie-compliance-popup-open #sliding-popup .popup-content #popup-buttons button.eu-cookie-button.js-cookie-customize-settings {
+  color: #fff !important;
+  background: none !important;
+  border: 1px solid #fff !important;
+
+  padding-bottom: 0.6rem !important;
+  margin-top: 1px !important;
+}
+
+.wrapp-container.eu-cookie-compliance-banner.eu-cookie-compliance-banner-info.eu-cookie-compliance-banner--categories {
+	padding-top: 20px;
+	border-box: none;
+}
+
+#sliding-popup .popup-content #popup-text {
+	float: left;
+}
+
+.invite-friend-disclaimer small a, .invite-friend-disclaimer .small a {
+    font-family: 'Inter', Arial, sans-serif !important;
+    font-weight: 700 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animation-preferred {
+        display: none !important;
+    }
+    .animation-notpreferred {
+        display: flex !important;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .animation-preferred {
+        display: flex !important;
+    }
+    .animation-notpreferred {
+        display: none !important;
+    }
+}
+
+h2.exhange_product_title div {
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+}
+
+.alert.alert-banner {
+    background-color: #f8f8f9;
+    border-color: #f8f8f9;
+}
+
+/*Question of the Day Module*/
+#most-recent-poll {
+    background-color: #ffffff !important;
+    padding: 16px 8px !important;
+    border-radius: 6px !important;
+    box-shadow: 0px 12px 25px 0px rgba(0, 0, 0, 0.05);
+}
+
+#most-recent-poll h2.special-headline {
+    margin-bottom: 0px !important;
+}
+
+#most-recent-poll .block-poll h2, .block-poll .h2 {
+    font-size: 24px !important;
+    font-weight: 400 !important;
+}
+
+#most-recent-poll .block-poll .poll .form-check .fieldset-wrapper .form-item, .block-poll .poll .vote-form .fieldset-wrapper .form-item {
+    margin: 4px 0 !important;
+}
+
+.node-article.node.node--type-article.node--promoted.node--view-mode-teaser a.button {
+    background: #ebebeb;
+}
+
+.node-article.node.node--type-article.node--promoted.node--view-mode-teaser a.button:hover {
+    background: #E0E0E0;
+}
+
+.poll-view h2 {
+    margin-bottom: 24px;
+}
+
+.poll .form-radios {    
+    margin-top: 0 !important
+}
+
+.poll-results .percent {
+    margin-bottom: 8px;
+}
+
+/*Contact Us Form*/
+.webform-submission-form input#edit-actions-submit {
+    color: white;
+    border: 2px solid #2F469C;
+}
+
+/*Rewards Module*/
+article.node-incentive .incentive-image {
+    margin-left: 12% !important;
+    margin-right: 12% !important;
+    border-radius: 6px !important;
+}
+
+article.node-incentive .incentive-image img {
+    border-radius: 6px !important;
+}
+
+/* Hide join now buttons */
+/*
+#isay-homepage-joinnow-button-top, 
+  #isay-homepage-joinnow-button-work-section, 
+  #isay-homepage-joinnow-button-studies-section,
+  #isay-homepage-joinnow-button-trustpilot-section,
+  #block-ipsos-joinusipsosisaytoday,
+  #block-joinusipsosisaylivestudies,
+  #block-joinusipsosisayproducttesting,
+  .join-button {
+    display: none;
+  }
+
+.login-language a:first-child {
+  	display: none !important;
+}
+
+a.btn.btn-link.d-none.d-lg-inline-block {
+    display: none !important;
+}
+*/

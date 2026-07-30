@@ -1,0 +1,329 @@
+/*
+ * KnowledgePanel - shared stylesheet
+ * Bootstrap 5.x provides layout, grid and components.
+ * This file only adds the brand tokens and small pieces Bootstrap
+ * utilities cannot express (brand colors, icon badges, dotted divider).
+ * Colors were sampled from the KnowledgePanel mockups and match the
+ * tokens already used by the Ipsos iSay prototypes (about-us/style.css,
+ * faq/style.css): #02103F, #767279, #2F469C, #F8F9FF.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --kp-navy: #02103F;
+  --kp-gray: #767279;
+  --kp-blue: #2F469C;
+  --kp-blue-hover: #23366F;
+  --kp-teal: #107772;
+  --kp-bg-light: #F8F9FF;
+  --kp-border: #E5E7F5;
+  --kp-step-number: #A4B3EA;
+  --kp-shadow: 0 1.75rem 3.5rem rgba(2, 16, 63, 0.06);
+  --kp-shadow-hover: 0 1.75rem 3.5rem rgba(2, 16, 63, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  background: #fff;
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--kp-gray);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* The mockups run a narrower content measure than Bootstrap's default
+   container widths (which reach 1140px/1320px at lg/xl/xxl). Capping
+   max-width keeps using Bootstrap's responsive .container as-is. */
+.container {
+  max-width: 1100px;
+}
+
+/* Figma places every two-column section image flush against the outer
+   container edge (not centered in its column, not stuck to the gutter).
+   Paired with Bootstrap's ms-auto this shrinks the box to the image's own
+   width so it can be pushed flush right. */
+.w-fit-content {
+  width: fit-content;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6,
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 700;
+  color: var(--kp-navy);
+}
+
+/* Bootstrap's .display-* utilities set font-weight: 300 by default, which
+   overrides the bold heading rule above (class beats element selector).
+   The design uses Inter Bold everywhere, including large display titles. */
+.display-1, .display-2, .display-3,
+.display-4, .display-5, .display-6 {
+  font-weight: 700;
+}
+
+.text-kp-teal {
+  color: var(--kp-teal) !important;
+}
+
+.text-kp-navy {
+  color: var(--kp-navy) !important;
+}
+
+.text-kp-blue {
+  color: var(--kp-blue) !important;
+}
+
+.text-kp-gray {
+  color: var(--kp-gray) !important;
+}
+
+.lead {
+  font-weight: 400;
+}
+
+.fs-7 {
+  font-size: 0.8125rem;
+}
+
+/* Buttons: KnowledgePanel primary blue replaces Bootstrap's default */
+.btn-primary {
+  --bs-btn-bg: var(--kp-blue);
+  --bs-btn-border-color: var(--kp-blue);
+  --bs-btn-hover-bg: var(--kp-blue-hover);
+  --bs-btn-hover-border-color: var(--kp-blue-hover);
+  --bs-btn-active-bg: var(--kp-blue-hover);
+  --bs-btn-active-border-color: var(--kp-blue-hover);
+  --bs-btn-focus-shadow-rgb: 47, 70, 156;
+  font-weight: 600;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--kp-blue);
+  --bs-btn-border-color: var(--kp-blue);
+  --bs-btn-hover-bg: var(--kp-blue);
+  --bs-btn-hover-border-color: var(--kp-blue);
+  --bs-btn-active-bg: var(--kp-blue);
+  --bs-btn-active-border-color: var(--kp-blue);
+  font-weight: 600;
+}
+
+a {
+  color: var(--kp-blue);
+}
+
+a:hover {
+  color: var(--kp-blue-hover);
+}
+
+/* Header */
+.site-header .navbar-brand img {
+  height: 22px;
+}
+
+.site-header .nav-link {
+  color: var(--kp-navy);
+  font-weight: 500;
+}
+
+.site-header .language-selector {
+  color: var(--kp-navy);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.site-header .language-selector img {
+  border-radius: 2px;
+}
+
+/* Light brand-tinted panels (data protection, closing CTA, FAQ banners) */
+.bg-kp-light {
+  background: var(--kp-bg-light);
+}
+
+/* The Rewards panel is the one exception in Figma: a soft mint-to-lavender
+   gradient instead of the flat fill used by every other highlighted panel. */
+.bg-kp-gradient {
+  background: linear-gradient(90deg, #F4FFFB, var(--kp-bg-light));
+}
+
+/* Round icon badge used in "About" cards and topic lists */
+.icon-badge {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.icon-badge img {
+  max-width: 32px;
+  max-height: 32px;
+}
+
+.icon-badge-sm {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.icon-badge-sm img {
+  max-width: 24px;
+  max-height: 24px;
+}
+
+/* Fixed-size box for inline line icons (privacy, topics, rewards).
+   Each source SVG is cropped to its own visible bounds (e.g. the
+   handshake icon is 40x25 vs. the shield's 31x32), so sizing them
+   by their natural width/height pushes titles out of alignment
+   across a row. object-fit keeps every icon inside the same square
+   regardless of its native aspect ratio. */
+.icon-tile {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Big step numbers (01 / 02 / 03) */
+.step-number {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--kp-step-number);
+  line-height: 1;
+}
+
+/* Soft, expansive drop shadow used for cards and floating panels.
+   Wide blur, low opacity, minimal vertical offset - matches the Figma
+   mockups rather than Bootstrap's tighter .shadow-sm. */
+.shadow-kp {
+  box-shadow: var(--kp-shadow);
+}
+
+/* Dotted divider between FAQ items (same technique as the iSay FAQ prototype) */
+.divider-dotted {
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #E0E0E0,
+    #E0E0E0 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  background-size: 6px 1px;
+}
+
+/* Rule between the "Privacy / Voice / Rewards" teaser columns: a
+   horizontal line above each stacked item on mobile, switching to a
+   vertical rule once the columns sit side by side (md+). */
+.divider-vertical {
+  border-top: 1px solid #E0E0E0;
+  padding-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .divider-vertical {
+    border-top: 0;
+    padding-top: 0;
+    border-left: 1px solid #E0E0E0;
+  }
+}
+
+/* Some exported icons carry a baked-in white square (from the SVG export
+   step, not a deliberate design choice), which shows as a visible box on
+   any tinted background like --kp-bg-light. Multiply blend makes white
+   drop out and read as transparent, without touching the source SVG. */
+.icon-blend {
+  mix-blend-mode: multiply;
+}
+
+/* Arrow-led question row, used on the FAQ index and category pages */
+.faq-question .faq-question__arrow {
+  color: var(--kp-navy);
+  flex-shrink: 0;
+}
+
+/* Home page accordion preview: swap Bootstrap's default chevron for the
+   KnowledgePanel plus/minus icons supplied in the design, and move the
+   icon to the start of the row (Figma places it before the question,
+   Bootstrap's default pushes it to the end via margin-left: auto). */
+.accordion-kp .accordion-button {
+  font-weight: 400;
+  gap: 0.75rem;
+}
+
+.accordion-kp .accordion-button::after {
+  background-image: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/kp/icons/faq-circle-plus.svg");
+  width: 1.5rem;
+  height: 1.5rem;
+  background-size: 1.5rem;
+  order: -1;
+  margin-left: 0;
+}
+
+.accordion-kp .accordion-button:not(.collapsed)::after {
+  background-image: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/kp/icons/faq-circle-minus.svg");
+}
+
+/* Bootstrap's accordion component sets its own --bs-accordion-body-color
+   (near-black), overriding the lighter gray the rest of the site uses for
+   body copy. Force the same gray, and give the "Read more" link its own
+   line with breathing room above it instead of sitting right under the
+   text via the bare <br>. */
+.accordion-kp .accordion-body {
+  color: var(--kp-gray);
+}
+
+.accordion-kp .accordion-body a {
+  display: inline-block;
+  margin-top: 0.75rem;
+}
+
+.accordion-kp .accordion-button:not(.collapsed) {
+  color: var(--kp-navy);
+  background: #fff;
+  box-shadow: none;
+}
+
+.accordion-kp .accordion-button:focus {
+  box-shadow: none;
+  border-color: var(--bs-accordion-border-color);
+}
+
+/* Category tiles on the FAQ index. With 6 categories (not a divisor of
+   Bootstrap's 12-column grid), a fixed 20% width lets 5 sit evenly on one
+   row at lg+ and the 6th wrap to its own row, where the row's
+   justify-content-center centers it. */
+@media (min-width: 992px) {
+  .col-faq-category {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+.faq-category-card {
+  border: 1px solid var(--kp-border);
+  transition: box-shadow .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.faq-category-card:hover {
+  box-shadow: var(--kp-shadow-hover);
+  border-color: var(--kp-blue);
+}
+
+/* Footer */
+.site-footer .nav-link {
+  color: var(--kp-gray);
+}
+
+.site-footer .nav-link:hover {
+  color: var(--kp-navy);
+}

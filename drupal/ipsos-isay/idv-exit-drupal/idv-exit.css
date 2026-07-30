@@ -1,0 +1,135 @@
+.exit-page {
+    /* No flex/100vh — Drupal already provides the page shell.
+       Vertical breathing room via padding on .content instead. */
+}
+
+.content {
+    padding-top: 48px;
+    padding-bottom: 48px;
+}
+
+.exit-badge {
+    width: 40px;
+    height: 40px;
+}
+
+.alert.alert-success {
+    max-width: 820px;
+    margin: 0 auto;
+    background: #f2faf7;
+    border: none;
+}
+
+h1.text-left.page-title {
+    display: none;
+}
+
+.text-warning {
+    color: #d3681b !important;
+}
+
+.text-main {
+    color: #02103f !important;
+}
+
+.text-success-plus-2 {
+    color: #1d7f76 !important;
+}
+
+.text-muted {
+    color: #767279 !important;
+}
+
+.exit-hero {
+    position: relative;
+}
+
+.exit-confetti {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(100%, 560px);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+.exit-next-step {
+    color: #767279 !important;
+}
+
+.exit-actions {
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a.btn {
+    border-radius: 6px !important;
+    font-weight: 700;
+}
+
+a.btn-lg {
+    min-width: 158px;
+    padding: 12px 18px;
+}
+
+a.btn-white {
+    background-color: transparent;
+    color: #59545c !important;
+    border: 2px solid transparent !important;
+}
+
+a.btn-white:hover,
+a.btn-white:focus {
+    background-color: #ececec !important;
+    color: #59545c !important;
+}
+
+a.btn-gray {
+    background-color: #f6f6f6 !important;
+    color: #59545c !important;
+    border: 2px solid transparent !important;
+    font-weight: 700;
+}
+
+a.btn-gray:hover,
+a.btn-gray:focus {
+    background-color: #e0e0e0 !important;
+}
+
+.icon-modal {
+    width: 50px;
+    height: 50px;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 24px 60px rgba(2, 16, 63, 0.18);
+}
+
+.modal-body h3 {
+    font-weight: 600;
+}
+
+.modal-body p {
+    font-size: 0.95rem;
+    color: #59545c !important;
+}
+
+.modal-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 575.98px) {
+    body {
+        background: #ffffff;
+    }
+
+    .content {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+}
