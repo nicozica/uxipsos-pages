@@ -369,8 +369,24 @@ html body a:active {
 }
 
 .btn-primary {
-  margin-top: 24px !important;
   margin-left: 0px;
+}
+
+a.btn.btn-primary {
+	color: #FFF;
+}
+
+.btn-primary {
+  margin-left: 0px;
+}
+
+a.btn:hover, a.nav-link:hover {
+	text-decoration: none !important;
+}
+
+header .navbar-expand-lg .nav-container .navbar-collapse .navbar-nav li.nav-item a {
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 img:not(what_is_talk) {

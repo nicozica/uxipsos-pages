@@ -1,100 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css');
-
-html,
-body {
+.ipsos-isay-pro-page {
   background: #fff;
   font-family: 'Inter', Arial, sans-serif;
   color: #767279;
 }
 
-a.btn {
+/* The CMS header adds 120px below itself before the RAW HTML component. */
+#header.component-header:has(+ main.layout-container .ipsos-isay-pro-page) {
+  margin-bottom: 0 !important;
+}
+
+.ipsos-isay-pro-page a.btn {
   border-radius: 6px;
   border: none;
 }
 
-a.btn-primary {
+.ipsos-isay-pro-page a.btn-primary {
   background: #2f469c;
   font-weight: 700;
   color: #fff !important;
 }
 
-a.btn-primary:hover,
-a.btn-primary:focus,
-a.btn-primary:active {
+.ipsos-isay-pro-page a.btn-primary:hover,
+.ipsos-isay-pro-page a.btn-primary:focus,
+.ipsos-isay-pro-page a.btn-primary:active {
   background: #1d3590;
   color: #fff !important;
 }
 
-a {
+.ipsos-isay-pro-page a {
   font-weight: 700;
   color: #2f469c !important;
   text-decoration: none !important;
 }
 
-a:hover,
-a:focus,
-a:active {
+.ipsos-isay-pro-page a:hover,
+.ipsos-isay-pro-page a:focus,
+.ipsos-isay-pro-page a:active {
   color: #1d3590 !important;
 }
 
-.h1,
-h1,
-.h2,
-h2,
-.h3,
-h3,
-.h4,
-.h5,
-.h6,
-h4,
-h5,
-h6,
-strong {
+.ipsos-isay-pro-page .h1,
+.ipsos-isay-pro-page h1,
+.ipsos-isay-pro-page .h2,
+.ipsos-isay-pro-page h2,
+.ipsos-isay-pro-page .h3,
+.ipsos-isay-pro-page h3,
+.ipsos-isay-pro-page .h4,
+.ipsos-isay-pro-page .h5,
+.ipsos-isay-pro-page .h6,
+.ipsos-isay-pro-page h4,
+.ipsos-isay-pro-page h5,
+.ipsos-isay-pro-page h6,
+.ipsos-isay-pro-page strong {
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 700 !important;
   color: #02103f !important;
 }
 
-h1 {
+.ipsos-isay-pro-page h1 {
   font-size: 48px !important;
 }
 
-h2 {
+.ipsos-isay-pro-page h2 {
   font-size: 40px !important;
 }
 
-h4,
-.h4 {
+.ipsos-isay-pro-page h4,
+.ipsos-isay-pro-page .h4 {
   font-size: 24px !important;
 }
 
-h5,
-.h5 {
+.ipsos-isay-pro-page h5,
+.ipsos-isay-pro-page .h5 {
   font-size: 20px !important;
 }
 
-.lead {
+.ipsos-isay-pro-page .lead {
   font-weight: 400 !important;
 }
 
-.text-secondary {
+.ipsos-isay-pro-page .text-secondary {
   color: #1d7f76 !important;
 }
 
-.panel {
+.ipsos-isay-pro-page .panel {
   padding: 40px 0;
 }
 
-.panel .panel-bg-primary-plus-2 {
+.ipsos-isay-pro-page .panel .panel-bg-primary-plus-2 {
   background: #f8f9ff !important;
 }
 
-.panel .panel-bg-primary-success-2 {
+.ipsos-isay-pro-page .panel .panel-bg-primary-success-2 {
   background: #f4fffb !important;
 }
 
-.panel.panel-default.padding-md img {
+.ipsos-isay-pro-page .panel.panel-default.padding-md img {
   width: 175px;
   height: 175px;
 }
@@ -109,7 +110,17 @@ h5,
   }
 }
 
-.rewards {
+@keyframes rewards-loop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.ipsos-isay-pro-page .rewards {
   overflow: hidden;
   padding: 20px 0 60px;
   background: #fff;
@@ -117,8 +128,8 @@ h5,
   position: relative;
 }
 
-.rewards:before,
-.rewards:after {
+.ipsos-isay-pro-page .rewards:before,
+.ipsos-isay-pro-page .rewards:after {
   position: absolute;
   top: 0;
   width: 80px;
@@ -128,40 +139,50 @@ h5,
 }
 
 @media (min-width: 768px) {
-  .rewards:before,
-  .rewards:after {
+  .ipsos-isay-pro-page .rewards:before,
+  .ipsos-isay-pro-page .rewards:after {
     width: 250px;
   }
 }
 
-.rewards:before {
+.ipsos-isay-pro-page .rewards:before {
   left: 0;
   background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
 }
 
-.rewards:after {
+.ipsos-isay-pro-page .rewards:after {
   right: 0;
   background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
 }
 
-.rewards:hover .rewards-slide {
+.ipsos-isay-pro-page .rewards:hover .rewards-track {
   animation-play-state: paused;
 }
 
-.rewards-slide {
-  display: inline-flex;
-  animation: 55s slide infinite linear;
+.ipsos-isay-pro-page .rewards-track {
+  display: flex;
+  width: max-content;
+  animation: 55s rewards-loop infinite linear;
+  will-change: transform;
 }
 
-.card-reward {
+.ipsos-isay-pro-page .rewards-slide {
+  display: flex;
+  flex: 0 0 auto;
+}
+
+.ipsos-isay-pro-page .card-reward {
   height: auto;
+  width: 180px;
   min-width: 180px;
+  flex: 0 0 180px;
   margin: 0 40px;
   float: left;
   overflow: hidden;
 }
 
-.logos {
+.ipsos-isay-pro-page .logos {
+  display: flex;
   overflow: hidden;
   padding: 30px 0 60px;
   margin-bottom: 30px;
@@ -170,8 +191,8 @@ h5,
   position: relative;
 }
 
-.logos:before,
-.logos:after {
+.ipsos-isay-pro-page .logos:before,
+.ipsos-isay-pro-page .logos:after {
   position: absolute;
   top: 0;
   width: 80px;
@@ -181,28 +202,30 @@ h5,
 }
 
 @media (min-width: 768px) {
-  .logos:before,
-  .logos:after {
+  .ipsos-isay-pro-page .logos:before,
+  .ipsos-isay-pro-page .logos:after {
     width: 250px;
   }
 }
 
-.logos:before {
+.ipsos-isay-pro-page .logos:before {
   left: 0;
   background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
 }
 
-.logos:after {
+.ipsos-isay-pro-page .logos:after {
   right: 0;
   background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
 }
 
-.logos-slide {
-  display: inline-block;
+.ipsos-isay-pro-page .logos-slide {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
   animation: 35s slide infinite linear;
 }
 
-.logos-slide img.logo-brand {
+.ipsos-isay-pro-page .logos-slide img.logo-brand {
   height: initial !important;
   border: initial !important;
   display: initial !important;
@@ -212,39 +235,89 @@ h5,
   opacity: 0.4 !important;
 }
 
-.carousel {
+.ipsos-isay-pro-page .carousel {
   height: 380px;
   margin-bottom: 40px !important;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
+.ipsos-isay-pro-page .carousel-control-prev,
+.ipsos-isay-pro-page .carousel-control-next {
   bottom: 135px;
 }
 
-.carousel-control-prev {
+.ipsos-isay-pro-page .carousel-control-prev {
   left: -10px !important;
 }
 
-.carousel-control-next {
+.ipsos-isay-pro-page .carousel-control-next {
   right: -10px !important;
 }
 
-.carousel-indicators {
+.ipsos-isay-pro-page .carousel-indicators {
   padding-bottom: 0 !important;
   margin-top: 0 !important;
   margin-bottom: -60px !important;
   display: block;
 }
 
-.carousel-indicators [data-bs-target] {
+.ipsos-isay-pro-page .carousel-indicators [data-bs-target] {
   width: 10px;
   height: 10px;
   background-color: #84329b;
   border-radius: 50%;
 }
 
-img.carousel-icon {
+.ipsos-isay-pro-page .css-carousel-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ipsos-isay-pro-page .css-carousel .carousel-item {
+  display: none;
+  float: none;
+  width: 100%;
+  margin-right: 0;
+}
+
+.ipsos-isay-pro-page #unique-studies-slide-1:checked ~ .carousel-inner .carousel-item:nth-child(1),
+.ipsos-isay-pro-page #unique-studies-slide-2:checked ~ .carousel-inner .carousel-item:nth-child(2),
+.ipsos-isay-pro-page #unique-studies-slide-3:checked ~ .carousel-inner .carousel-item:nth-child(3),
+.ipsos-isay-pro-page #unique-studies-slide-4:checked ~ .carousel-inner .carousel-item:nth-child(4) {
+  display: block;
+}
+
+.ipsos-isay-pro-page .css-carousel-controls {
+  display: none;
+}
+
+.ipsos-isay-pro-page #unique-studies-slide-1:checked ~ .css-carousel-controls-1,
+.ipsos-isay-pro-page #unique-studies-slide-2:checked ~ .css-carousel-controls-2,
+.ipsos-isay-pro-page #unique-studies-slide-3:checked ~ .css-carousel-controls-3,
+.ipsos-isay-pro-page #unique-studies-slide-4:checked ~ .css-carousel-controls-4 {
+  display: block;
+}
+
+.ipsos-isay-pro-page .css-carousel .carousel-control-prev,
+.ipsos-isay-pro-page .css-carousel .carousel-control-next,
+.ipsos-isay-pro-page .css-carousel .carousel-indicators label {
+  cursor: pointer;
+}
+
+.ipsos-isay-pro-page #unique-studies-slide-1:checked ~ .carousel-indicators label[for="unique-studies-slide-1"],
+.ipsos-isay-pro-page #unique-studies-slide-2:checked ~ .carousel-indicators label[for="unique-studies-slide-2"],
+.ipsos-isay-pro-page #unique-studies-slide-3:checked ~ .carousel-indicators label[for="unique-studies-slide-3"],
+.ipsos-isay-pro-page #unique-studies-slide-4:checked ~ .carousel-indicators label[for="unique-studies-slide-4"] {
+  opacity: 1;
+}
+
+.ipsos-isay-pro-page img.carousel-icon {
   height: initial !important;
   border: initial !important;
   display: initial;
@@ -254,113 +327,113 @@ img.carousel-icon {
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-  .carousel {
+  .ipsos-isay-pro-page .carousel {
     height: 320px;
     margin-bottom: 110px !important;
   }
 
-  .carousel-control-prev {
+  .ipsos-isay-pro-page .carousel-control-prev {
     left: -20px !important;
     bottom: 55px !important;
   }
 
-  .carousel-control-next {
+  .ipsos-isay-pro-page .carousel-control-next {
     right: -20px !important;
     bottom: 55px !important;
   }
 
-  .carousel-indicators {
+  .ipsos-isay-pro-page .carousel-indicators {
     margin-bottom: -70px !important;
   }
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .carousel {
+  .ipsos-isay-pro-page .carousel {
     height: 200px;
     margin-bottom: 80px !important;
   }
 
-  .carousel-indicators {
+  .ipsos-isay-pro-page .carousel-indicators {
     margin-bottom: -50px !important;
   }
 
-  .carousel-control-prev {
+  .ipsos-isay-pro-page .carousel-control-prev {
     left: -80px !important;
     bottom: 15px !important;
   }
 
-  .carousel-control-next {
+  .ipsos-isay-pro-page .carousel-control-next {
     right: -60px !important;
     bottom: 15px !important;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
-  .carousel {
+  .ipsos-isay-pro-page .carousel {
     height: 200px;
     margin-bottom: 80px !important;
   }
 
-  .carousel-control-prev {
+  .ipsos-isay-pro-page .carousel-control-prev {
     left: -30px !important;
     bottom: 15px !important;
   }
 
-  .carousel-control-next {
+  .ipsos-isay-pro-page .carousel-control-next {
     right: -30px !important;
     bottom: 15px !important;
   }
 
-  .carousel-indicators {
+  .ipsos-isay-pro-page .carousel-indicators {
     margin-bottom: -40px !important;
   }
 }
 
 @media (min-width: 1200px) {
-  .carousel {
+  .ipsos-isay-pro-page .carousel {
     height: 220px;
     margin-bottom: 90px !important;
   }
 
-  .carousel-control-prev,
-  .carousel-control-next {
+  .ipsos-isay-pro-page .carousel-control-prev,
+  .ipsos-isay-pro-page .carousel-control-next {
     bottom: -15px;
   }
 
-  .carousel-indicators {
+  .ipsos-isay-pro-page .carousel-indicators {
     margin-bottom: -80px !important;
   }
 }
 
-.carousel-control-prev-icon {
+.ipsos-isay-pro-page .carousel-control-prev-icon {
   background-image: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/icons/carousel-arrow-left.svg');
 }
 
-.carousel-control-next-icon {
+.ipsos-isay-pro-page .carousel-control-next-icon {
   background-image: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/icons/carousel-arrow-right.svg');
 }
 
 /* Ipsos iSay PRO B2B shell */
-body {
+.ipsos-isay-pro-page {
   min-height: 100vh;
 }
 
-.site-header {
+.ipsos-isay-pro-page .site-header {
   position: relative;
   z-index: 10;
   border-bottom: 1px solid #ececf2;
   background: #fff;
 }
 
-.site-header .navbar {
+.ipsos-isay-pro-page .site-header .navbar {
   min-height: 76px;
 }
 
-.navbar-brand {
+.ipsos-isay-pro-page .navbar-brand {
   padding: 0;
 }
 
-.brand-placeholder {
+.ipsos-isay-pro-page .brand-placeholder {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -368,7 +441,7 @@ body {
   line-height: 1;
 }
 
-.brand-ipsos {
+.ipsos-isay-pro-page .brand-ipsos {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -382,24 +455,24 @@ body {
   letter-spacing: -0.03em;
 }
 
-.brand-name {
+.ipsos-isay-pro-page .brand-name {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-.site-header .nav-link {
+.ipsos-isay-pro-page .site-header .nav-link {
   padding: 10px 12px !important;
   color: #02103f !important;
 }
 
-.site-header .nav-link:hover,
-.site-header .nav-link:focus,
-.site-header .nav-link.active {
+.ipsos-isay-pro-page .site-header .nav-link:hover,
+.ipsos-isay-pro-page .site-header .nav-link:focus,
+.ipsos-isay-pro-page .site-header .nav-link.active {
   color: #2f469c !important;
 }
 
-.nav-login {
+.ipsos-isay-pro-page .nav-login {
   padding: 9px 20px;
   border: 2px solid #2f469c !important;
   background: #fff;
@@ -407,44 +480,44 @@ body {
   font-weight: 700;
 }
 
-.nav-login:hover,
-.nav-login:focus,
-.nav-login:active {
+.ipsos-isay-pro-page .nav-login:hover,
+.ipsos-isay-pro-page .nav-login:focus,
+.ipsos-isay-pro-page .nav-login:active {
   background: #2f469c !important;
   color: #fff !important;
 }
 
-.site-footer {
+.ipsos-isay-pro-page .site-footer {
   margin-top: 48px;
   padding: 28px 0;
   border-top: 1px solid #ececf2;
   background: #fff;
 }
 
-.footer-nav {
+.ipsos-isay-pro-page .footer-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 14px 28px;
 }
 
-.footer-nav a {
+.ipsos-isay-pro-page .footer-nav a {
   color: #5c5960 !important;
   font-size: 14px;
   font-weight: 400;
 }
 
-.footer-nav a:hover,
-.footer-nav a:focus {
+.ipsos-isay-pro-page .footer-nav a:hover,
+.ipsos-isay-pro-page .footer-nav a:focus {
   color: #2f469c !important;
 }
 
 /* Rewards page */
-.rewards-hero {
+.ipsos-isay-pro-page .rewards-hero {
   background: #f8f9ff;
 }
 
-.section-eyebrow {
+.ipsos-isay-pro-page .section-eyebrow {
   color: #1d7f76;
   font-size: 14px;
   font-weight: 700;
@@ -452,7 +525,7 @@ body {
   text-transform: uppercase;
 }
 
-.reward-category-card {
+.ipsos-isay-pro-page .reward-category-card {
   padding: 36px;
   border: 1px solid #e4e4ed;
   border-radius: 12px;
@@ -460,7 +533,7 @@ body {
   box-shadow: 0 14px 35px rgba(2, 16, 63, 0.06);
 }
 
-.reward-category-icon {
+.ipsos-isay-pro-page .reward-category-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -473,41 +546,40 @@ body {
   font-size: 24px;
 }
 
-.reward-product-grid {
+.ipsos-isay-pro-page .reward-product-grid {
   min-height: 72px;
   margin-top: 24px;
   border-top: 1px dashed #d6d5dc;
 }
 
 @media (max-width: 767.98px) {
-  h1 {
+  .ipsos-isay-pro-page h1 {
     font-size: 36px !important;
   }
 
-  h2 {
+  .ipsos-isay-pro-page h2 {
     font-size: 30px !important;
   }
 
-  .site-header .navbar-collapse {
+  .ipsos-isay-pro-page .site-header .navbar-collapse {
     padding: 18px 0 8px;
   }
 
-  .site-header .navbar-nav {
+  .ipsos-isay-pro-page .site-header .navbar-nav {
     align-items: stretch !important;
   }
 
-  .nav-login {
+  .ipsos-isay-pro-page .nav-login {
     display: inline-block;
     margin-top: 6px;
     text-align: center;
   }
 
-  .panel {
+  .ipsos-isay-pro-page .panel {
     padding: 32px 0;
   }
 
-  .reward-category-card {
+  .ipsos-isay-pro-page .reward-category-card {
     padding: 28px;
   }
 }
-
