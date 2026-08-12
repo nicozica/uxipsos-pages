@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  container:
+    runs-on: [self-hosted, Linux, X64, ipsos-devops-01, opensuse, podman]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build container
+        run: podman build -f Containerfile -t localhost/uxipsos-pages-ci:${GITHUB_SHA} .
+
+      - name: Smoke test
+        run: |
+          podman rm -f uxipsos-pages-ci >/dev/null 2>&1 || true
+          podman run -d --name uxipsos-pages-ci -p 127.0.0.1:18083:80 localhost/uxipsos-pages-ci:${GITHUB_SHA}
+          sleep 2
+          curl --fail --silent http://127.0.0.1:18083/uxipsos-pages/drupal/knowledgepanel/ >/dev/null
+          curl --fail --silent http://127.0.0.1:18083/uxipsos-pages/pex/ipsos-isay-pro/ >/dev/null
+          podman rm -f uxipsos-pages-ci
+          echo "Container smoke test passed"
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io --username "${{ github.actor }}" --password-stdin
+
+      - name: Publish SHA image
+        run: |
+          podman tag localhost/uxipsos-pages-ci:${GITHUB_SHA} ghcr.io/iis-design/uxipsos-pages:${GITHUB_SHA}
+          podman push ghcr.io/iis-design/uxipsos-pages:${GITHUB_SHA}
+          echo "Published ghcr.io/iis-design/uxipsos-pages:${GITHUB_SHA}"
+
+      - name: Publish main tag and deploy
+        if: github.ref == 'refs/heads/main'
+        run: |
+          podman tag localhost/uxipsos-pages-ci:${GITHUB_SHA} ghcr.io/iis-design/uxipsos-pages:main
+          podman push ghcr.io/iis-design/uxipsos-pages:main
+
+          ssh -i /home/gha-runner/.ssh/id_ed25519_deploy -o BatchMode=yes nico@192.168.1.83 '
+            cd /srv/apps/uxipsos-pages &&
+            docker compose pull &&
+            docker compose up -d &&
+            docker exec design-proxy wget -qO- http://uxipsos-pages/uxipsos-pages/drupal/knowledgepanel/ >/dev/null &&
+            docker exec design-proxy wget -qO- http://uxipsos-pages/uxipsos-pages/pex/ipsos-isay-pro/ >/dev/null &&
+            echo "UXIpsos Pages production deploy OK"
+          '
