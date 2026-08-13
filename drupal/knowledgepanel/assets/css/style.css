@@ -319,6 +319,44 @@ a:hover {
   border-color: var(--kp-blue);
 }
 
+/* Bigger, brand-colored checkbox for consent/opt-in checks (join page).
+   Bootstrap sizes checkboxes in em relative to their own font-size, so
+   bumping font-size on .form-check scales the box, border-radius and
+   spacing together; fs-7 on the label keeps its text at the normal size.
+   Bootstrap's default float+negative-margin layout top-aligns the input
+   against the label, which reads as misaligned once the box is taller
+   than a line of label text - flex + align-items:center centers the box
+   against the label instead, whether it wraps to one line or several. */
+.form-check-lg {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-left: 0;
+  font-size: 1.75rem;
+}
+
+.form-check-lg .form-check-input {
+  float: none;
+  margin: 0;
+  flex-shrink: 0;
+  border-width: 2px;
+  border-color: var(--kp-step-number);
+}
+
+.form-check-lg .form-check-label {
+  margin-bottom: 0;
+}
+
+.form-check-lg .form-check-input:checked {
+  background-color: var(--kp-blue);
+  border-color: var(--kp-blue);
+}
+
+.form-check-lg .form-check-input:focus {
+  border-color: var(--kp-blue);
+  box-shadow: 0 0 0 .25rem rgba(47, 70, 156, .25);
+}
+
 /* Footer */
 .site-footer .nav-link {
   color: var(--kp-gray);

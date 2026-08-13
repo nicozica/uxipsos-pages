@@ -55,7 +55,11 @@
                     <p class="fs-7 mb-3">Letters in the code can be entered in upper or lower case.</p>
                     <label for="invitationCode" class="visually-hidden">Invitation code</label>
                     <input type="text" class="form-control form-control-lg mb-3" id="invitationCode" placeholder="e.g. A12-B34-C56">
-                    <a href="javascript:void(0);" class="btn btn-primary btn-lg w-100">Continue to join</a>
+                    <div class="form-check form-check-lg mb-3">
+                      <input class="form-check-input" type="checkbox" id="acceptTerms" name="acceptTerms">
+                      <label class="form-check-label fs-7" for="acceptTerms">I have read and accept the <a href="/en-gb/terms-and-conditions">General Conditions</a> and the <a href="/en-gb/privacy-policy">Privacy Policy</a></label>
+                    </div>
+                    <a href="sign-up.html" class="btn btn-primary btn-lg w-100">Continue to join</a>
                   </div>
                 </div>
                 <div class="col-12 col-lg-5 d-flex justify-content-center justify-content-lg-end">
@@ -67,6 +71,20 @@
         </div>
       </section>
       <!-- END: Enrollment -->
+
+      <!-- START: Confidentiality notice -->
+      <section class="pb-5">
+        <div class="container py-lg-3">
+          <div class="bg-kp-gradient rounded-4 p-4 p-lg-5 d-flex flex-column flex-sm-row align-items-center align-items-sm-start gap-3 gap-lg-4 text-center text-sm-start">
+            <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/kp/icons/join-circle-shield-alt.svg" alt="" width="48" height="48" class="flex-shrink-0">
+            <div>
+              <h2 class="h5 mb-1">Your answers are confidential and used only for research.</h2>
+              <p class="fs-7 mb-0">We do not sell your personal data or use it for marketing or advertising. You can stop taking part at any time.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- END: Confidentiality notice -->
 
       <!-- START: Why you were invited -->
       <section class="pb-5">
