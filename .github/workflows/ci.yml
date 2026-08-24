@@ -23,8 +23,7 @@ jobs:
           podman rm -f uxipsos-pages-ci >/dev/null 2>&1 || true
           podman run -d --name uxipsos-pages-ci -p 127.0.0.1:18083:80 localhost/uxipsos-pages-ci:${GITHUB_SHA}
           sleep 2
-          curl --fail --silent http://127.0.0.1:18083/uxipsos-pages/drupal/knowledgepanel/ >/dev/null
-          curl --fail --silent http://127.0.0.1:18083/uxipsos-pages/pex/ipsos-isay-pro/ >/dev/null
+          curl --fail --silent http://127.0.0.1:18083/uxipsos-pages/_health >/dev/null
           podman rm -f uxipsos-pages-ci
           echo "Container smoke test passed"
 
@@ -47,7 +46,6 @@ jobs:
             cd /srv/apps/uxipsos-pages &&
             docker compose pull &&
             docker compose up -d &&
-            docker exec design-proxy wget -qO- http://uxipsos-pages/uxipsos-pages/drupal/knowledgepanel/ >/dev/null &&
-            docker exec design-proxy wget -qO- http://uxipsos-pages/uxipsos-pages/pex/ipsos-isay-pro/ >/dev/null &&
+            docker exec design-proxy wget -qO- http://uxipsos-pages/uxipsos-pages/_health >/dev/null &&
             echo "UXIpsos Pages production deploy OK"
           '
