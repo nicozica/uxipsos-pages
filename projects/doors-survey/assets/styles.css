@@ -1,0 +1,484 @@
+/* ===========================================================
+   Ipsos iSay – Doors Survey prototype (static flow)
+   Adapted from /srv/repos/work/ipsos/prepost-survey/assets/styles.css
+
+   Styling layers (load order):
+     1. Bootstrap 5            — CDN (grid, components, utilities)
+     2. Font Awesome 6         — CDN (icons)
+     3. variables.css          — Ipsos design tokens (color)
+     4. overrides.css          — Bootstrap re-skin (look & feel, from astra)
+     5. this file              — page-chrome glue (unchanged from prepost-survey,
+                                 including its viewport hierarchy: #screen and
+                                 .app-header/.app-footer/.screen-main are all
+                                 full-width, and only the innermost .stage — the
+                                 actual page content — caps at max-width:760px)
+                                 plus a "Doors Survey additions" section at the
+                                 bottom for the five cells' component styles.
+   =========================================================== */
+
+@import "variables.css";
+@import "overrides.css";
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* mountScreen() injects header + main + footer into #screen, so the
+   full-height flex column (sticky footer) must live here, not on <body>. */
+#screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Page shell ---------- */
+.screen-main {
+  flex: 1 0 auto;
+  width: 100%;
+  padding: 1.5rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+/* Tablet/desktop: center content in the viewport between header and footer,
+   but only when the height allows it (tall content just flows and scrolls). */
+@media (min-width: 768px) {
+  .screen-main { justify-content: center; }
+}
+.stage { max-width: 760px; margin: 0 auto; }
+
+/* ---------- Header chrome ---------- */
+.app-header { padding: 1.4rem 1.75rem 0.4rem; }
+.brand { display: inline-flex; align-items: center; text-decoration: none; line-height: 0; }
+.brand img { height: 38px; width: auto; display: block; }
+
+.header-meta {
+  display: flex; align-items: center; gap: 1.35rem;
+  justify-content: flex-end; flex-wrap: wrap;
+}
+.acct-balance { color: var(--text-muted); font-size: .95rem; white-space: nowrap; }
+.balance {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-weight: 700; color: var(--text-main); font-size: 1.05rem;
+  padding-left: 1.35rem; position: relative;
+}
+.balance::before {  /* vertical divider */
+  content: ""; position: absolute; left: 0; top: -2px; bottom: -2px;
+  width: 1px; background: var(--stroke-default-minus-2);
+}
+.user {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-weight: 700; color: var(--text-main); white-space: nowrap;
+}
+.user .ico { color: var(--text-secondary-default); font-size: 1.25rem; line-height: 0; }
+
+/* ---------- Completion seal (inline SVG badge) ---------- */
+.badge-check { flex: 0 0 auto; display: inline-flex; align-items: center; line-height: 0; }
+.badge-check svg { width: 1.15em; height: 1.15em; display: block; }
+
+/* ---------- Celebration confetti overlay (astra technique) ---------- */
+.celebrate { position: relative; }
+.celebrate .confetti {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; mix-blend-mode: multiply; pointer-events: none; z-index: 1;
+}
+.celebrate > :not(.confetti) { position: relative; z-index: 2; }
+
+/* ---------- Rating (accessible radiogroup) ---------- */
+.stars-row { display: flex; justify-content: center; gap: .9rem; }
+.rate-star { display: flex; flex-direction: column; align-items: center; gap: .3rem; cursor: pointer; }
+.rate-star i { font-size: 2.8rem; color: var(--gray-200); transition: color .15s; }
+.rate-star span { color: var(--text-muted); font-size: .85rem; }
+/* .lit is applied cumulatively (JS) on hover and on selection: 1..N light up */
+.rate-star.lit i { color: var(--text-warning-default); }
+.rate-star:focus-visible { outline: 2px solid var(--stroke-primary-default); outline-offset: 3px; border-radius: 8px; }
+
+/* ---------- Footer chrome ---------- */
+.app-footer {
+  flex-shrink: 0;
+  padding: 1.4rem 1.75rem 1.6rem;   /* same horizontal padding as .app-header */
+}
+.foot-logo { line-height: 0; }
+.foot-logo img { height: 26px; width: auto; display: block; }
+.foot-link { color: var(--text-muted) !important; font-weight: 700; font-size: .9rem; }
+.foot-help {
+  border: 1px solid var(--stroke-default-minus-2); border-radius: 6px; padding: .35rem .9rem;
+  color: var(--text-muted) !important; font-weight: 700; font-size: .9rem;
+}
+
+/* ---------- Responsive ----------
+   Keep the compact "mobile" layout all the way up to the md breakpoint
+   (< 768px), matching where the content stops centering. This avoids the
+   cramped header (Account Balance + user wrapping) in the 576–768px range. */
+@media (max-width: 767.98px) {
+  .app-header { padding: 1rem 1rem .25rem; }
+  .brand img { height: 30px; }
+  .header-meta { gap: .75rem; font-size: .85rem; }
+  .acct-balance { display: none; }            /* collapse label on small screens */
+  .balance { padding-left: 0; }
+  .balance::before { display: none; }
+  .stars-row { gap: .45rem; }
+  .rate-star i { font-size: 2.1rem; }
+  .app-footer { padding: 1.2rem 1rem; }
+}
+
+/* ===========================================================
+   Doors Survey additions
+   Everything below is new for this project. #screen, .app-header,
+   .app-footer, and .screen-main are deliberately left untouched above —
+   they're byte-for-byte the same full-width, uncapped rules as
+   prepost-survey's own styles.css. Only .stage (also untouched, same file)
+   narrows the actual content to max-width:760px, exactly like the
+   reference. This section adds nothing at the viewport/container level —
+   only the five cells' own component styles below.
+   =========================================================== */
+
+/* Primary CTAs: full-width on mobile (matches the supplied designs). From
+   the tablet breakpoint up, match the reference project's own CTA style —
+   see prepost-survey/screens/09-sniff-out-unexpected.html: a plain,
+   content-sized `.btn.btn-primary` (not the larger/stretched mobile
+   version), left-aligned inside .stage. Cell 05's buttons add
+   .btn-cta--center to stay centered instead (design direction), still
+   with this same compact sizing rather than the old 360px-wide look.
+   `width:fit-content` + `display:block` (not inline-block) is used so the
+   button's own left/center position never depends on a parent section's
+   own `text-center` (several states use that only to center a heading or
+   icon above the button) — text-align never repositions a block box,
+   only its own margin does, so this stays correct regardless. */
+.btn-cta { display: block; width: 100%; }
+@media (min-width: 768px) {
+  .btn-cta {
+    display: block;
+    width: fit-content;
+    max-width: none;
+    margin-inline: 0;
+    /* Matches overrides.css's `a.btn { padding: 9px 16px }` — that's what
+       actually wins the cascade on the reference's plain, non-btn-lg
+       button (a.btn beats Bootstrap's own smaller .btn default there).
+       Bootstrap's raw .375rem/.75rem default was used here before, which
+       rendered visibly smaller than the reference. */
+    padding: 9px 16px;
+    font-size: 1rem;
+    border-radius: 6px;
+  }
+  .btn-cta.btn-cta--center { margin-inline: auto; }
+}
+
+/* Generic focus ring for the custom (non-Bootstrap) controls below.
+   .choice-label used to be in this list via :focus-within, which is what
+   caused the double-ring bug: it fires for as long as the radio input
+   inside it holds focus, which in most browsers is also true right after
+   a click (not just keyboard nav) — so it was drawing this 3px-offset
+   ring on the whole label AT THE SAME TIME as .choice-content's own
+   checked-state border, one immediately outside the other. Choice cards
+   now rely solely on their own dedicated rule further down
+   (.choice-input:focus-visible:not(:checked) + .choice-content). */
+.wheel-hub:focus-visible,
+.link-inert:focus-visible,
+.preview-results-trigger:focus-visible {
+  outline: 2px solid var(--stroke-primary-default);
+  outline-offset: 3px;
+}
+
+/* Inert inline "link" — a real <button>, styled as text, that intentionally
+   does nothing on click (no destination exists yet in this prototype). */
+.link-inert {
+  background: none; border: none; padding: 0; margin: 0;
+  font: inherit; font-weight: 700; color: var(--text-link) !important;
+  text-decoration: none; cursor: pointer;
+}
+.link-inert:hover { color: var(--text-primary-plus-2) !important; text-decoration: underline; }
+
+/* ---------- Cell 01 — Video ---------- */
+.video-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--gray-900);
+  aspect-ratio: 16 / 9.6;
+}
+.video-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-play-btn {
+  position: absolute; inset: 0; margin: auto; width: 3.4rem; height: 3.4rem;
+  border-radius: 50%; border: none; background: rgba(255,255,255,.92);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; color: var(--text-main);
+}
+.video-play-btn:not(:disabled):hover { background: #fff; }
+.video-play-btn:disabled { opacity: .85; cursor: not-allowed; }
+.video-scrub {
+  position: absolute; left: .9rem; right: .9rem; bottom: 2.4rem;
+  height: 3px; border-radius: 2px; background: rgba(255,255,255,.35);
+}
+.video-scrub-fill { width: 4%; height: 100%; border-radius: 2px; background: #fff; }
+.video-controls-row {
+  position: absolute; left: .9rem; right: .9rem; bottom: .8rem;
+  display: flex; align-items: center; justify-content: space-between;
+  color: #fff; font-size: .78rem;
+}
+.video-controls-row .icons { display: flex; gap: .7rem; opacity: .9; }
+
+/* ---------- Cell 02 — Spinning Wheel ---------- */
+/* Welcome screen's decorative hero (see markup comment) — plain fluid
+   image, sized by its own column same as everywhere else in Doors
+   Survey (still inside .stage here, unlike Censydiam's wider panels).
+   No border-radius: the reference (intro.astro) applies none to this
+   image either — plain img-fluid, no rounding utility — and the asset
+   itself has square corners, confirmed by inspecting the downloaded
+   webp directly. The 24px added here earlier wasn't actually in the
+   reference. */
+.wheel-hero-image { display: block; width: 100%; height: auto; margin: 1.25rem 0; }
+
+/* Background band behind the interactive wheel, ported as-is from the
+   reference (astra/src/pages/p1/spinningwheel/wheel.astro's
+   .wheel-container): same two CDN images and the same 767.98/768px
+   breakpoint switch, expressed as aspect-ratio instead of a literal
+   fixed pixel box so it still fits a viewport narrower than 327px. */
+.wheel-container {
+  position: relative;
+  width: 100%; max-width: 327px; aspect-ratio: 327 / 295;
+  margin: 1.5rem auto;
+  background: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/spinning-wheel/bg-wheel-m.webp") center / cover no-repeat;
+  display: flex; align-items: center; justify-content: center;
+}
+@media (min-width: 768px) {
+  .wheel-container {
+    max-width: 798px; aspect-ratio: 798 / 386;
+    background-image: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/spinning-wheel/bg-wheel.webp");
+  }
+}
+
+.wheel-scene { position: relative; width: min(78vw, 300px); }
+.wheel-disc {
+  width: 100%; height: auto; display: block;
+  transition: transform 3.2s cubic-bezier(.15,.62,.2,1); transform: rotate(0deg);
+}
+/* 1800deg (5 full turns) would return to the disc's original orientation,
+   which has a segment BOUNDARY at 12 o'clock, not a segment center — the
+   pointer would end up straddling two segments. wheel.svg's "50" segment
+   (orange, confirmed by rasterizing it and reading its path coordinates)
+   spans 315deg-360deg at rest, centered at 337.5deg; +22.5deg brings that
+   center to 0deg/top, under the pointer. Still fully deterministic, still
+   always the same result. */
+.wheel-disc.is-spinning { transform: rotate(1822.5deg); }
+@media (prefers-reduced-motion: reduce) {
+  .wheel-disc, .wheel-disc.is-spinning { transition-duration: .01ms; }
+}
+
+/* Real <button> — keeps "press the center to spin" a native, focusable
+   control. pointer.svg is 69x85 (a 69px hub circle plus a small notch
+   above it); its circle center sits 59.2% down the image's own height,
+   so translateY(-59.2%) (a percentage of the element's own box, not the
+   parent's) keeps the circle centered on the wheel with the notch
+   pointing toward the rim, at any rendered size. */
+.wheel-hub {
+  position: absolute; left: 50%; top: 50%; width: 22%;
+  transform: translate(-50%, -59.2%);
+  z-index: 3; border: none; background: none; padding: 0;
+  cursor: pointer; transition: filter .15s;
+}
+.wheel-hub img { width: 100%; height: auto; display: block; }
+.wheel-hub:hover:not(:disabled) img,
+.wheel-hub:focus-visible img { filter: brightness(1.08); }
+.wheel-hub:disabled { cursor: default; opacity: .9; }
+
+/* Pointer rocks side to side while the wheel spins (doors.js toggles this
+   class alongside .wheel-disc.is-spinning), like a real wheel-of-fortune
+   tab being nudged by each passing segment — purely decorative, doesn't
+   sync to actual segment positions. Pivots around the hub circle's own
+   center (50% 59.2%, matching the translate above) rather than the whole
+   button's midpoint, so the notch swings while the circle stays put,
+   like a needle rather than the whole shape swaying. */
+@keyframes wheel-pointer-tick {
+  0%, 100% { transform: translate(-50%, -59.2%) rotate(-10deg); }
+  50% { transform: translate(-50%, -59.2%) rotate(10deg); }
+}
+.wheel-hub.is-ticking {
+  transform-origin: 50% 59.2%;
+  animation: wheel-pointer-tick .2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wheel-hub.is-ticking { animation: none; }
+}
+
+/* Consent card + custom checkbox, ported from the reference's own
+   .tc-agree / .custom-checkbox (astra common.css) — same card treatment,
+   same hand-drawn checkbox with an animated checkmark, but using our own
+   --bg-primary-default / --stroke-default-minus-1 tokens in place of the
+   reference's literal hex custom properties (--checkbox-primary: #2f3cc0
+   etc.), consistent with the rest of Doors Survey. */
+.rules-consent {
+  display: flex; align-items: flex-start; gap: .75rem;
+  padding: 1rem 1.25rem; border: 1px solid rgba(0,0,0,.1); border-radius: 8px;
+  background: rgba(47,70,156,.03); transition: background .2s ease, border-color .2s ease;
+}
+.rules-consent:hover { background: rgba(47,70,156,.06); border-color: rgba(47,70,156,.2); }
+
+.rules-consent .form-check-input {
+  appearance: none; -webkit-appearance: none;
+  width: 24px; height: 24px; min-width: 24px;
+  margin-top: .05rem; flex: 0 0 auto; position: relative;
+  border: 2px solid var(--stroke-default-minus-1); border-radius: 4px;
+  background: var(--white); cursor: pointer;
+  transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+.rules-consent .form-check-input:hover {
+  border-color: var(--bg-primary-default); box-shadow: 0 0 0 3px rgba(47,70,156,.08);
+}
+.rules-consent .form-check-input:focus-visible {
+  outline: none; border-color: var(--bg-primary-default); box-shadow: 0 0 0 4px rgba(47,70,156,.25);
+}
+.rules-consent .form-check-input:checked {
+  background: var(--bg-primary-default); border-color: var(--bg-primary-default);
+}
+.rules-consent .form-check-input::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 6px; height: 12px; border: solid #fff; border-width: 0 2.5px 2.5px 0;
+  transform: translate(-50%,-60%) rotate(45deg) scale(0); opacity: 0;
+  transition: all .2s cubic-bezier(.68,-.55,.27,1.55);
+}
+.rules-consent .form-check-input:checked::after {
+  transform: translate(-50%,-60%) rotate(45deg) scale(1); opacity: 1;
+}
+.rules-consent label { padding-left: .1rem; line-height: 1.5; cursor: pointer; }
+
+.rules-error {
+  color: var(--text-danger-default) !important; font-size: .85rem; margin: .5rem 0 0;
+}
+
+/* ---------- Cell 03 / Cell 04 — celebration + loading ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .celebrate .confetti { display: none; }
+}
+
+.loading-icon { width: 4.5rem; height: 4.5rem; margin: 0 auto 1rem; display: block; color: var(--indigo-300); }
+.loading-icon .dot { animation: doors-dot-pulse 1.4s ease-in-out infinite; }
+.loading-icon .dot:nth-child(2) { animation-delay: .18s; }
+.loading-icon .dot:nth-child(3) { animation-delay: .36s; }
+@keyframes doors-dot-pulse { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .loading-icon .dot { animation: none; opacity: 1; }
+}
+
+/* ---------- Cell 04 — Poll Predictor slider ---------- */
+.predict-slider-wrap { position: relative; padding-top: 2.5rem; margin: 1.5rem 0 1rem; }
+.predict-tooltip {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  background: var(--indigo-900); color: #fff; font-weight: 700; font-size: .85rem;
+  padding: .3rem .7rem; border-radius: 6px; white-space: nowrap;
+}
+.predict-tooltip::after {
+  content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 5px solid transparent; border-top-color: var(--indigo-900);
+}
+.predict-value {
+  text-align: center; font-weight: 700; color: var(--text-primary-default);
+  font-size: 2rem; margin-bottom: .25rem;
+}
+.form-range.predict-range { accent-color: var(--bg-primary-default); }
+
+.predict-compare { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin: 1.5rem 0; }
+.predict-compare .figure { text-align: center; }
+.predict-compare .figure .num { font-weight: 700; font-size: 2.4rem; line-height: 1; }
+.predict-compare .figure.mine .num { color: var(--text-secondary-default); }
+.predict-compare .figure.correct .num { color: var(--text-main); }
+.predict-compare .vs { color: var(--text-muted); }
+.percent-badge { width: 3.25rem; height: 3.25rem; margin: 0 auto 1rem; display: block; }
+
+/* ---------- Cell 05 — Censydiam ----------
+   Choice-card and result-panel rules below are ported from astra's own
+   reference implementation, astra/src/assets/styles/p1/censydiam-without-rec.css
+   (same CSS custom properties, so no new tokens were needed) — kept as
+   close to that source as reasonable, with `.choice` renamed to the
+   `#choiceGrid` container already wired up in doors.js/this screen. */
+.choice-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 1.5rem 0; }
+
+.choice-label {
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer; border-radius: 12px; padding: .5rem; transition: all .3s ease;
+  width: calc(50% - .5rem);
+  max-width: 260px;
+}
+.choice-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choice-content {
+  position: relative; width: 100%;
+  border: 2px solid var(--bg-primary-minus-2); border-radius: 12px;
+  padding: .6rem; background: var(--bg-primary-minus-2); transition: all .3s ease;
+  display: flex; flex-direction: column; align-items: center;
+}
+.choice-content img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; display: block; }
+.radio-indicator {
+  width: 22px; height: 22px; margin-top: .6rem;
+  border: 2px solid var(--stroke-primary-minus-1); border-radius: 50%;
+  background: transparent; transition: all .3s ease;
+}
+.choice-label:hover .choice-content { border-color: var(--stroke-primary-default); }
+.choice-input:checked + .choice-content { border-color: var(--stroke-primary-default); }
+.choice-input:checked + .choice-content .radio-indicator {
+  background-color: var(--bg-primary-default); border-color: var(--stroke-primary-default);
+  box-shadow: inset 0 0 0 4px #fff;
+}
+/* :not(:checked) avoids stacking this outline on top of the checked-state
+   border above — without it, clicking a radio (which many browsers keep
+   :focus-visible for on native form controls, unlike buttons/links)
+   showed two concentric indigo rings at once. Keyboard users tabbing
+   through before picking still get the outline. */
+.choice-input:focus-visible:not(:checked) + .choice-content { outline: 2px solid var(--stroke-primary-default); outline-offset: 2px; }
+
+/* Landing panel gradient — ported from the reference's .panel-intro-light
+   (index.astro), using our own --indigo-100 token instead of the
+   reference's literal fallback-only var(--Indigo-100, #DBE2FF). */
+.panel.panel-intro-light {
+  background: linear-gradient(180deg, var(--indigo-100) 0%, var(--white) 93.45%);
+  border-radius: 24px;
+}
+
+/* Result panel: gradient + decorative "stripes" watermark per outcome,
+   same three variants (orange/black/yellow) and image URLs as the
+   reference's panel-results-{color} rules — only the two colors we don't
+   use (brown/purple/blue/green/red, for the reference's other five
+   mascots) were left out. */
+.panel.panel-results { border-radius: 24px; padding: 2rem 1.25rem; }
+.panel.panel-results-orange {
+  background: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/stripes-monkey.webp") no-repeat,
+    linear-gradient(89deg, #fff4e6 0.86%, var(--orange-50, #fffbf6) 47.04%);
+  background-position: -210px 60px, top left;
+  background-size: auto, cover;
+}
+.panel.panel-results-black {
+  background: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/stripes-dolphin.webp") no-repeat,
+    linear-gradient(89deg, rgb(236, 235, 235) 0.86%, var(--gray-50, #dfdfdf) 47.04%);
+  background-position: -210px 60px, top left;
+  background-size: auto, cover;
+}
+.panel.panel-results-yellow {
+  background: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/stripes-panda.webp") no-repeat,
+    linear-gradient(89deg, rgb(255, 243, 224) 0.86%, var(--orange-50, #fff6d9) 47.04%);
+  background-position: -210px 60px, top left;
+  background-size: auto, cover;
+}
+
+/* Result mascot sizing now comes from its grid column (col-8/col-lg-5) +
+   Bootstrap's own .img-fluid, not a fixed max-width — that's the actual
+   fix for "images too small on desktop" (a hardcoded 220px cap regardless
+   of viewport, replaced by letting the column set the size).
+
+   The trait list itself no longer needs custom CSS: it now uses the
+   reference's own markup verbatim (list-unstyled, d-flex align-items-start,
+   me-3, strong.h5) instead of the .trait-list/.trait-icon classes that
+   used to style Font Awesome icons here — trait icons are now the
+   reference's own icon-*.svg images, and "Charisma/Confidence/
+   Communicative" (with the reference's own copy) replaced the per-result
+   trait copy that came from the original Figma spec, per direction to
+   match the reference's content, not just its layout. */
+
+/* Prototype-only "preview all outcomes" trigger on the choice screen. */
+.preview-results-trigger {
+  background: none; border: none; padding: 0; margin: 0;
+  font-size: .85rem; font-weight: 700; color: var(--text-link) !important;
+  text-decoration: underline; cursor: pointer;
+}
+.preview-results-trigger:hover { color: var(--text-primary-plus-2) !important; }

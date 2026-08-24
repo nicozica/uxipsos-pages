@@ -1,0 +1,257 @@
+/*  Ipsos Design System — Bootstrap overrides + utilities
+    Ported/curated from the parent "astra" project
+    (global.css + buttons.css + common.css). This is the "look and feel"
+    layer that re-skins stock Bootstrap with the Ipsos design tokens.
+    All color comes from variables.css — no raw hex here.
+// ============================================================== */
+
+
+/*  Typography
+// ============================================================== */
+
+html, body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--text-main);
+}
+
+.h1, h1, .h2, h2, .h3, h3, .h4, .h5, .h6, h4, h5, h6, strong {
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 700 !important;
+    color: var(--text-main) !important;
+}
+
+h1, .h1 { font-size: 48px !important; }
+h2, .h2 { font-size: 40px !important; }
+h3, .h3 { font-size: 32px !important; }
+h4, .h4 { font-size: 24px !important; }
+h5, .h5 { font-size: 20px !important; }
+h6, .h6 { font-size: 16px !important; }
+
+.lead { font-weight: 400 !important; }
+
+p { color: var(--text-muted) !important; }
+
+.fs-7 { font-size: 12px; color: #666; }
+
+.fw-light { font-weight: 400 !important; }
+
+
+/*  Text colors
+// ============================================================== */
+
+.text-alternative   { color: var(--text-alternative) !important; }
+.text-disabled      { color: var(--text-disabled) !important; }
+.text-foreground    { color: var(--text-foreground) !important; }
+.text-link          { color: var(--text-link) !important; }
+.text-main          { color: var(--text-main) !important; }
+.text-muted         { color: var(--text-muted) !important; }
+.text-placeholder   { color: var(--text-placeholder) !important; }
+
+/* Danger */
+.text-danger          { color: var(--text-danger-default) !important; }
+.text-danger-plus-1   { color: var(--text-danger-plus-1) !important; }
+.text-danger-plus-2   { color: var(--text-danger-plus-2) !important; }
+.text-danger-minus-1  { color: var(--text-danger-minus-1) !important; }
+.text-danger-minus-2  { color: var(--text-danger-minus-2) !important; }
+
+/* Gray */
+.text-gray            { color: var(--text-gray-default) !important; }
+.text-gray-plus-1     { color: var(--text-gray-plus-1) !important; }
+.text-gray-plus-2     { color: var(--text-gray-plus-2) !important; }
+.text-gray-minus-1    { color: var(--text-gray-minus-1) !important; }
+.text-gray-minus-2    { color: var(--text-gray-minus-2) !important; }
+
+/* Primary */
+.text-primary         { color: var(--text-primary-default) !important; }
+.text-primary-plus-1  { color: var(--text-primary-plus-1) !important; }
+.text-primary-plus-2  { color: var(--text-primary-plus-2) !important; }
+.text-primary-minus-1 { color: var(--text-primary-minus-1) !important; }
+.text-primary-minus-2 { color: var(--text-primary-minus-2) !important; }
+
+/* Secondary */
+.text-secondary         { color: var(--text-secondary-default) !important; }
+.text-secondary-plus-1  { color: var(--text-secondary-plus-1) !important; }
+.text-secondary-plus-2  { color: var(--text-secondary-plus-2) !important; }
+.text-secondary-minus-1 { color: var(--text-secondary-minus-1) !important; }
+.text-secondary-minus-2 { color: var(--text-secondary-minus-2) !important; }
+
+/* Success */
+.text-success         { color: var(--text-success-default) !important; }
+.text-success-plus-1  { color: var(--text-success-plus-1) !important; }
+.text-success-plus-2  { color: var(--text-success-plus-2) !important; }
+.text-success-minus-1 { color: var(--text-success-minus-1) !important; }
+.text-success-minus-2 { color: var(--text-success-minus-2) !important; }
+
+/* Warning */
+.text-warning         { color: var(--text-warning-default) !important; }
+.text-warning-plus-1  { color: var(--text-warning-plus-1) !important; }
+.text-warning-plus-2  { color: var(--text-warning-plus-2) !important; }
+.text-warning-minus-1 { color: var(--text-warning-minus-1) !important; }
+.text-warning-minus-2 { color: var(--text-warning-minus-2) !important; }
+
+
+/*  Panels (cards)
+// ============================================================== */
+
+.panel {
+    padding: 60px 20px;
+}
+
+.panel-default {
+    background: var(--white);
+    border: 1px solid var(--stroke-default-minus-2);
+    border-radius: 12px;
+}
+
+
+/*  Alerts
+// ============================================================== */
+
+.alert.alert-success {
+    background: var(--bg-success-minus-2);
+    border: none;
+}
+
+.alert.alert-primary {
+    background: var(--bg-primary-minus-2);
+    border: none;
+}
+
+/* Light alert = the flat gray surface used for the points module (#F6F6F6).
+   Padding comes from a Bootstrap utility (.p-4) on the element itself. */
+.alert.alert-light {
+    background: var(--gray-100);
+    border: none;
+}
+
+/* Warning alert — not defined in astra; added here token-driven to match. */
+.alert.alert-warning {
+    background: var(--bg-warning-minus-2);
+    border: 1px solid var(--stroke-warning-minus-2);
+    color: var(--text-warning-plus-2);
+}
+.alert.alert-warning a { color: var(--text-warning-plus-2) !important; }
+
+
+/*  Progress bars
+// ============================================================== */
+
+.progress-bar {
+    background: var(--stroke-primary-default);
+}
+
+
+/*  Buttons and links
+// ============================================================== */
+
+button, a.btn {
+    border-radius: 6px;
+    border: 1px solid transparent !important;
+    font-weight: 700 !important;
+    padding: 9px 16px;
+}
+
+a.btn-primary, button.btn-primary {
+    background: var(--bg-primary-default) !important;
+    color: var(--text-foreground) !important;
+}
+a.btn-primary:hover, button.btn-primary:hover {
+    background: var(--bg-primary-plus-1) !important;
+    color: var(--text-foreground) !important;
+}
+
+a.btn-secondary, button.btn-secondary {
+    background: var(--bg-secondary-default) !important;
+    color: var(--text-foreground) !important;
+}
+a.btn-secondary:hover, button.btn-secondary:hover {
+    background: var(--bg-secondary-plus-1) !important;
+    color: var(--text-foreground) !important;
+}
+
+a.btn-danger, button.btn-danger {
+    background: var(--bg-danger-default) !important;
+    color: var(--text-foreground) !important;
+}
+a.btn-danger:hover, button.btn-danger:hover {
+    background: var(--bg-danger-plus-1) !important;
+    color: var(--text-foreground) !important;
+}
+
+a {
+    font-weight: 700;
+    color: var(--text-primary-default) !important;
+    text-decoration: none !important;
+}
+a:hover {
+    color: var(--text-primary-plus-2) !important;
+}
+
+/* Gray button (used as the soft / ghost action) */
+a.btn-gray, button.btn-gray {
+    background-color: var(--bg-gray-minus-2);
+    color: var(--text-gray-plus-1) !important;
+    border: 2px solid transparent !important;
+}
+a.btn-gray:hover, button.btn-gray:hover {
+    background-color: var(--bg-light-gray-plus-1);
+    color: var(--text-gray-plus-1) !important;
+}
+
+/* White button */
+a.btn-white, button.btn-white {
+    background-color: var(--bg-default-default);
+    color: var(--text-gray-plus-1) !important;
+    border: 2px solid transparent !important;
+}
+
+/*  Loading button animation (astra .m-progress)
+// ============================================================== */
+
+@keyframes ld {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.m-progress {
+    position: relative;
+    opacity: .8; color: transparent !important; text-shadow: none !important;
+}
+.m-progress:hover, .m-progress:active, .m-progress:focus {
+    cursor: default; color: transparent; outline: none !important; box-shadow: none;
+}
+.m-progress:before {
+    content: '';
+    display: inline-block; position: absolute;
+    background: transparent; border: 1px solid var(--white);
+    border-top-color: transparent; border-bottom-color: transparent;
+    border-radius: 50%; box-sizing: border-box;
+    top: 50%; left: 50%;
+    margin-top: -8px; margin-left: -8px;
+    width: 16px; height: 16px;
+    animation: ld 1s ease-in-out infinite;
+}
+.btn-lg.m-progress:before { margin-top: -11px; margin-left: -16px; width: 22px; height: 22px; }
+
+
+/*  Badges (astra common.css)
+// ============================================================== */
+
+.badge.badge-transparent {
+    color: var(--text-muted);
+}
+
+.badge.badge-success {
+    color: var(--text-success-plus-2);
+    background-color: var(--bg-success-minus-2);
+    border: 2px solid var(--stroke-success-minus-2);
+    border-radius: var(--border-radius-sm) !important;
+}
+
+.badge.badge-over-gray {
+    color: var(--text-gray-default);
+    background-color: var(--white);
+    border: 2px solid var(--stroke-default-default);
+    border-radius: var(--border-radius-sm) !important;
+}

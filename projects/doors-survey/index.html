@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doors Survey — Ipsos iSay</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link href="assets/variables.css" rel="stylesheet">
+<style>
+  /* Navigator chrome — adapted from prepost-survey/index.html, themed with
+     the same Ipsos design tokens (variables.css). Unchanged except for the
+     5-item registry below and the hashchange listener at the bottom. */
+  :root{ --blue: var(--bg-primary-default); --navy: var(--text-main); --line: var(--stroke-default-minus-2); }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Inter",system-ui,sans-serif;color:var(--navy);background:#f6f7f9}
+  .layout{display:flex;min-height:100vh}
+  .side{
+    width:300px;flex:0 0 300px;background:#fff;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;position:sticky;top:0;height:100vh;
+  }
+  .side-head{padding:1.25rem 1.25rem .75rem;border-bottom:1px solid var(--line)}
+  .brand img{height:34px;width:auto;display:block}
+  .side-sub{font-size:.8rem;color:#8a909d;margin-top:.35rem}
+  .nav-list{overflow:auto;padding:.5rem;flex:1 1 auto}
+  .nav-item{
+    display:flex;gap:.6rem;align-items:flex-start;width:100%;text-align:left;
+    border:none;background:none;border-radius:8px;padding:.6rem .7rem;cursor:pointer;color:var(--navy);
+    font-size:.9rem;line-height:1.25;
+  }
+  .nav-item:hover{background:#f1f3f9}
+  .nav-item.active{background:var(--blue);color:#fff}
+  .nav-item .num{font-weight:700;opacity:.6;min-width:1.4rem}
+  .nav-item.active .num{opacity:.85}
+  .nav-item small{display:block;font-weight:400;opacity:.7;font-size:.75rem}
+  .stage-wrap{flex:1 1 auto;display:flex;flex-direction:column;min-width:0}
+  .topbar{
+    display:flex;align-items:center;gap:.75rem;justify-content:space-between;
+    padding:.75rem 1rem;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;
+  }
+  .topbar .title{font-weight:700}
+  .topbar .btns{display:flex;gap:.5rem}
+  .tb-btn{border:1px solid var(--line);background:#fff;border-radius:8px;padding:.4rem .9rem;font-weight:700;cursor:pointer;color:var(--navy);font-size:.85rem}
+  .tb-btn:hover{background:#f1f3f9}
+  .tb-btn:disabled{opacity:.4;cursor:default}
+  .tb-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:.4rem .7rem;cursor:pointer;font-size:1.1rem}
+  .frame{flex:1 1 auto;width:100%;border:none;background:#f6f7f9}
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:20}
+  @media (max-width: 860px){
+    .side{position:fixed;left:0;top:0;z-index:30;transform:translateX(-100%);transition:transform .2s}
+    .side.open{transform:none}
+    .overlay.show{display:block}
+    .menu-toggle{display:inline-block}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="side" id="side">
+    <div class="side-head">
+      <div class="brand"><img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/logos/ipsos_isay_logo.svg" alt="Ipsos iSay"></div>
+      <div class="side-sub">Doors Survey · 5-cell prototype</div>
+    </div>
+    <div class="nav-list" id="navList"></div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <div class="stage-wrap">
+    <div class="topbar">
+      <div class="d-flex align-items-center gap-2" style="min-width:0">
+        <button class="menu-toggle" id="menuBtn" aria-label="Toggle cell list">&#9776;</button>
+        <div class="title text-truncate" id="curTitle">—</div>
+      </div>
+      <div class="btns">
+        <button class="tb-btn" id="prevBtn">&larr; Prev</button>
+        <button class="tb-btn" id="nextBtn">Next &rarr;</button>
+        <button class="tb-btn" id="openBtn" title="Open in new tab">Open &#8599;</button>
+      </div>
+    </div>
+    <iframe class="frame" id="frame" title="cell preview"></iframe>
+  </div>
+</div>
+
+<script>
+const screens = [
+  ["Cell 01 · Video", "Post-registration video", "screens/01-video.html"],
+  ["Cell 02 · Spinning Wheel", "Daily Prize Wheel", "screens/02-spinning-wheel.html"],
+  ["Cell 03 · Survey & Points", "Quick survey + reward", "screens/03-survey-points.html"],
+  ["Cell 04 · Poll Predictor", "Prediction game", "screens/04-poll-predictor.html"],
+  ["Cell 05 · Censydiam", "Personality quiz", "screens/05-censydiam.html"],
+];
+
+const navList = document.getElementById('navList');
+const frame = document.getElementById('frame');
+const curTitle = document.getElementById('curTitle');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const openBtn = document.getElementById('openBtn');
+const side = document.getElementById('side');
+const overlay = document.getElementById('overlay');
+let idx = 0;
+
+screens.forEach((s, i) => {
+  const b = document.createElement('button');
+  b.className = 'nav-item';
+  b.innerHTML = `<span class="num">${String(i+1).padStart(2,'0')}</span><span>${s[0]}<small>${s[1]}</small></span>`;
+  b.addEventListener('click', () => { go(i); closeMenu(); });
+  navList.appendChild(b);
+});
+
+function go(i){
+  idx = Math.max(0, Math.min(screens.length-1, i));
+  frame.src = screens[idx][2];
+  curTitle.textContent = `${String(idx+1).padStart(2,'0')} · ${screens[idx][0]}`;
+  [...navList.children].forEach((c,n)=>c.classList.toggle('active', n===idx));
+  prevBtn.disabled = idx===0;
+  nextBtn.disabled = idx===screens.length-1;
+  location.hash = idx+1;
+}
+function closeMenu(){ side.classList.remove('open'); overlay.classList.remove('show'); }
+
+prevBtn.onclick = () => go(idx-1);
+nextBtn.onclick = () => go(idx+1);
+openBtn.onclick = () => window.open(screens[idx][2], '_blank');
+document.getElementById('menuBtn').onclick = () => { side.classList.toggle('open'); overlay.classList.toggle('show'); };
+overlay.onclick = closeMenu;
+window.addEventListener('keydown', e => {
+  if(e.key==='ArrowLeft') go(idx-1);
+  if(e.key==='ArrowRight') go(idx+1);
+});
+
+// Doors Survey addition: prepost-survey's hash only ever gets *written* by
+// go() and is read once on load, so manual hash edits and Back/Forward
+// don't do anything there. Here we also listen for hashchange, guarding
+// against the loop where go() itself sets location.hash right above.
+window.addEventListener('hashchange', () => {
+  const n = parseInt(location.hash.replace('#',''), 10);
+  if (Number.isFinite(n) && n>=1 && n<=screens.length && (n-1)!==idx) {
+    go(n-1);
+  }
+});
+
+const start = parseInt(location.hash.replace('#',''),10);
+go(Number.isFinite(start) && start>=1 && start<=screens.length ? start-1 : 0);
+</script>
+</body>
+</html>

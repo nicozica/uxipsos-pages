@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cell 02 · Spinning Wheel — Doors Survey</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link href="../assets/styles.css" rel="stylesheet">
+</head>
+<body>
+<div id="screen"></div>
+<div id="wheelAnnounce" class="visually-hidden" aria-live="polite"></div>
+
+<template id="screen-content">
+
+  <!-- ===== State 1: Welcome + Game Rules consent ===== -->
+  <section data-state="welcome" class="stage pt-4 pt-md-0">
+    <h2 class="mb-3">More surveys are on the way &#127881;</h2>
+    <p class="mb-4">We're looking for your next survey match. We'll let you know as soon as one is ready. In the meantime, take a spin on the Daily Prize Wheel.</p>
+
+    <h5 class="mb-2">&#127905; Daily Prize Wheel</h5>
+    <p>Every day, you get one free spin and a chance to win prizes!</p>
+
+    <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/spinning-wheel/main-image-m.webp"
+         class="wheel-hero-image d-sm-none" alt="">
+    <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/spinning-wheel/main-image.webp"
+         class="wheel-hero-image d-none d-sm-block" alt="">
+
+    <div class="rules-consent mt-4">
+      <input type="checkbox" class="form-check-input" id="rulesCheckbox">
+      <label for="rulesCheckbox">I agree with the <strong class="text-main">Game Rules</strong>.</label>
+    </div>
+    <p class="rules-error" id="rulesError" hidden role="alert">You must agree to the Game Rules before spinning.</p>
+
+    <button type="button" class="btn btn-primary btn-lg btn-cta mt-3" id="spinNowBtn" disabled>Spin now!</button>
+  </section>
+
+  <!-- ===== State 2: Wheel (interactive) ===== -->
+  <section data-state="play" class="stage pt-4 pt-md-0 text-center" hidden>
+    <h3 class="mb-2">Daily Prize Wheel</h3>
+    <p class="mb-4">Press <strong class="text-main">the center of the wheel</strong> to spin.<br>Good luck!</p>
+
+    <!-- Rotating disc and fixed hub/pointer are the reference's own
+         production assets (astra CDN), replacing the hand-drawn inline
+         SVG this used before — see wheel.astro for the background band
+         and the two SVGs supplied directly: wheel.svg (disc, rotates)
+         and pointer.svg (hub button + notch, fixed). The spin math below
+         (assets/doors.js) only ever toggles a CSS class on #wheelDisc; it
+         doesn't care what that element's content is, so swapping the
+         visual here doesn't touch any interaction logic. -->
+    <div class="wheel-container">
+      <div class="wheel-scene">
+        <img class="wheel-disc" id="wheelDisc"
+             src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/spinning-wheel/wheel.svg"
+             alt="Daily Prize Wheel">
+        <button type="button" class="wheel-hub" id="wheelHub" aria-label="Spin the wheel">
+          <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/spinning-wheel/pointer.svg" alt="">
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== State 3: Prize result ===== -->
+  <section data-state="prize" class="stage pt-4 pt-md-0 text-center" hidden>
+    <div class="celebrate mb-4">
+      <img class="confetti" src="../images/effects/confetti.gif" aria-hidden="true" alt="">
+      <h2 class="mb-4">&#128512; WooHoo!</h2>
+      <div class="alert alert-success text-main mb-0">You won <i class="fa-solid fa-star text-warning" aria-hidden="true"></i> <strong>50 points!</strong></div>
+    </div>
+    <p class="mb-4">Your prize has been added to your Ipsos iSay account. Log in again tomorrow to enjoy your next free spin.</p>
+    <!-- Inert by design: no dashboard exists in this prototype. -->
+    <button type="button" class="btn btn-primary btn-lg btn-cta">Go to Dashboard</button>
+  </section>
+
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/partials.js"></script>
+<script src="../assets/doors.js"></script>
+<script>
+  mountScreen({ footerLinks: false });
+
+  const showState = initStates(document.getElementById('screen'), 'welcome');
+
+  initWheel({
+    consentCheckbox: document.getElementById('rulesCheckbox'),
+    spinNowButton: document.getElementById('spinNowBtn'),
+    rulesError: document.getElementById('rulesError'),
+    wheelHub: document.getElementById('wheelHub'),
+    wheelDisc: document.getElementById('wheelDisc'),
+    showState,
+    resultAnnounce: document.getElementById('wheelAnnounce'),
+  });
+</script>
+</body>
+</html>

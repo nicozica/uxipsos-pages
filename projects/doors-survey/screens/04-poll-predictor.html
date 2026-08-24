@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cell 04 · Poll Predictor — Doors Survey</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link href="../assets/styles.css" rel="stylesheet">
+</head>
+<body>
+<div id="screen"></div>
+<div id="predictAnnounce" class="visually-hidden" aria-live="polite"></div>
+
+<template id="screen-content">
+
+  <section data-state="landing" class="stage pt-4 pt-md-0">
+    <h2 class="mb-3">More surveys are on the way &#127881;</h2>
+    <p class="mb-4">We're looking for your next survey match. We'll let you know as soon as one is ready. In the meantime, see how your opinions compare with other members in Poll Predictor.</p>
+    <h5 class="mb-2">&#128302; Poll Predictor</h5>
+    <p class="mb-4">Predict how other Ipsos iSay members answered our poll questions and see how close you can get!</p>
+    <button type="button" class="btn btn-primary btn-lg btn-cta" id="playNowBtn">Play now!</button>
+  </section>
+
+  <section data-state="question" class="stage pt-4 pt-md-0 text-center" hidden>
+    <h3 class="mb-2">How many members have a feline friend at home?</h3>
+    <p class="mb-4">Guess what percentage of Ipsos iSay members in the US have a cat.</p>
+
+    <div class="predict-slider-wrap">
+      <div class="predict-tooltip" id="sliderTooltip">Drag the slider</div>
+      <div class="predict-value" id="sliderValue" hidden>50%</div>
+      <input type="range" class="form-range predict-range" id="predictSlider"
+             min="0" max="100" value="50" step="1"
+             aria-label="Your prediction: percentage of Ipsos iSay members who have a cat">
+    </div>
+
+    <button type="button" class="btn btn-primary btn-lg btn-cta" id="placeBtn" disabled>Place prediction</button>
+  </section>
+
+  <section data-state="calculating" class="stage pt-4 pt-md-0 text-center" hidden>
+    <svg class="loading-icon" viewBox="0 0 64 64" role="img" aria-hidden="true">
+      <path fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" d="M14 8h36a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H26l-8 8v-8h-4a6 6 0 0 1-6-6V14a6 6 0 0 1 6-6Z"/>
+      <circle class="dot" cx="26" cy="24" r="3" fill="currentColor"/>
+      <circle class="dot" cx="35" cy="24" r="3" fill="currentColor"/>
+      <circle class="dot" cx="44" cy="24" r="3" fill="currentColor"/>
+    </svg>
+    <h4 class="mb-2">Calculating the awesomeness of your prediction&#8230;</h4>
+    <p>Please wait a moment</p>
+  </section>
+
+  <section data-state="result" class="stage pt-4 pt-md-0 text-center" hidden>
+    <div class="percent-badge d-flex align-items-center justify-content-center rounded-circle" style="background:var(--bg-success-default)">
+      <span class="text-white fw-bold fs-4">%</span>
+    </div>
+    <h3 class="mb-4">Check out your prediction results!</h3>
+    <div class="predict-compare">
+      <div class="figure mine">
+        <div class="num" id="resultMine">30%</div>
+        <small class="text-muted"><i class="fa-solid fa-circle-arrow-right" aria-hidden="true"></i> Your prediction</small>
+      </div>
+      <span class="vs">vs</span>
+      <div class="figure correct">
+        <div class="num" id="resultCorrect">16%</div>
+        <small class="text-muted">Correct Answer</small>
+      </div>
+    </div>
+    <!-- Inert by design: no dashboard exists in this prototype. -->
+    <button type="button" class="btn btn-primary btn-lg btn-cta">Go to Dashboard</button>
+  </section>
+
+</template>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/partials.js"></script>
+<script src="../assets/doors.js"></script>
+<script>
+  mountScreen({ footerLinks: true });
+
+  const showState = initStates(document.getElementById('screen'), 'landing');
+  document.getElementById('playNowBtn').addEventListener('click', () => showState('question'));
+
+  initPollPredictor({
+    slider: document.getElementById('predictSlider'),
+    tooltip: document.getElementById('sliderTooltip'),
+    valueLabel: document.getElementById('sliderValue'),
+    placeButton: document.getElementById('placeBtn'),
+    showState,
+    calculatingMs: 1800,
+    correctAnswer: 16,
+    resultMineEl: document.getElementById('resultMine'),
+    resultCorrectEl: document.getElementById('resultCorrect'),
+    resultAnnounce: document.getElementById('predictAnnounce'),
+  });
+</script>
+</body>
+</html>

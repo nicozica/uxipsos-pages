@@ -1,0 +1,32 @@
+@import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css');
+
+.fs-7 {
+    font-size: 12px !important;
+}
+
+.h1, h1, .h2, h2, .h3, h3, .h4, .h5, .h6, h4, h5, h6, strong {
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 700 !important;
+    color: #02103f !important;
+}
+
+.text-secondary {
+    color: #1d7f76 !important;
+}
+
+a.btn {
+    border: none;
+    border-radius: 6px !important;
+}
+
+a.btn-primary {
+    color: #fff !important;
+    background: #2f469c;
+    font-weight: 700;
+}
+
+a.btn-primary:hover,
+a.btn-primary:focus {
+    color: #fff !important;
+    background: #1d3590;
+}

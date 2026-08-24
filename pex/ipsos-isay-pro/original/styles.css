@@ -1,341 +1,932 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css');
 
-html,
+/* ==========================================================================
+   Design tokens
+   ========================================================================== */
+:root {
+  --c-navy: #02103f;
+  --c-blue: #2f469c;
+  --c-blue-dark: #1d3590;
+  --c-blue-link: #112572;
+  --c-blue-soft: #a4b3ea;
+  --c-blue-bg: #f8f9ff;
+  --c-blue-bg-2: #dbe2ff;
+
+  --c-orange: #d3681b;
+  --c-orange-dark: #904917;
+  --c-orange-mid: #b36119;
+  --c-orange-soft: #f4b07a;
+  --c-orange-bg: #fff8f0;
+  --c-orange-bg-2: #fffbf6;
+  --c-orange-bg-3: #fff4e6;
+  --c-orange-border: #ffdab8;
+
+  --c-gray-900: #212659;
+  --c-gray-700: #59545c;
+  --c-gray-600: #767279;
+  --c-gray-100: #f6f6f6;
+  --c-border: #e0e0e0;
+  --c-white: #ffffff;
+
+  --container-intro: 1200px;
+  --container-about: 1248px;
+
+  --gap-section-desktop: 96px;
+  --gap-section-mobile: 40px;
+  --pad-section-desktop: 40px;
+  --pad-section-mobile: 24px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: #fff;
+  margin: 0;
+  background: var(--c-white);
   font-family: 'Inter', Arial, sans-serif;
-  color: #767279;
+  color: var(--c-gray-600);
+  overflow-x: hidden;
 }
 
-a.btn {
-  border-radius: 6px;
-  border: none;
-}
-
-a.btn-primary {
-  background: #2f469c;
-  font-weight: 700;
-  color: #fff !important;
-}
-
-a.btn-primary:hover,
-a.btn-primary:focus,
-a.btn-primary:active {
-  background: #1d3590;
-  color: #fff !important;
-}
-
-a {
-  font-weight: 700;
-  color: #2f469c !important;
-  text-decoration: none !important;
-}
-
-a:hover,
-a:focus,
-a:active {
-  color: #1d3590 !important;
-}
-
-.h1,
-h1,
-.h2,
-h2,
-.h3,
-h3,
-.h4,
-.h5,
-.h6,
-h4,
-h5,
-h6,
-strong {
-  font-family: 'Inter', Arial, sans-serif;
-  font-weight: 700 !important;
-  color: #02103f !important;
-}
-
-h1 {
-  font-size: 48px !important;
-}
-
-h2 {
-  font-size: 40px !important;
-}
-
-h4,
-.h4 {
-  font-size: 24px !important;
-}
-
-h5,
-.h5 {
-  font-size: 20px !important;
-}
-
-.lead {
-  font-weight: 400 !important;
-}
-
-.text-secondary {
-  color: #1d7f76 !important;
-}
-
-.panel {
-  padding: 40px 0;
-}
-
-.panel .panel-bg-primary-plus-2 {
-  background: #f8f9ff !important;
-}
-
-.panel .panel-bg-primary-success-2 {
-  background: #f4fffb !important;
-}
-
-.panel.panel-default.padding-md img {
-  width: 175px;
-  height: 175px;
-}
-
-@keyframes slide {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-.rewards {
-  overflow: hidden;
-  padding: 20px 0 60px;
-  background: #fff;
-  white-space: nowrap;
-  position: relative;
-}
-
-.rewards:before,
-.rewards:after {
-  position: absolute;
-  top: 0;
-  width: 80px;
-  height: 100%;
-  content: "";
-  z-index: 2;
-}
-
-@media (min-width: 768px) {
-  .rewards:before,
-  .rewards:after {
-    width: 250px;
-  }
-}
-
-.rewards:before {
-  left: 0;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
-}
-
-.rewards:after {
-  right: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
-}
-
-.rewards:hover .rewards-slide {
-  animation-play-state: paused;
-}
-
-.rewards-slide {
-  display: inline-flex;
-  animation: 55s slide infinite linear;
-}
-
-.card-reward {
-  height: auto;
-  min-width: 180px;
-  margin: 0 40px;
-  float: left;
-  overflow: hidden;
-}
-
-.logos {
-  overflow: hidden;
-  padding: 30px 0 60px;
-  margin-bottom: 30px;
-  background: #fff;
-  white-space: nowrap;
-  position: relative;
-}
-
-.logos:before,
-.logos:after {
-  position: absolute;
-  top: 0;
-  width: 80px;
-  height: 100%;
-  content: "";
-  z-index: 2;
-}
-
-@media (min-width: 768px) {
-  .logos:before,
-  .logos:after {
-    width: 250px;
-  }
-}
-
-.logos:before {
-  left: 0;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
-}
-
-.logos:after {
-  right: 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
-}
-
-.logos-slide {
-  display: inline-block;
-  animation: 35s slide infinite linear;
-}
-
-.logos-slide img.logo-brand {
-  height: initial !important;
-  border: initial !important;
-  display: initial !important;
-  margin: initial !important;
-  max-width: initial !important;
-  margin: 0 40px !important;
-  opacity: 0.4 !important;
-}
-
-.carousel {
-  height: 380px;
-  margin-bottom: 40px !important;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-  bottom: 135px;
-}
-
-.carousel-control-prev {
-  left: -10px !important;
-}
-
-.carousel-control-next {
-  right: -10px !important;
-}
-
-.carousel-indicators {
-  padding-bottom: 0 !important;
-  margin-top: 0 !important;
-  margin-bottom: -60px !important;
+img {
+  max-width: 100%;
   display: block;
 }
 
-.carousel-indicators [data-bs-target] {
-  width: 10px;
-  height: 10px;
-  background-color: #84329b;
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* max-width is border-box inclusive of padding: at >=1232px viewport this
+   resolves to exactly the 1200px (Intro) / 1248px (About) content box
+   Figma authors flush against — the 16px padding here is a mobile/tablet
+   safety gutter, not a desktop inset. Colored module backgrounds are direct
+   children of .container so they line up with that same flush edge. */
+.container {
+  width: 100%;
+  max-width: var(--container-intro);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+body.page-about .container {
+  max-width: var(--container-about);
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding: 0;
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 700;
+  font-family: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--c-blue);
+  color: var(--c-white) !important;
+  border: none;
+  height: 48px;
+  padding: 0 32px;
+  font-size: 20px;
+}
+
+.btn-primary:hover {
+  background: var(--c-blue-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--c-blue-link) !important;
+  border: 1px solid var(--c-blue-soft);
+  height: 48px;
+  padding: 0 32px;
+  font-size: 20px;
+}
+
+.btn-outline:hover {
+  background: var(--c-blue-bg);
+}
+
+@media (min-width: 992px) {
+  .btn-primary,
+  .btn-outline {
+    height: 56px;
+    padding: 0 40px;
+    font-size: 24px;
+    border-radius: 10px;
+  }
+}
+
+.link-inline {
+  color: var(--c-blue) !important;
+  font-weight: 400;
+}
+
+.already-member {
+  font-size: 16px;
+  color: var(--c-gray-700);
+}
+
+/* Beats "body.page-intro .hero-copy p" (0,2,1) without !important. */
+body.page-intro .hero-copy p.already-member {
+  font-size: 16px;
+}
+
+.hero-copy .already-member .link-inline {
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Invite badge
+   ========================================================================== */
+.badge-invite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  background: var(--c-orange-bg-2);
+  border: 2px solid var(--c-orange-border);
+  border-radius: 6px;
+  padding: 0 16px;
+  color: var(--c-blue);
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.badge-invite img {
+  width: 16px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.badge-invite--cta {
+  color: var(--c-orange-dark);
+}
+
+/* Intro hero: no pill container — just the icon + text directly on the
+   white background, no padding/border/fixed height. */
+.hero-copy .badge-invite {
+  border: none;
+  background: none;
+  padding: 0;
+  height: auto;
+}
+
+/* The CDN envelope SVG has its fill (#904917) hardcoded in the file itself,
+   which is correct for the CTA badges but not this one — in the hero the
+   icon matches the blue text color. Re-tinted via mask instead of touching
+   the source asset. */
+.badge-invite__icon-mask {
+  display: inline-block;
+  width: 16px;
+  height: 12px;
+  flex-shrink: 0;
+  background-color: var(--c-blue);
+  -webkit-mask-image: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/b2b/intro/intro-envelope-yellow.svg');
+  mask-image: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/b2b/intro/intro-envelope-yellow.svg');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* ==========================================================================
+   Section rhythm
+   ========================================================================== */
+.section {
+  margin-top: var(--gap-section-mobile);
+}
+
+.section--bg {
+  padding: var(--pad-section-mobile) 0;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-blue);
+  margin-bottom: 4px;
+}
+
+/* About's "Experience by design" eyebrow is the one exception with extra
+   space below it (verified per-node: 8px mobile / 12px desktop, vs 4px
+   everywhere else the eyebrow style is used). */
+.eyebrow--loose {
+  margin-bottom: 8px;
+}
+
+@media (min-width: 992px) {
+  .eyebrow--loose {
+    margin-bottom: 12px;
+  }
+}
+
+/* 16px on mobile (matches .eyebrow's default), 12px on desktop only. */
+@media (min-width: 992px) {
+  .eyebrow-sm {
+    font-size: 12px;
+  }
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.2;
+}
+
+.section-lead {
+  font-size: 16px;
+  color: var(--c-gray-700);
+  margin-top: 16px;
+}
+
+@media (min-width: 992px) {
+  .section {
+    margin-top: var(--gap-section-mobile);
+  }
+
+  .section--bg {
+    padding: var(--pad-section-desktop) 0;
+  }
+
+  .section-title {
+    font-size: 40px;
+  }
+
+  .section-lead {
+    font-size: 20px;
+  }
+
+  body.page-intro .section {
+    margin-top: var(--gap-section-desktop);
+  }
+
+  body.page-intro .hero {
+    margin-top: var(--gap-section-mobile);
+  }
+}
+
+/* ==========================================================================
+   Icons
+   ========================================================================== */
+/* These CDN SVGs already bake in their own 48x48 rounded-square background,
+   so they render at native size with no extra wrapper/background. */
+.research-icon {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 24px;
+}
+
+/* These CDN SVGs already bake in their own 40x40 circular background, same
+   pattern as .research-icon above — no extra wrapper needed. */
+.commit-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.icon-bare {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.icon-bare--lg {
+  width: 40px;
+  height: 40px;
+}
+
+/* ==========================================================================
+   Shared: hero split layout
+   ========================================================================== */
+.hero {
+  margin-top: var(--gap-section-mobile);
+}
+
+.hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero-media {
+  order: -1;
+}
+
+.hero-media img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.hero-copy h1 {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.15;
+}
+
+.hero-copy p {
+  font-size: 16px;
+  color: var(--c-gray-600);
+  margin-top: 16px;
+  line-height: 1.5;
+}
+
+.hero-copy p.text-accent {
+  color: var(--c-blue);
+  font-weight: 700;
+}
+
+/* Intro hero body copy is 20px at every breakpoint (verified per-node) —
+   About's hero stays at the 16px default above. */
+body.page-intro .hero-copy p {
+  font-size: 20px;
+}
+
+.hero-copy .badge-invite {
+  margin-top: 16px;
+}
+
+.hero-actions {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-actions .btn {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .hero-grid {
+    flex-direction: row;
+    align-items: center;
+    gap: 64px;
+  }
+
+  .hero-copy,
+  .hero-media {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero-media {
+    order: 0;
+  }
+
+  .hero-copy h1 {
+    font-size: 48px;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .hero-actions .btn {
+    width: auto;
+    flex: 1;
+  }
+}
+
+/* ==========================================================================
+   Content-with-image sections (used across both pages)
+   ========================================================================== */
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.split > img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.split-copy > h2,
+.split-copy > h3 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.2;
+}
+
+.split-copy > p {
+  font-size: 16px;
+  color: var(--c-gray-600);
+  margin-top: 16px;
+  line-height: 1.5;
+}
+
+.split-copy > p.text-strong {
+  color: var(--c-blue-dark);
+}
+
+@media (min-width: 992px) {
+  .split {
+    flex-direction: row;
+    align-items: center;
+    gap: 64px;
+  }
+
+  .split > * {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .split-copy > h2,
+  .split-copy > h3 {
+    font-size: 40px;
+  }
+
+  /* Intro's two .split-copy instances (Expert Community, Powered by Ipsos)
+     both stay at 16px body copy on desktop — only About's Powered by Ipsos
+     paragraph actually scales up to 20px (verified per-node). */
+  body.page-about .split-copy > p {
+    font-size: 20px;
+  }
+
+  /* Expert Community is the one .split-copy heading that does NOT scale
+     up to 40px on desktop — it stays 32px at every breakpoint. */
+  .split-copy--compact > h2 {
+    font-size: 32px;
+  }
+}
+
+/* ==========================================================================
+   About: commitments layout (title full-width, then list + image side by side)
+   ========================================================================== */
+.commitments-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.commitments-layout .media {
+  order: -1;
+}
+
+.commitments-layout .media img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+@media (min-width: 992px) {
+  .commitments-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title title"
+      "list  media";
+    gap: 40px 64px;
+  }
+
+  .commitments-layout .title { grid-area: title; }
+  .commitments-layout .list { grid-area: list; }
+  .commitments-layout .media { grid-area: media; order: 0; }
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.card {
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-navy);
+}
+
+.card p {
+  font-size: 16px;
+  color: var(--c-gray-600);
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+.card--blue { background: var(--c-blue-bg); }
+.card--peach { background: var(--c-orange-bg-2); }
+
+.card-lg h3 {
+  font-size: 24px;
+}
+
+.card-with-icon {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.card-with-icon h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-navy);
+}
+
+.card-with-icon p {
+  font-size: 16px;
+  color: var(--c-gray-600);
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+@media (min-width: 992px) {
+  .card-grid--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card-with-icon {
+    border: none;
+    padding: 0;
+  }
+}
+
+/* ==========================================================================
+   Feature rows (icon + title + copy, no card bg)
+   ========================================================================== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-top: 24px;
+  text-align: left;
+}
+
+.feature-grid h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-navy);
+  margin-top: 16px;
+}
+
+.feature-grid p {
+  font-size: 16px;
+  color: var(--c-gray-700);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.feature-grid--center {
+  text-align: center;
+}
+
+.feature-grid--center .icon-bare {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 992px) {
+  .feature-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+/* commitments list rows (icon left, text right) */
+.commit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.commit-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.commit-row h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-navy);
+}
+
+.commit-row p {
+  font-size: 16px;
+  color: var(--c-gray-700);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Rewards / "how we thank you" highlight strip
+   Figma: contained module, flush with the main container edges, with its
+   own 40px padding on all sides (same on mobile and desktop).
+   ========================================================================== */
+.rewards-highlight {
+  background: var(--c-orange-bg);
+  padding: 40px;
+}
+
+.rewards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.rewards-grid h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.2;
+}
+
+.rewards-grid > div > p {
+  font-size: 16px;
+  color: var(--c-gray-700);
+  margin-top: 16px;
+}
+
+.earn-points {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.earn-points h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-navy);
+  margin-top: 16px;
+}
+
+.earn-points p {
+  font-size: 16px;
+  color: var(--c-gray-700);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+@media (min-width: 992px) {
+  .rewards-grid {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 24px;
+  }
+
+  .rewards-grid > * {
+    flex: 1;
+  }
+}
+
+/* ==========================================================================
+   Data protection / trust section
+   Figma: contained module, flush with the main container edges, with its
+   own 40px padding on all sides (same on mobile and desktop).
+   ========================================================================== */
+.section-trust {
+  background: var(--c-blue-bg);
+  text-align: center;
+  padding: 40px;
+}
+
+.section-trust .eyebrow {
+  text-align: center;
+}
+
+.section-trust .section-title,
+.section-trust .section-lead {
+  text-align: center;
+}
+
+.section-trust__icon {
+  margin: 0 auto 16px;
+}
+
+.section-trust .section-lead {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   CTA final
+   Figma: contained module, flush with the main container edges; the
+   decorative circles are clipped to that module box, not the viewport.
+   ========================================================================== */
+.cta-final {
+  background: var(--c-blue-bg);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 48px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-final-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.cta-final .section-title {
+  text-align: center;
+}
+
+.cta-final p {
+  font-size: 16px;
+  color: var(--c-gray-700);
+  margin-top: 16px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-final .badge-invite {
+  margin-top: 24px;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .cta-final .badge-invite {
+    width: auto;
+  }
+}
+
+/* About Us: this instance has no pill container in Figma at all — just the
+   icon + text directly on the section background, always intrinsic-width
+   and centered (unlike Intro's bordered badge, which is a real component
+   on both the hero and the CTA). Verified against the About CTA node data:
+   no active fill/stroke on any wrapper, fixed ~298px width, centered on
+   both mobile and desktop. */
+body.page-about .cta-final .badge-invite {
+  border: none;
+  background: none;
+  padding: 0;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-final .already-member {
+  display: block;
+  margin-top: 16px;
+}
+
+.cta-final .already-member .link-inline {
+  font-weight: 700;
+}
+
+.cta-deco {
+  position: absolute;
   border-radius: 50%;
+  z-index: 0;
 }
 
-img.carousel-icon {
-  height: initial !important;
-  border: initial !important;
-  display: initial;
-  margin: initial !important;
-  max-width: initial !important;
-  margin-bottom: 16px !important;
+/* Verified against the Intro CTA node coordinates directly (module is
+   343px mobile / 1200px desktop, overflow clipped) and reused as-is on
+   About Us for visual consistency between the two pages, per request —
+   About's own Figma circle positions differ slightly and are intentionally
+   not reproduced here. Only 2 of the 3 authored circles are ever actually
+   visible on Intro; the third sits fully outside the clip box at every
+   breakpoint, so it's hidden rather than given an invented position. */
+.cta-deco--1 {
+  width: 300px; height: 300px;
+  background: var(--c-blue-bg-2);
+  top: -141px; left: -150px;
 }
 
-@media (min-width: 576px) and (max-width: 768px) {
-  .carousel {
-    height: 320px;
-    margin-bottom: 110px !important;
-  }
-
-  .carousel-control-prev {
-    left: -20px !important;
-    bottom: 55px !important;
-  }
-
-  .carousel-control-next {
-    right: -20px !important;
-    bottom: 55px !important;
-  }
-
-  .carousel-indicators {
-    margin-bottom: -70px !important;
-  }
+.cta-deco--2,
+.cta-deco--3 {
+  display: none;
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
-  .carousel {
-    height: 200px;
-    margin-bottom: 80px !important;
+@media (min-width: 992px) {
+  .cta-deco--1 {
+    top: -182px; left: -40px;
   }
 
-  .carousel-indicators {
-    margin-bottom: -50px !important;
-  }
-
-  .carousel-control-prev {
-    left: -80px !important;
-    bottom: 15px !important;
-  }
-
-  .carousel-control-next {
-    right: -60px !important;
-    bottom: 15px !important;
+  .cta-deco--2 {
+    display: block;
+    width: 247px; height: 247px;
+    background: var(--c-blue-soft);
+    top: 202px; left: 1032px;
   }
 }
 
-@media (min-width: 992px) and (max-width: 1200px) {
-  .carousel {
-    height: 200px;
-    margin-bottom: 80px !important;
-  }
+body.page-intro .cta-final {
+  min-height: 500px;
+  border-radius: 10px;
+}
 
-  .carousel-control-prev {
-    left: -30px !important;
-    bottom: 15px !important;
-  }
-
-  .carousel-control-next {
-    right: -30px !important;
-    bottom: 15px !important;
-  }
-
-  .carousel-indicators {
-    margin-bottom: -40px !important;
+@media (min-width: 992px) {
+  body.page-intro .cta-final {
+    min-height: 300px;
+    border-radius: 0;
   }
 }
 
-@media (min-width: 1200px) {
-  .carousel {
-    height: 220px;
-    margin-bottom: 90px !important;
-  }
+/* ==========================================================================
+   Intro: geometric hero art image
+   ========================================================================== */
+.hero-art-wrap {
+  background: var(--c-gray-100);
+  border-radius: 16px;
+  padding: 24px;
+}
 
-  .carousel-control-prev,
-  .carousel-control-next {
-    bottom: -15px;
-  }
+.hero-art-wrap img {
+  border-radius: 0;
+}
 
-  .carousel-indicators {
-    margin-bottom: -80px !important;
+@media (min-width: 992px) {
+  .hero-art-wrap {
+    border-radius: 24px;
   }
 }
 
-.carousel-control-prev-icon {
-  background-image: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/icons/carousel-arrow-left.svg');
+/* ==========================================================================
+   Intro: steps ("How it works")
+   ========================================================================== */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 24px;
 }
 
-.carousel-control-next-icon {
-  background-image: url('https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/icons/carousel-arrow-right.svg');
+.step-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--c-blue-soft);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.steps h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-navy);
+}
+
+.steps p {
+  font-size: 16px;
+  color: var(--c-gray-600);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+@media (min-width: 992px) {
+  .step-number {
+    font-size: 32px;
+  }
 }
