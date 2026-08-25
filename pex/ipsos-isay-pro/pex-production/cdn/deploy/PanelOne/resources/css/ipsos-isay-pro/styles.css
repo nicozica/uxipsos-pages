@@ -89,13 +89,13 @@
    reference 1440px frame exactly), but always keeps a minimum 16px gutter
    from the edge at any narrower width — including the ~992-1230px range
    that previously had zero gutter. Colored module backgrounds are direct
-   children of .container so they line up with that same flush edge. */
-.ipsos-isay-pro-page .container {
+   children of .isaypro-container so they line up with that same flush edge. */
+.ipsos-isay-pro-page .isaypro-container {
   width: min(var(--container-intro), 100% - 32px);
   margin: 0 auto;
 }
 
-.ipsos-isay-pro-page.page-about .container {
+.ipsos-isay-pro-page.page-about .isaypro-container {
   width: min(var(--container-about), 100% - 32px);
 }
 
@@ -111,10 +111,22 @@
 /* ==========================================================================
    Buttons
    ========================================================================== */
-.ipsos-isay-pro-page .btn {
-  display: inline-flex;
+/* `display: inline-flex` needs !important — confirmed via Chrome DevTools
+   Protocol (CSS.getMatchedStylesForNode) against the live PEX preview: PEX's
+   Raw HTML wrapper ships `.component-rawHtml[data-v-804fada5] a { display:
+   inline-block; }`. The attribute selector counts in the same specificity
+   column as a class, so that rule is (0,2,1) against our (0,2,0) — its
+   extra `a` type selector wins the tiebreak, and `display` was silently
+   losing to `inline-block`. With the box no longer flexed, `align-items`/
+   `justify-content` below had nothing to act on, and the inherited
+   `line-height: 1.5` (from the host's global reset, ~36px at this
+   font-size) left the text sitting at the top of the fixed-height box
+   instead of centered — the reported "text stuck to the top" bug. */
+.ipsos-isay-pro-page .isaypro-btn {
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
+  line-height: normal;
   border-radius: 8px;
   font-weight: 700;
   font-family: inherit;
@@ -122,7 +134,7 @@
   cursor: pointer;
 }
 
-.ipsos-isay-pro-page .btn-primary {
+.ipsos-isay-pro-page .isaypro-btn-primary {
   background: var(--c-blue);
   color: var(--c-white) !important;
   border: none;
@@ -131,11 +143,11 @@
   font-size: 20px;
 }
 
-.ipsos-isay-pro-page .btn-primary:hover {
+.ipsos-isay-pro-page .isaypro-btn-primary:hover {
   background: var(--c-blue-dark);
 }
 
-.ipsos-isay-pro-page .btn-outline {
+.ipsos-isay-pro-page .isaypro-btn-outline {
   background: transparent;
   color: var(--c-blue-link) !important;
   border: 1px solid var(--c-blue-soft);
@@ -144,13 +156,81 @@
   font-size: 20px;
 }
 
-.ipsos-isay-pro-page .btn-outline:hover {
+.ipsos-isay-pro-page .isaypro-btn-outline:hover {
   background: var(--c-blue-bg);
 }
 
+/* Link-state hardening — confirmed on the live unpublished PEX preview:
+   PEX's Raw HTML component wrapper ships its own anchor treatment for
+   embedded content (_nuxt/RAWHTML.BGARJq3p.css):
+     .component-rawHtml a:hover:not(.generic-button),
+     .component-rawHtml a:active:not(.generic-button) {
+       filter: saturate(150%|190%); text-decoration: underline;
+     }
+   That selector's specificity — a class, an attribute selector, :hover
+   or :active, and :not() — is (0,4,1), higher than any 2-class selector
+   below, which is what forced an underline and an oversaturated hover/
+   active color (the filter applies to the whole box, border included) on
+   every link in this component. No .component-rawHtml a:focus rule
+   exists, so :focus/:focus-visible below don't need the same treatment.
+   !important on just `text-decoration` and `filter` is the minimal fix —
+   color/background/border already win here on ordinary specificity. */
+.ipsos-isay-pro-page .isaypro-btn:link,
+.ipsos-isay-pro-page .isaypro-btn:visited {
+  text-decoration: none;
+}
+
+.ipsos-isay-pro-page .isaypro-btn:hover,
+.ipsos-isay-pro-page .isaypro-btn:focus,
+.ipsos-isay-pro-page .isaypro-btn:active {
+  text-decoration: none !important;
+  filter: none !important;
+}
+
+.ipsos-isay-pro-page .isaypro-btn:focus {
+  outline: none;
+}
+
+.ipsos-isay-pro-page .isaypro-btn:focus-visible {
+  outline: 2px solid var(--c-blue-dark);
+  outline-offset: 2px;
+}
+
+.ipsos-isay-pro-page .isaypro-btn-primary:link,
+.ipsos-isay-pro-page .isaypro-btn-primary:visited {
+  color: var(--c-white) !important;
+  background: var(--c-blue);
+}
+
+.ipsos-isay-pro-page .isaypro-btn-primary:hover,
+.ipsos-isay-pro-page .isaypro-btn-primary:focus,
+.ipsos-isay-pro-page .isaypro-btn-primary:active {
+  color: var(--c-white) !important;
+  background: var(--c-blue-dark);
+}
+
+.ipsos-isay-pro-page .isaypro-btn-primary:focus-visible {
+  outline-color: var(--c-white);
+}
+
+.ipsos-isay-pro-page .isaypro-btn-outline:link,
+.ipsos-isay-pro-page .isaypro-btn-outline:visited {
+  color: var(--c-blue-link) !important;
+  background: transparent;
+  border-color: var(--c-blue-soft);
+}
+
+.ipsos-isay-pro-page .isaypro-btn-outline:hover,
+.ipsos-isay-pro-page .isaypro-btn-outline:focus,
+.ipsos-isay-pro-page .isaypro-btn-outline:active {
+  color: var(--c-blue-link) !important;
+  background: var(--c-blue-bg);
+  border-color: var(--c-blue-soft);
+}
+
 @media (min-width: 992px) {
-  .ipsos-isay-pro-page .btn-primary,
-.ipsos-isay-pro-page .btn-outline {
+  .ipsos-isay-pro-page .isaypro-btn-primary,
+.ipsos-isay-pro-page .isaypro-btn-outline {
     height: 56px;
     padding: 0 40px;
     font-size: 24px;
@@ -398,7 +478,7 @@
   gap: 10px;
 }
 
-.ipsos-isay-pro-page .hero-actions .btn {
+.ipsos-isay-pro-page .hero-actions .isaypro-btn {
   width: 100%;
 }
 
@@ -428,7 +508,7 @@
     gap: 16px;
   }
 
-  .ipsos-isay-pro-page .hero-actions .btn {
+  .ipsos-isay-pro-page .hero-actions .isaypro-btn {
     width: auto;
     flex: 1;
   }
@@ -546,29 +626,29 @@
   margin-top: 24px;
 }
 
-.ipsos-isay-pro-page .card {
+.ipsos-isay-pro-page .isaypro-card {
   border-radius: 12px;
   padding: 24px;
 }
 
-.ipsos-isay-pro-page .card h3 {
+.ipsos-isay-pro-page .isaypro-card h3 {
   font-size: 20px;
   font-weight: 700;
   color: var(--c-navy);
 }
 
-.ipsos-isay-pro-page .card p {
+.ipsos-isay-pro-page .isaypro-card p {
   font-size: 16px;
   color: var(--c-gray-600);
   margin-top: 12px;
   line-height: 1.4;
 }
 
-.ipsos-isay-pro-page .card--blue { background: var(--c-blue-bg); }
+.ipsos-isay-pro-page .isaypro-card--blue { background: var(--c-blue-bg); }
 
-.ipsos-isay-pro-page .card--peach { background: var(--c-orange-bg-2); }
+.ipsos-isay-pro-page .isaypro-card--peach { background: var(--c-orange-bg-2); }
 
-.ipsos-isay-pro-page .card-lg h3 {
+.ipsos-isay-pro-page .isaypro-card-lg h3 {
   font-size: 24px;
 }
 
@@ -947,4 +1027,161 @@
     font-size: 32px;
   }
 
+}
+
+/* ==========================================================================
+   Legal pages
+   Long-form documents (privacy policy, terms, cookies, trusted providers) —
+   intentionally plain/readable rather than styled like the marketing pages.
+   Reuses .isaypro-container for outer alignment with Home/About, then narrows
+   further with .isaypro-legal-content for a comfortable reading measure.
+   ========================================================================== */
+.ipsos-isay-pro-page.isaypro-legal-page {
+  padding: 40px 0 80px;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-header-image {
+  margin: 0 0 24px;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-header-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--c-gray-700);
+  margin-top: 16px;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content > p:first-child {
+  margin-top: 0;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-navy);
+  line-height: 1.3;
+  margin-top: 40px;
+  margin-bottom: 12px;
+}
+
+/* These documents have no in-content <h1> — the real page title comes from
+   PEX's own page template, driven by the "PEX page title" comment above
+   this component. The opening <h2> (before "Table of Contents" and every
+   numbered section) is the closest thing to a primary/page heading, so it
+   gets a distinct, larger treatment without inventing a duplicate <h1>. */
+.ipsos-isay-pro-page .isaypro-legal-content h2:first-of-type {
+  font-size: 26px;
+  margin-top: 0;
+}
+
+@media (min-width: 768px) {
+  .ipsos-isay-pro-page .isaypro-legal-content h2:first-of-type {
+    font-size: 32px;
+  }
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content ul,
+.ipsos-isay-pro-page .isaypro-legal-content ol {
+  margin-top: 16px;
+  padding-left: 24px;
+  color: var(--c-gray-700);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content li + li {
+  margin-top: 8px;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content strong {
+  color: var(--c-navy);
+  font-weight: 700;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content em {
+  font-style: italic;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--c-gray-700);
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content th,
+.ipsos-isay-pro-page .isaypro-legal-content td {
+  border: 1px solid var(--c-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-content th {
+  background: var(--c-blue-bg);
+  color: var(--c-navy);
+  font-weight: 700;
+}
+
+/* Table of Contents — restrained: no card/pill treatment, just a clear
+   list with breathing room, matching the rest of the document's typography. */
+.ipsos-isay-pro-page .isaypro-legal-toc {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.ipsos-isay-pro-page .isaypro-legal-toc li + li {
+  margin-top: 2px;
+}
+
+/* Link states — scoped broadly to any link in a legal page, not just
+   .isaypro-legal-content, per spec. These are content links, not CTAs, so
+   they intentionally look and behave differently from .isaypro-btn: no
+   underline at rest, underline on hover/focus like a normal text link.
+   PEX's Raw HTML wrapper ships a matching `a:hover/:active { filter:
+   saturate(...) }` rule (confirmed on the live preview — see the button
+   link-state hardening above); that rule's specificity, (0,4,1), still
+   beats our (0,3,1) here, so `filter` needs !important. `text-decoration`
+   does not: the host's hover rule also sets `text-decoration: underline`,
+   which happens to be the same value we want, so there's nothing to
+   contest there. `color` doesn't need !important either — our :link/:visited
+   selector (0,3,1) already beats the host's base `a { color: ... }` rule
+   at (0,2,1) on ordinary specificity. */
+.ipsos-isay-pro-page.isaypro-legal-page a:link,
+.ipsos-isay-pro-page.isaypro-legal-page a:visited {
+  color: var(--c-blue);
+  text-decoration: none;
+}
+
+.ipsos-isay-pro-page.isaypro-legal-page a:hover,
+.ipsos-isay-pro-page.isaypro-legal-page a:focus,
+.ipsos-isay-pro-page.isaypro-legal-page a:active {
+  color: var(--c-blue-dark);
+  text-decoration: underline;
+  filter: none !important;
+}
+
+.ipsos-isay-pro-page.isaypro-legal-page a:focus {
+  outline: none;
+}
+
+.ipsos-isay-pro-page.isaypro-legal-page a:focus-visible {
+  outline: 2px solid var(--c-blue-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
