@@ -28,24 +28,37 @@ jobs:
           echo "Container smoke test passed"
 
       - name: Login to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io --username "${{ github.actor }}" --password-stdin
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | \
+            podman login ghcr.io \
+              --username "${{ github.actor }}" \
+              --password-stdin
 
       - name: Publish SHA image
         run: |
-          podman tag localhost/uxipsos-pages-ci:${GITHUB_SHA} ghcr.io/iis-design/uxipsos-pages:${GITHUB_SHA}
-          podman push ghcr.io/iis-design/uxipsos-pages:${GITHUB_SHA}
+          podman tag \
+            localhost/uxipsos-pages-ci:${GITHUB_SHA} \
+            ghcr.io/iis-design/uxipsos-pages:${GITHUB_SHA}
+
+          podman push \
+            ghcr.io/iis-design/uxipsos-pages:${GITHUB_SHA}
+
           echo "Published ghcr.io/iis-design/uxipsos-pages:${GITHUB_SHA}"
 
-      - name: Publish main tag and deploy
+      - name: Deploy main SHA
         if: github.ref == 'refs/heads/main'
         run: |
-          podman tag localhost/uxipsos-pages-ci:${GITHUB_SHA} ghcr.io/iis-design/uxipsos-pages:main
-          podman push ghcr.io/iis-design/uxipsos-pages:main
+          ssh \
+            -i /home/gha-runner/.ssh/id_ed25519_deploy \
+            -o BatchMode=yes \
+            nico@192.168.1.83 \
+            "sudo -n /usr/local/bin/iis-deploy uxipsos-pages ${GITHUB_SHA}"
 
-          ssh -i /home/gha-runner/.ssh/id_ed25519_deploy -o BatchMode=yes nico@192.168.1.83 '
-            cd /srv/apps/uxipsos-pages &&
-            docker compose pull &&
-            docker compose up -d &&
-            docker exec design-proxy wget -qO- http://uxipsos-pages/uxipsos-pages/_health >/dev/null &&
-            echo "UXIpsos Pages production deploy OK"
-          '
+          podman tag \
+            localhost/uxipsos-pages-ci:${GITHUB_SHA} \
+            ghcr.io/iis-design/uxipsos-pages:main
+
+          podman push \
+            ghcr.io/iis-design/uxipsos-pages:main
+
+          echo "UXIpsos Pages production deploy OK: ${GITHUB_SHA}"
