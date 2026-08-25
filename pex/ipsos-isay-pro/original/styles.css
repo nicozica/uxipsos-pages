@@ -69,26 +69,20 @@ a {
   text-decoration: none;
 }
 
-/* max-width is border-box inclusive of padding: at >=1232px viewport this
-   resolves to exactly the 1200px (Intro) / 1248px (About) content box
-   Figma authors flush against — the 16px padding here is a mobile/tablet
-   safety gutter, not a desktop inset. Colored module backgrounds are direct
+/* width: min(<max>, 100% - gutter) instead of max-width+padding: this way
+   the container is exactly the 1200px (Intro) / 1248px (About) box Figma
+   authors flush against whenever the viewport is wide enough (matches the
+   reference 1440px frame exactly), but always keeps a minimum 16px gutter
+   from the edge at any narrower width — including the ~992-1230px range
+   that previously had zero gutter. Colored module backgrounds are direct
    children of .container so they line up with that same flush edge. */
 .container {
-  width: 100%;
-  max-width: var(--container-intro);
+  width: min(var(--container-intro), 100% - 32px);
   margin: 0 auto;
-  padding: 0 16px;
 }
 
 body.page-about .container {
-  max-width: var(--container-about);
-}
-
-@media (min-width: 992px) {
-  .container {
-    padding: 0;
-  }
+  width: min(var(--container-about), 100% - 32px);
 }
 
 .visually-hidden {
@@ -258,12 +252,6 @@ body.page-intro .hero-copy p.already-member {
   }
 }
 
-/* 16px on mobile (matches .eyebrow's default), 12px on desktop only. */
-@media (min-width: 992px) {
-  .eyebrow-sm {
-    font-size: 12px;
-  }
-}
 
 .section-title {
   font-size: 32px;
