@@ -178,7 +178,7 @@ body {
    (.choice-input:focus-visible:not(:checked) + .choice-content). */
 .wheel-hub:focus-visible,
 .link-inert:focus-visible,
-.preview-results-trigger:focus-visible {
+.result-pill:focus-visible {
   outline: 2px solid var(--stroke-primary-default);
   outline-offset: 3px;
 }
@@ -428,19 +428,85 @@ body {
    through before picking still get the outline. */
 .choice-input:focus-visible:not(:checked) + .choice-content { outline: 2px solid var(--stroke-primary-default); outline-offset: 2px; }
 
-/* Landing panel gradient — ported from the reference's .panel-intro-light
-   (index.astro), using our own --indigo-100 token instead of the
-   reference's literal fallback-only var(--Indigo-100, #DBE2FF). */
-.panel.panel-intro-light {
-  background: linear-gradient(180deg, var(--indigo-100) 0%, var(--white) 93.45%);
-  border-radius: 24px;
+/* Censydiam landing (Cell 05): plain white background, no card/panel
+   treatment — deliberately dropped the earlier lavender .panel-intro-light
+   gradient per the supplied mobile design. Scoped to .censydiam-landing
+   (set on the <section>, not the shared data-state="landing" attribute)
+   so none of this leaks into 04-poll-predictor.html's own landing state.
+   Mobile: intro/quiz text blocks left-align; image + CTA stay centered via
+   their own wrapper's .text-center. From the md breakpoint up, text
+   recenters — a centered desktop composition is fine, mobile alignment is
+   the requirement. */
+.censydiam-landing__intro,
+.censydiam-landing__quiz {
+  text-align: left;
+}
+@media (min-width: 768px) {
+  .censydiam-landing__intro,
+  .censydiam-landing__quiz {
+    text-align: center;
+  }
 }
 
-/* Result panel: gradient + decorative "stripes" watermark per outcome,
-   same three variants (orange/black/yellow) and image URLs as the
-   reference's panel-results-{color} rules — only the two colors we don't
-   use (brown/purple/blue/green/red, for the reference's other five
-   mascots) were left out. */
+/* Two-tier heading hierarchy: primary (page-level) clearly larger than
+   secondary (subsection) at every width, via clamp() instead of a single
+   shared h2 rule so the gap holds from mobile through desktop.
+   !important is required here: overrides.css's shared `h2, .h2 { font-size:
+   40px !important; }` (site-wide, used by every Doors Survey cell) forces
+   both landing headings to 40px regardless of selector specificity —
+   a non-!important rule can never win against an !important one, no
+   matter how specific. These two classes are the only rule anywhere
+   using !important to beat it, and they only match .censydiam-landing's
+   own two headings, so no other h2 anywhere is affected. */
+.censydiam-landing__heading {
+  font-weight: 700;
+}
+.censydiam-landing__heading--primary {
+  font-size: clamp(1.875rem, 1.65rem + 1vw, 2.5rem) !important; /* ~30px -> 40px */
+  line-height: 1.08;
+}
+.censydiam-landing__heading--secondary {
+  font-size: clamp(1.375rem, 1.2rem + 0.75vw, 1.75rem) !important; /* ~22px -> 28px */
+  line-height: 1.18;
+}
+
+/* Pulls the image up within its row via a negative margin-top on the img
+   itself (not the row) — markup is off-limits for this fix, and the row's
+   own Bootstrap .mt-4 (24px) plus the intro paragraph's .mb-4 (24px) is a
+   fixed 48px gap at every breakpoint; this only trims the top side of it,
+   leaving mb-4, the row's own mt-4, and everything below the image (its
+   own next-row mt-4, the quiz block) untouched. No !important needed:
+   nothing else sets margin-top on this image. */
+.censydiam-landing__image {
+  max-width: 320px;
+  margin-top: -1rem; /* ~48px row gap -> ~32px visible gap */
+}
+@media (min-width: 768px) {
+  .censydiam-landing__image {
+    max-width: 420px;
+    margin-top: -0.25rem; /* ~48px row gap -> ~44px visible gap */
+  }
+}
+
+/* Start Quiz CTA: content-width and centered on mobile too, overriding the
+   shared .btn-cta full-width-on-mobile default (that default is correct
+   for every other Doors Survey cell's mobile CTA, just not this design).
+   fit-content (not auto) + margin-inline:auto is what actually centers a
+   block-level element at a size smaller than its container. */
+.censydiam-landing .censydiam-landing__cta.btn-cta {
+  width: fit-content;
+  min-width: 220px;
+  margin-inline: auto;
+}
+
+/* Result panel: gradient + decorative "stripes" watermark per outcome.
+   Reduced to the 3 approved outcomes (orange/black/yellow) — the other 5
+   color variants (brown/purple/blue/green/red) were removed along with
+   their result sections when the 8-result expansion was cancelled.
+   Second gradient stop uses this project's own token where an existing
+   token's value happens to match the reference's literal color exactly
+   (var(--X, <reference literal>) so the fallback still renders correctly
+   if the token doesn't exist). */
 .panel.panel-results { border-radius: 24px; padding: 2rem 1.25rem; }
 .panel.panel-results-orange {
   background: url("https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/stripes-monkey.webp") no-repeat,
@@ -466,19 +532,66 @@ body {
    fix for "images too small on desktop" (a hardcoded 220px cap regardless
    of viewport, replaced by letting the column set the size).
 
-   The trait list itself no longer needs custom CSS: it now uses the
-   reference's own markup verbatim (list-unstyled, d-flex align-items-start,
-   me-3, strong.h5) instead of the .trait-list/.trait-icon classes that
-   used to style Font Awesome icons here — trait icons are now the
-   reference's own icon-*.svg images, and "Charisma/Confidence/
-   Communicative" (with the reference's own copy) replaced the per-result
-   trait copy that came from the original Figma spec, per direction to
-   match the reference's content, not just its layout. */
+   The trait list otherwise uses the reference's own markup verbatim
+   (list-unstyled, d-flex align-items-start, me-3, strong.h5). */
 
-/* Prototype-only "preview all outcomes" trigger on the choice screen. */
-.preview-results-trigger {
-  background: none; border: none; padding: 0; margin: 0;
-  font-size: .85rem; font-weight: 700; color: var(--text-link) !important;
-  text-decoration: underline; cursor: pointer;
+/* Quality icon optical alignment (the 9 icon-censydiam-*.svg images inside
+   each result's trait list). align-items:flex-start already comes from
+   Bootstrap's own .align-items-start utility on the <li> (unchanged,
+   still !important) — that correctly aligns the <img>'s CSS box with the
+   top of the title+description block. The residual "sits low" look is
+   the icon artwork itself: these SVGs carry a 64x64 viewBox with the
+   drawn glyph inset inside it (confirmed by reading their path data
+   read-only from the CDN — not altered, not copied into the repo), so
+   the visible artwork sits lower than the box edge already aligned by
+   flexbox. flex:0 0 auto stops the icon column from flex-shrinking at
+   narrow widths; display:block drops inline-image baseline gap; the
+   translateY is the optical nudge, applied via transform (not margin) so
+   it can't collapse or change spacing between quality rows. One shared
+   value for all 9 — they're the same icon family/viewBox, not nine
+   different problems. Scoped to .panel-results' own trait list only. */
+.panel.panel-results ul.list-unstyled > li > img {
+  display: block;
+  flex: 0 0 auto;
+  transform: translateY(-6px);
 }
-.preview-results-trigger:hover { color: var(--text-primary-plus-2) !important; }
+/* Desktop needs a slightly larger nudge than mobile — same icons, same
+   cause, just a bit more of it at this size. Reuses the project's
+   existing 768px desktop breakpoint (see .screen-main, .btn-cta,
+   .censydiam-landing__image above) rather than introducing a new one. */
+@media (min-width: 768px) {
+  .panel.panel-results ul.list-unstyled > li > img {
+    transform: translateY(-8px);
+  }
+}
+
+/* Result switcher — pill selector shown only on the final result screen
+   (JS toggles [hidden] once a result state is displayed; see
+   05-censydiam.html). Not present in the reference project verbatim (its
+   own outcome switcher is a "+ Results" button that opens a modal list of
+   links to separate pages); this reproduces the same all-8-outcomes
+   coverage as pill buttons that swap state in place, matching this
+   template's single-page architecture. */
+.result-switcher { margin-top: 3rem; text-align: center; }
+.result-switcher__label { font-size: .85rem; font-weight: 700; color: var(--text-muted) !important; }
+.result-switcher__pills { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
+/* border uses !important throughout: overrides.css's global
+   `button, a.btn { border: 1px solid transparent !important; }` otherwise
+   wins over these (equal specificity doesn't apply — !important always
+   beats a plain declaration regardless of selector specificity). */
+.result-pill {
+  border: 2px solid var(--stroke-primary-minus-1) !important;
+  background: var(--white);
+  color: var(--text-primary-default) !important;
+  border-radius: 999px;
+  padding: .4rem 1rem;
+  font-size: .85rem;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.result-pill:hover { border-color: var(--stroke-primary-default) !important; }
+.result-pill.active {
+  background: var(--bg-primary-default);
+  border-color: var(--bg-primary-default) !important;
+  color: var(--text-foreground) !important;
+}

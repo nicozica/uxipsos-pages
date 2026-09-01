@@ -14,26 +14,33 @@
 
 <template id="screen-content">
 
-  <!-- Matches the reference's own panel-intro-light treatment
-       (astra/src/pages/p1/censydiam-without-rec/index.astro): gradient
-       background + full-width image row, then a narrower centered text
-       row below it. Drops the `stage` 760px cap for the same reason as
-       the result panels below — a fixed max-width:280px on the image was
-       the actual bug making it look small; img-fluid alone (no cap) plus
-       the wider container is what lets it render at the reference's
-       actual scale. -->
-  <section data-state="landing" class="pt-4 pt-md-0">
-    <div class="panel panel-intro-light pt-0 text-center">
-      <div class="row">
-        <div class="col-12 text-center">
-          <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/squad-home.webp" class="img-fluid" alt="">
-        </div>
+  <!-- Plain white landing (no panel/card treatment) per the supplied mobile
+       design: left-aligned text blocks on mobile, centered image + CTA,
+       centered text again from the md breakpoint up. All landing-only
+       rules live under the .censydiam-landing scope in styles.css so they
+       can't leak into 04-poll-predictor.html, which reuses the same
+       data-state="landing" attribute. -->
+  <section data-state="landing" class="censydiam-landing pt-4 pt-md-0">
+    <div class="row">
+      <div class="col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3 censydiam-landing__intro">
+        <h2 class="censydiam-landing__heading censydiam-landing__heading--primary mb-3">More surveys are on the way &#127881;</h2>
+        <p class="mb-1">We're looking for your next survey match.</p>
+        <p class="mb-1">We'll let you know as soon as a one is ready.</p>
+        <p class="mb-4">In the meantime, discover your hidden superpower with our fun personality quiz.</p>
       </div>
-      <div class="row mt-4">
-        <div class="col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3 text-center">
-          <h2 class="mb-3">Unleash Your Hidden Superpower &#9889;</h2>
-          <p class="mb-4">Could your greatest strength be creativity, determination, or something unexpected? Take the quiz to uncover your inner superpower!</p>
-          <button type="button" class="btn btn-primary btn-lg btn-cta btn-cta--center" id="startQuizBtn">Start Quiz!</button>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/squad-home.webp" class="img-fluid censydiam-landing__image" alt="">
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12 col-md-10 offset-md-1 col-lg-6 offset-lg-3 censydiam-landing__quiz">
+        <h2 class="censydiam-landing__heading censydiam-landing__heading--secondary mb-3">Unleash Your Hidden Superpower &#9889;</h2>
+        <p class="mb-1">Could your greatest strength be creativity, determination, or something unexpected?</p>
+        <p class="mb-4">Take the quiz to uncover your inner superpower!</p>
+        <div class="text-center">
+          <button type="button" class="btn btn-primary btn-lg btn-cta btn-cta--center censydiam-landing__cta" id="startQuizBtn">Start Quiz!</button>
         </div>
       </div>
     </div>
@@ -48,43 +55,13 @@
     <div class="choice-grid" id="choiceGrid" role="radiogroup" aria-label="Choose an image"></div>
 
     <button type="button" class="btn btn-primary btn-lg btn-cta btn-cta--center" id="censydiamNextBtn" disabled>Next</button>
-
-    <!-- Prototype-only affordance, same idea as the "+ Results" button in
-         astra's own reference (result/[result].astro): with only 2 real
-         choices but 3 result variants, this is how a reviewer reaches
-         Magnetic Connectivity without it being part of the real 2-choice
-         flow. Not part of the supplied design. -->
-    <p class="mt-3 mb-0">
-      <button type="button" class="preview-results-trigger" data-bs-toggle="modal" data-bs-target="#censydiamPreviewModal">Preview all 3 outcomes</button>
-    </p>
   </section>
 
-  <!-- JUST FOR THE PROTOTYPE: not part of the real user flow. -->
-  <div class="modal fade" id="censydiamPreviewModal" tabindex="-1" aria-labelledby="censydiamPreviewModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title h5" id="censydiamPreviewModalLabel">Preview outcomes</h2>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p class="small text-muted">Prototype only — jump straight to any outcome without going through the quiz.</p>
-          <div class="d-grid gap-2">
-            <button type="button" class="btn btn-outline-primary" data-preview-result="result-cosmic">Cosmic Creativity</button>
-            <button type="button" class="btn btn-outline-primary" data-preview-result="result-savvy">Savvy Pragmatism</button>
-            <button type="button" class="btn btn-outline-primary" data-preview-result="result-magnetic">Magnetic Connectivity</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Result layout below mirrors the reference's two-column grid
-       (astra/src/pages/p1/censydiam-without-rec/result/[result].astro:
-       col-lg-5 image / col-lg-7 text) so the mascot image gets real room
-       on desktop instead of being capped small — .img-fluid lets the grid
-       column set its size instead of a fixed max-width. Mobile keeps the
-       centered, stacked treatment from the supplied design.
+  <!-- Result layout mirrors the reference's two-column grid (col-lg-5 image
+       / col-lg-7 text) so the mascot image gets real room on desktop
+       instead of being capped small — .img-fluid lets the grid column set
+       its size instead of a fixed max-width. Mobile keeps the centered,
+       stacked treatment from the supplied design.
 
        These 3 sections deliberately drop the `stage` class the other
        Doors Survey states use (which caps content at 760px, matching
@@ -92,10 +69,18 @@
        look small next to the reference, which isn't width-constrained the
        same way. Dropped only here, only for the result panels: they fall
        back to .container-xl's own width (full width below ~1200px
-       viewport, capped at 1140px above it — the same ballpark the
-       reference itself renders at). Every other cell/state keeps the
-       760px .stage system unchanged. -->
-  <section data-state="result-cosmic" class="pt-4 pt-md-0" hidden>
+       viewport, capped at 1140px above it). Every other cell/state keeps
+       the 760px .stage system unchanged.
+
+       Consolidated to the 3 approved outcomes (Cosmic Creativity / Magnetic
+       Connectivity / Savvy Pragmatism) — the prior 8-result expansion is
+       cancelled. State names (result-orange/result-yellow/result-black)
+       are unchanged from the original 8-result implementation; only the
+       content and the per-quality icon set changed. Each quality now has
+       its own distinct icon, hosted under this project's own CDN folder
+       (…/censydiam/doors-survey/) rather than reusing the reference's
+       generic smile-wink/heart-circle-plus/comment-dots trio. -->
+  <section data-state="result-orange" class="pt-4 pt-md-0" hidden>
     <div class="panel panel-results panel-results-orange">
       <div class="row align-items-center g-4">
         <div class="col-8 offset-2 col-lg-5 offset-lg-0 text-center text-lg-end">
@@ -104,19 +89,19 @@
         <div class="col-12 col-lg-7 pe-lg-5 text-center text-lg-start">
           <p class="mb-1">Your superpower is&#8230;</p>
           <h1 class="mb-3">Cosmic Creativity</h1>
-          <p>You are <strong>spontaneous</strong>, follow your instincts and live for the moment. You bring excitement everywhere you go.</p>
+          <p>You see the world through a lens of endless possibilities. Your imagination and enthusiasm bring fresh ideas to life.</p>
           <ul class="list-unstyled pt-2 mt-4 text-start">
             <li class="d-flex align-items-start pb-2 mb-4">
-              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-smile-wink.svg" class="me-3" alt="" aria-hidden="true">
-              <div><strong class="h5">Charisma</strong><p class="mb-0">You have a magnetic presence that draws people in.</p></div>
+              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/doors-survey/icon-censydiam-lightbulb.svg" class="me-3" alt="" aria-hidden="true">
+              <div><strong class="h5">Innovative</strong><p class="mb-0">You generate creative ideas that inspire new ways of thinking.</p></div>
             </li>
             <li class="d-flex align-items-start pb-2 mb-4">
-              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-heart-circle-plus.svg" class="me-3" alt="" aria-hidden="true">
-              <div><strong class="h5">Confidence</strong><p class="mb-0">Your words and actions inspire confidence in those around you.</p></div>
+              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/doors-survey/icon-censydiam-star.svg" class="me-3" alt="" aria-hidden="true">
+              <div><strong class="h5">Charismatic</strong><p class="mb-0">Your energy and playfulness make every interaction more engaging.</p></div>
             </li>
             <li class="d-flex align-items-start pb-2 mb-4">
-              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-comment-dots.svg" class="me-3" alt="" aria-hidden="true">
-              <div><strong class="h5">Communicative</strong><p class="mb-0">You excel at conveying your ideas and vision with passion.</p></div>
+              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/doors-survey/icon-censydiam-sun.svg" class="me-3" alt="" aria-hidden="true">
+              <div><strong class="h5">Positive</strong><p class="mb-0">You focus on possibilities and bring optimism wherever you go.</p></div>
             </li>
           </ul>
           <!-- Inert by design: no dashboard exists in this prototype. -->
@@ -126,7 +111,7 @@
     </div>
   </section>
 
-  <section data-state="result-savvy" class="pt-4 pt-md-0" hidden>
+  <section data-state="result-black" class="pt-4 pt-md-0" hidden>
     <div class="panel panel-results panel-results-black">
       <div class="row align-items-center g-4">
         <div class="col-8 offset-2 col-lg-5 offset-lg-0 text-center text-lg-end">
@@ -135,19 +120,19 @@
         <div class="col-12 col-lg-7 pe-lg-5 text-center text-lg-start">
           <p class="mb-1">Your superpower is&#8230;</p>
           <h1 class="mb-3">Savvy Pragmatism</h1>
-          <p>Discipline is your secret weapon to remain steady in the brightest of days or the darkest of storms. Your ability to craft and follow routines isn't just a personal trait, it's the key to shaping a brighter, more resilient future!</p>
+          <p>You bring structure and focus to everything you do. Your practical mindset helps you find smart solutions and keep things moving forward.</p>
           <ul class="list-unstyled pt-2 mt-4 text-start">
             <li class="d-flex align-items-start pb-2 mb-4">
-              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-smile-wink.svg" class="me-3" alt="" aria-hidden="true">
-              <div><strong class="h5">Charisma</strong><p class="mb-0">You have a magnetic presence that draws people in.</p></div>
+              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/doors-survey/icon-censydiam-shield-check.svg" class="me-3" alt="" aria-hidden="true">
+              <div><strong class="h5">Reliable</strong><p class="mb-0">People can count on you to stay consistent and follow through.</p></div>
             </li>
             <li class="d-flex align-items-start pb-2 mb-4">
-              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-heart-circle-plus.svg" class="me-3" alt="" aria-hidden="true">
-              <div><strong class="h5">Confidence</strong><p class="mb-0">Your words and actions inspire confidence in those around you.</p></div>
+              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/doors-survey/icon-censydiam-chart-line.svg" class="me-3" alt="" aria-hidden="true">
+              <div><strong class="h5">Analytical</strong><p class="mb-0">You look at situations logically and make thoughtful decisions.</p></div>
             </li>
             <li class="d-flex align-items-start pb-2 mb-4">
-              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-comment-dots.svg" class="me-3" alt="" aria-hidden="true">
-              <div><strong class="h5">Communicative</strong><p class="mb-0">You excel at conveying your ideas and vision with passion.</p></div>
+              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/doors-survey/icon-censydiam-magnifying-glass-chart.svg" class="me-3" alt="" aria-hidden="true">
+              <div><strong class="h5">Insightful</strong><p class="mb-0">You notice important details and uncover meaningful patterns.</p></div>
             </li>
           </ul>
           <!-- Inert by design: no dashboard exists in this prototype. -->
@@ -157,7 +142,7 @@
     </div>
   </section>
 
-  <section data-state="result-magnetic" class="pt-4 pt-md-0" hidden>
+  <section data-state="result-yellow" class="pt-4 pt-md-0" hidden>
     <div class="panel panel-results panel-results-yellow">
       <div class="row align-items-center g-4">
         <div class="col-8 offset-2 col-lg-5 offset-lg-0 text-center text-lg-end">
@@ -166,19 +151,19 @@
         <div class="col-12 col-lg-7 pe-lg-5 text-center text-lg-start">
           <p class="mb-1">Your superpower is&#8230;</p>
           <h1 class="mb-3">Magnetic Connectivity</h1>
-          <p>You are a fantastic people-magnet, thriving on meaningful connections. You're awesome at making everyone feel like a part of the gang, shrugging off any differences and welcoming folks into your world. Your ability to connect people is the key to a vibrant community, where diverse voices unite into a single, powerful force.</p>
+          <p>You make connections feel effortless. Your positive energy helps create strong relationships wherever you go.</p>
           <ul class="list-unstyled pt-2 mt-4 text-start">
             <li class="d-flex align-items-start pb-2 mb-4">
-              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-smile-wink.svg" class="me-3" alt="" aria-hidden="true">
-              <div><strong class="h5">Charisma</strong><p class="mb-0">You have a magnetic presence that draws people in.</p></div>
+              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/doors-survey/icon-censydiam-seeding.svg" class="me-3" alt="" aria-hidden="true">
+              <div><strong class="h5">Optimistic</strong><p class="mb-0">You see possibilities in challenges and opportunities in change.</p></div>
             </li>
             <li class="d-flex align-items-start pb-2 mb-4">
-              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-heart-circle-plus.svg" class="me-3" alt="" aria-hidden="true">
-              <div><strong class="h5">Confidence</strong><p class="mb-0">Your words and actions inspire confidence in those around you.</p></div>
+              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/doors-survey/icon-censydiam-arrow-trend-up.svg" class="me-3" alt="" aria-hidden="true">
+              <div><strong class="h5">Uplifting</strong><p class="mb-0">Your positive attitude brightens interactions and inspires others.</p></div>
             </li>
             <li class="d-flex align-items-start pb-2 mb-4">
-              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/icon-comment-dots.svg" class="me-3" alt="" aria-hidden="true">
-              <div><strong class="h5">Communicative</strong><p class="mb-0">You excel at conveying your ideas and vision with passion.</p></div>
+              <img src="https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/doors-survey/icon-censydiam-brain.svg" class="me-3" alt="" aria-hidden="true">
+              <div><strong class="h5">Open-Minded</strong><p class="mb-0">You welcome different perspectives and enjoy learning from others.</p></div>
             </li>
           </ul>
           <!-- Inert by design: no dashboard exists in this prototype. -->
@@ -187,6 +172,22 @@
       </div>
     </div>
   </section>
+
+  <!-- Result switcher: lets a reviewer jump between the 3 approved
+       Censydiam outcomes from the final result screen itself, styled as
+       pills and switching state in place instead of navigating to a
+       separate page. Pill labels reuse the reference's own short names for
+       each outcome. Hidden by default; shown only once a result state is
+       on screen (see showResult() below), so it never appears during
+       landing/choice. -->
+  <div class="result-switcher" id="resultSwitcher" hidden>
+    <p class="result-switcher__label mb-2">Jump to another outcome</p>
+    <div class="result-switcher__pills">
+      <button type="button" class="result-pill" data-result-pill="result-orange">Creative</button>
+      <button type="button" class="result-pill" data-result-pill="result-black">Pragmatist</button>
+      <button type="button" class="result-pill" data-result-pill="result-yellow">Connector</button>
+    </div>
+  </div>
 
 </template>
 
@@ -199,32 +200,39 @@
   const showState = initStates(document.getElementById('screen'), 'landing');
   document.getElementById('startQuizBtn').addEventListener('click', () => showState('choice'));
 
+  // Wraps showState() so that, whenever a result state is displayed (either
+  // via the real 2-choice flow or a pill click below), the result switcher
+  // becomes visible and highlights the pill for the outcome now on screen.
+  const resultSwitcher = document.getElementById('resultSwitcher');
+  function showResult(name) {
+    showState(name);
+    resultSwitcher.hidden = false;
+    resultSwitcher.querySelectorAll('[data-result-pill]').forEach(pill => {
+      pill.classList.toggle('active', pill.dataset.resultPill === name);
+    });
+  }
+
   // Centralized choice -> result mapping. Two choices, matching astra's
   // own reference exactly (quiz_flow_01.astro has two <label class="choice-label">
   // options, not three). The reference itself reuses the same choice.webp
-  // for every option (that's not something introduced here). With only 2
-  // choices but 3 result variants, Magnetic Connectivity is reached via
-  // the "Preview all 3 outcomes" prototype affordance above instead of a
-  // third choice card.
+  // for every option (that's not something introduced here). The third
+  // approved outcome (Magnetic Connectivity / result-yellow) isn't
+  // reachable through the 2-choice flow, only via the result switcher's
+  // pills — unchanged from the prior 8-result implementation.
   const CENSYDIAM_CHOICES = [
-    { value: 'cosmic', label: 'Choice 1', image: 'https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/choice.webp', resultState: 'result-cosmic' },
-    { value: 'savvy',  label: 'Choice 2', image: 'https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/choice.webp', resultState: 'result-savvy' },
+    { value: 'cosmic', label: 'Choice 1', image: 'https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/choice.webp', resultState: 'result-orange' },
+    { value: 'savvy',  label: 'Choice 2', image: 'https://cdn.ipsosinteractive.com/deploy/PanelOne/resources/images/revamp/censydiam/choice.webp', resultState: 'result-black' },
   ];
 
   initCensydiam({
     mapping: CENSYDIAM_CHOICES,
     choiceGrid: document.getElementById('choiceGrid'),
     nextButton: document.getElementById('censydiamNextBtn'),
-    showState,
+    showState: showResult,
   });
 
-  // Prototype-only preview modal (see markup comment above) — jumps
-  // straight to a result state without touching the real choice mapping.
-  document.querySelectorAll('[data-preview-result]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      bootstrap.Modal.getOrCreateInstance(document.getElementById('censydiamPreviewModal')).hide();
-      showState(btn.dataset.previewResult);
-    });
+  resultSwitcher.querySelectorAll('[data-result-pill]').forEach(pill => {
+    pill.addEventListener('click', () => showResult(pill.dataset.resultPill));
   });
 </script>
 </body>

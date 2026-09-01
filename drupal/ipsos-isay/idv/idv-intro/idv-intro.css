@@ -234,6 +234,10 @@ main.idv-intro .container.idv-shell p.idv-privacy {
     line-height: 1.5 !important;
 }
 
+main.idv-intro .container.idv-shell p.idv-privacy small {
+    font-size: inherit !important;
+}
+
 main.idv-intro .container.idv-shell p.idv-privacy a,
 main.idv-intro .container.idv-shell p.idv-privacy a:visited {
     color: var(--idv-primary) !important;
@@ -289,12 +293,22 @@ main.idv-intro .idv-provider > .row {
     row-gap: 24px;
 }
 
-main.idv-intro .idv-video-placeholder {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    margin: 0 !important;
+main.idv-intro .idv-video {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    aspect-ratio: 16 / 9;
     border-radius: 6px;
+    overflow: hidden;
+}
+
+main.idv-intro .idv-video iframe {
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border: 0;
 }
 
 main.idv-intro .idv-provider-logo {
