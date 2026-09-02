@@ -254,7 +254,7 @@ body {
 .wheel-scene { position: relative; width: min(78vw, 300px); }
 .wheel-disc {
   width: 100%; height: auto; display: block;
-  transition: transform 3.2s cubic-bezier(.15,.62,.2,1); transform: rotate(0deg);
+  transition: transform 6.06s cubic-bezier(.15,.62,.2,1); transform: rotate(0deg);
 }
 /* 1800deg (5 full turns) would return to the disc's original orientation,
    which has a segment BOUNDARY at 12 o'clock, not a segment center — the
@@ -285,10 +285,9 @@ body {
 .wheel-hub:focus-visible img { filter: brightness(1.08); }
 .wheel-hub:disabled { cursor: default; opacity: .9; }
 
-/* Pointer rocks side to side while the wheel spins (doors.js toggles this
-   class alongside .wheel-disc.is-spinning), like a real wheel-of-fortune
-   tab being nudged by each passing segment — purely decorative, doesn't
-   sync to actual segment positions. Pivots around the hub circle's own
+/* Pointer rocks side to side when a segment divider passes it (doors.js
+    toggles this class briefly), like a real wheel-of-fortune tab being nudged
+    by each passing segment. Pivots around the hub circle's own
    center (50% 59.2%, matching the translate above) rather than the whole
    button's midpoint, so the notch swings while the circle stays put,
    like a needle rather than the whole shape swaying. */
@@ -298,7 +297,7 @@ body {
 }
 .wheel-hub.is-ticking {
   transform-origin: 50% 59.2%;
-  animation: wheel-pointer-tick .2s ease-in-out infinite;
+  animation: wheel-pointer-tick .2s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
   .wheel-hub.is-ticking { animation: none; }

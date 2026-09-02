@@ -83,6 +83,7 @@
   mountScreen({ footerLinks: false });
 
   const showState = initStates(document.getElementById('screen'), 'welcome');
+  const spinSound = new Audio('../assets/spinning-sound.mp3');
 
   initWheel({
     consentCheckbox: document.getElementById('rulesCheckbox'),
@@ -90,6 +91,7 @@
     rulesError: document.getElementById('rulesError'),
     wheelHub: document.getElementById('wheelHub'),
     wheelDisc: document.getElementById('wheelDisc'),
+    spinSound,
     showState,
     resultAnnounce: document.getElementById('wheelAnnounce'),
   });

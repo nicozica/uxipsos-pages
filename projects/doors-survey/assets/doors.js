@@ -31,7 +31,7 @@ function prefersReducedMotion() {
    requirement) — this never selects a segment at random, and the wheel
    always completes exactly 5 full turns so it lands back on the 50
    segment, which is centered under the fixed pointer at rest. */
-function initWheel({ consentCheckbox, spinNowButton, rulesError, wheelHub, wheelDisc, showState, resultAnnounce }) {
+function initWheel({ consentCheckbox, spinNowButton, rulesError, wheelHub, wheelDisc, spinSound, showState, resultAnnounce }) {
   function syncConsent() {
     const agreed = consentCheckbox.checked;
     spinNowButton.disabled = !agreed;
@@ -58,27 +58,67 @@ function initWheel({ consentCheckbox, spinNowButton, rulesError, wheelHub, wheel
     if (resultAnnounce) resultAnnounce.textContent = 'You won 50 points!';
   }
 
+  function resetSpinSound() {
+    spinSound.pause();
+    spinSound.currentTime = 0;
+  }
+
   wheelHub.addEventListener('click', () => {
     if (spun) return; // only one spin per page load, no persistence needed
     spun = true;
     wheelHub.disabled = true;
 
     if (prefersReducedMotion()) {
+      resetSpinSound();
       revealPrize();
       return;
     }
 
+    spinSound.currentTime = 0;
+    spinSound.play().catch(() => {});
+
     let settled = false;
+    let pointerFrame;
+    let previousAngle = 0;
+    let wheelAngle = 0;
+    let nextBoundary = 45;
+    let fallbackTimeout;
+    const tickPointerAtBoundaries = () => {
+      const transform = getComputedStyle(wheelDisc).transform;
+      if (transform !== 'none') {
+        const values = transform.match(/matrix\(([^)]+)\)/);
+        if (values) {
+          const parts = values[1].split(',').map(Number);
+          const currentAngle = Math.atan2(parts[1], parts[0]) * 180 / Math.PI;
+          let angleDelta = currentAngle - previousAngle;
+          if (angleDelta < -180) angleDelta += 360;
+          if (angleDelta > 180) angleDelta -= 360;
+          wheelAngle += angleDelta;
+          previousAngle = currentAngle;
+
+          while (wheelAngle >= nextBoundary) {
+            wheelHub.classList.remove('is-ticking');
+            void wheelHub.offsetWidth;
+            wheelHub.classList.add('is-ticking');
+            nextBoundary += 45;
+          }
+        }
+      }
+      pointerFrame = requestAnimationFrame(tickPointerAtBoundaries);
+    };
     const finish = () => {
       if (settled) return;
       settled = true;
+      cancelAnimationFrame(pointerFrame);
+      clearTimeout(fallbackTimeout);
+      resetSpinSound();
       wheelHub.classList.remove('is-ticking');
       setTimeout(revealPrize, SETTLE_PAUSE_MS);
     };
     wheelDisc.addEventListener('transitionend', finish, { once: true });
-    setTimeout(finish, 3600); // fallback so navigation can't get stuck
+    fallbackTimeout = setTimeout(finish, 6200); // fallback so navigation can't get stuck
     wheelDisc.classList.add('is-spinning');
-    wheelHub.classList.add('is-ticking'); // pointer rocks side to side while it spins
+    pointerFrame = requestAnimationFrame(tickPointerAtBoundaries);
   });
 }
 
